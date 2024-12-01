@@ -56,6 +56,13 @@ body {
   padding-bottom: 200px;
 }
 
+.single_blog_layout_children_wrapper {
+  padding-top: var(--th-app-navbar-height);
+  padding-left: var(--th-layout-side-gap);
+  padding-right: var(--th-layout-side-gap);
+  padding-bottom: 200px;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -82,10 +89,23 @@ a {
   margin-bottom: 20px;
 }
 
+.img_style {
+  width: 100%;
+  height: 100%;
+}
+
 .circle_img_style {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+  font-family: var(--th-font-family);
 }
 
 h2 {

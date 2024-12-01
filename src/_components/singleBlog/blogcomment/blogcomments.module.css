@@ -1,0 +1,12 @@
+.main_container {
+  border: 1px solid var(--th-thin-border-color);
+  background-color: var(--th-thin-border-color);
+  border-radius: 8px;
+  padding: 20px;
+  height: 600px;
+}
+
+.comment_input_wrapper {
+  display: flex;
+  align-items: center;
+}
