@@ -1,0 +1,17 @@
+.user_inLine_avatar {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.maincard_avtar_wrapper {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+  .user_inLine_avatar {
+    column-gap: 6px;
+  }
+}
