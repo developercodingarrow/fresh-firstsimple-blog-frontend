@@ -13,6 +13,16 @@ import { BsThreeDotsVertical } from "react-icons/bs"; // thee dots
 import { FaHeart } from "react-icons/fa"; // Heart for likes
 import { IoEyeOutline } from "react-icons/io5"; //eye for views
 import { FaComment } from "react-icons/fa"; // comment
+import {
+  TiSocialFacebook,
+  TiSocialLinkedin,
+  TiSocialYoutube,
+  TiSocialInstagram,
+} from "react-icons/ti"; // social media icons
+import { RiTwitterXLine } from "react-icons/ri"; // twitter x
+import { TbWorldWww } from "react-icons/tb"; // web internet website
+import { IoReaderOutline } from "react-icons/io5"; // blog reading book
+
 export {
   MdDashboard,
   FaList,
@@ -30,4 +40,11 @@ export {
   FaHeart,
   IoEyeOutline,
   FaComment,
+  TiSocialFacebook,
+  TiSocialLinkedin,
+  TiSocialYoutube,
+  TiSocialInstagram,
+  RiTwitterXLine,
+  TbWorldWww,
+  IoReaderOutline,
 };

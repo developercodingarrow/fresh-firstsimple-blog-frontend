@@ -16,7 +16,11 @@ export default function MainCard() {
     <div className={styles.card_main_container}>
       <div className={styles.card_header}>
         <div>
-          <UserDetailsAvatar boldText="sanjay" lightText="24-aug-2024" />
+          <UserDetailsAvatar
+            boldText="sanjay"
+            lightText="24-aug-2024"
+            avtar_wrapper="maincard_avtar_wrapper"
+          />
         </div>
         <div>
           <BsThreeDotsVertical />

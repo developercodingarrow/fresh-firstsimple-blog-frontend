@@ -5,7 +5,7 @@ import TabBar from "../../tabs/TabBar";
 export default function HomePageLayout({ children }) {
   const tagList = [
     {
-      text: "Real Estate",
+      text: "Property",
       hrflink: "/real-estate",
     },
     {
@@ -13,7 +13,7 @@ export default function HomePageLayout({ children }) {
       hrflink: "/technology",
     },
     {
-      text: "Health & Wellness",
+      text: "Health",
       hrflink: "/health-wellness",
     },
     {
@@ -29,7 +29,7 @@ export default function HomePageLayout({ children }) {
       hrflink: "/travel",
     },
     {
-      text: "Food & Beverage",
+      text: "Food",
       hrflink: "/food-beverage",
     },
     {
@@ -106,7 +106,7 @@ export default function HomePageLayout({ children }) {
         </div>
         <div className={styles.content_container}>
           <div>
-            <TabBar />
+            <TabBar data={tagList} />
           </div>
           <div>{children}</div>
         </div>

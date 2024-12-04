@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./css/btnlinks.module.css";
+import styles from "./css/btnStyles.module.css";
 import Link from "next/link";
 export default function BtnLinks(props) {
   const { linkText, hrflink, size = "medium" } = props;

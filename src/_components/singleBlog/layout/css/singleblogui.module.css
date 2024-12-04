@@ -9,6 +9,7 @@
 .inner_container {
   display: flex;
   column-gap: 5%;
+  row-gap: 50px;
 }
 
 .content_container {
@@ -88,4 +89,32 @@
 .comment_container {
   width: 35%;
   border: 1px solid var(--th-thin-border-color);
+}
+
+@media only screen and (max-width: 600px) {
+  .content_container {
+    width: 100%;
+  }
+  .blog_thumblin_wrapper {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+  }
+  .content_title {
+    margin-bottom: 10px;
+  }
+
+  .content_text {
+    line-height: 1.3;
+    font-size: 14px;
+    font-family: var(--th-font-family);
+    letter-spacing: 0.4px; /* More appropriate spacing */
+    text-align: justify;
+    color: var(--th-text-black);
+  }
+
+  .comment_container {
+    display: none;
+  }
 }

@@ -1,0 +1,104 @@
+.link_style {
+  transition: background-color var(--th-transition-ease-time),
+    color var(--th-transition-ease-time);
+}
+
+.medium_fill {
+  display: flex;
+  font-size: 16px;
+  font-family: var(--th-font-family);
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 5px;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  background-color: var(--th-primary-color);
+  color: var(--th-white-color);
+  border: 1px solid var(--th-primary-color);
+}
+
+.medium_fill:hover {
+  background-color: var(--th-primary-hover-color);
+}
+
+.tag_links {
+  display: flex;
+  color: var(--th-blod-gray-text);
+  font-size: 16px;
+  padding: 4px 0px;
+  transition: background-color var(--th-transition-ease-time),
+    color var(--th-transition-ease-time);
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+  font-family: var(--th-font-family);
+}
+
+.tag_links:hover {
+  color: var(--th-primary-color);
+}
+
+.btn_style {
+  height: auto;
+}
+
+.fill_type_btn {
+  background-color: var(--th-primary-color);
+  outline: none;
+  border: none;
+  color: var(--th-body-background);
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.link_typeBtn {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: var(--th-primary-color);
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+}
+
+.small_link {
+  font-size: 14px;
+}
+
+.fill_type_btn:hover {
+  background-color: var(--th-primary-hover-color);
+}
+
+.small {
+  font-size: 14px;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  padding: 8px 10px; /* Smaller padding for small buttons */
+  border-radius: 5px;
+  line-height: 1.4; /* 1.4x to 1.5x ratio is ideal */
+  letter-spacing: 0.3px;
+}
+
+.medium {
+  font-size: 16px;
+  font-family: var(--font-inter);
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 5px;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+}
+
+.large {
+  font-size: 18px;
+  font-family: var(--font-inter);
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  padding: 12px 14px;
+  border-radius: 5px;
+}

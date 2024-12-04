@@ -1,0 +1,35 @@
+.main_container {
+}
+
+.inner_container {
+  display: flex;
+  column-gap: 5%;
+}
+
+.left_side_container {
+  width: 60%;
+  /* border: 1px solid var(--th-thin-border-color); */
+}
+
+.right_side_container {
+  width: 35%;
+  border: 1px solid var(--th-thin-border-color);
+}
+
+.header_wapper {
+  padding: 20px 0px;
+}
+
+.page_content_wrapper {
+  padding: 20px 0px;
+}
+
+@media only screen and (max-width: 600px) {
+  .left_side_container {
+    width: 100%;
+  }
+
+  .right_side_container {
+    display: none;
+  }
+}

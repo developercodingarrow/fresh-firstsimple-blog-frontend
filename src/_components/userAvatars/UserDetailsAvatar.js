@@ -4,14 +4,11 @@ import userAvtar from "../../../public/web-static-img/user-avatar-img.png";
 import CircleImg from "./CircleImg";
 import TextElements from "../elements/textElements/TextElements";
 export default function UserDetailsAvatar(props) {
-  const { boldText, lightText } = props;
+  const { boldText, lightText, avtar_wrapper } = props;
   return (
     <div className={styles.user_inLine_avatar}>
       <div className={styles.user_img_wrapper}>
-        <CircleImg
-          imgSrc={userAvtar}
-          avtar_wrapperStyle="maincard_avtar_wrapper"
-        />
+        <CircleImg imgSrc={userAvtar} avtar_wrapperStyle={avtar_wrapper} />
       </div>
       <div className={styles.maincard_user_deatils}>
         <TextElements
