@@ -16,6 +16,64 @@
 }
 
 .medium {
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+.large {
   padding: 12px 12px;
   border-radius: 8px;
+}
+
+.input_lable {
+  margin-bottom: 5px;
+  line-height: 1.75;
+  font-weight: 600;
+  display: block;
+}
+
+.inputHook_container {
+  margin-bottom: 2px;
+}
+
+.lable_wraper {
+}
+
+.lable_style {
+  font-size: 16px;
+  line-height: 2;
+  line-height: 1.75;
+  font-weight: 600;
+  display: block;
+}
+
+.passInput_hook_container {
+  margin-bottom: 10px;
+}
+
+.Password_input_wrapper {
+  border: 1px solid #afafaf;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.pass_input_style {
+  background: none;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: var(--th-blod-gray-text);
+  font-family: var(--th-font-family);
+}
+
+.passInput_icon_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--th-blod-gray-text);
 }

@@ -2,6 +2,10 @@ import MainAppNavbar from "@/src/_components/navbar/appnavbar/MainAppNavbar";
 import "../globals.css";
 import HomePageLayout from "@/src/_components/home/layout/HomePageLayout";
 import MainFooter from "@/src/_components/footer/MainFooter";
+import AuthContextProvider from "@/src/_contextApi/authContext";
+import ModelContextProvider from "@/src/_contextApi/ModelContextApi";
+import AuthModel from "@/src/_components/models/AuthModel";
+import ReportModel from "@/src/_components/models/ReportModel";
 
 export const metadata = {
   title: "Create Next App",
@@ -20,15 +24,21 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <div>
-          <MainAppNavbar />
-        </div>
-        <div className="layout_children_wrapper">
-          <HomePageLayout>{children}</HomePageLayout>
-        </div>
-        <div>
-          <MainFooter />
-        </div>
+        <AuthContextProvider>
+          <ModelContextProvider>
+            <AuthModel />
+            <ReportModel />
+            <div>
+              <MainAppNavbar />
+            </div>
+            <div className="layout_children_wrapper">
+              <HomePageLayout>{children}</HomePageLayout>
+            </div>
+            <div>
+              <MainFooter />
+            </div>
+          </ModelContextProvider>
+        </AuthContextProvider>
       </body>
     </html>
   );

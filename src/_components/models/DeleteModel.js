@@ -23,23 +23,6 @@ export default function DeleteModel(props) {
               Are You Sure to Delete Then delete Other Wise clcik on Cancel....
               ?
             </div>
-            {/* <div className={styles.model_footer}>
-              <ClickTextBtn
-                btnText="Cancel"
-                disabledBtn={false}
-                btnLoading={false}
-                size="medium"
-                clickHandel={handelCloseDeleteModel}
-              />
-
-              <ClickTextBtn
-                btnText="Delete"
-                disabledBtn={false}
-                btnLoading={false}
-                size="medium"
-                clickHandel={actionHandler}
-              />
-            </div> */}
             <ModelCommanFooter modelCloseHandler={handelCloseDeleteModel} />
           </div>
         </div>

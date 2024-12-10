@@ -1,0 +1,16 @@
+.main_container {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 20px 0px;
+  border-bottom: 1px solid var(--th-thin-border-color);
+}
+
+.card_title_box {
+  line-height: 1.4; /* 1.4x to 1.5x ratio is ideal */
+  letter-spacing: 0.3px; /* Reduced to a more standard value */
+}
+
+.card_footer {
+  display: flex;
+  column-gap: 20px;
+}

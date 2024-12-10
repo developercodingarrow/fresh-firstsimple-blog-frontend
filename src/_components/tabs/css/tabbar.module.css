@@ -2,8 +2,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 40px;
+  height: 70px;
   border: 1px solid var(--th-thin-border-color);
+  background-color: var(--th-body-background);
+}
+
+.sticky {
+  position: fixed;
+  width: 51.5%;
+  top: 80px;
+  background-color: var(--th-body-background);
+  border-bottom: 1px solid var(--th-separator); /* Uses your light gray color */
+  box-shadow: var(--th-body-seondery-box-shadow);
+  z-index: 9; /* Optional: to ensure it appears above other elements */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, top 0.3s ease;
+  overflow: hidden;
 }
 
 .arrow_box {
@@ -20,19 +33,48 @@
 .tab_links_wrapper {
   height: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
-  /* border: 1px solid red;
-  overflow-x: auto; */
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.tab_links_wrapper::-webkit-scrollbar {
+  height: 1px;
+  background-color: transparent;
+}
+
+.tab_links_wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tab_links_wrapper::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  width: 5px;
+  border-radius: 10px;
 }
 
 .tab_links {
   padding: 10px;
   transition: background-color var(--th-transition-ease-time),
     color var(--th-transition-ease-time);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .tab_links:hover {
   color: var(--th-primary-color);
+}
+
+@media only screen and (max-width: 600px) {
+  .tab_container {
+    height: 50px;
+  }
+  .sticky {
+    width: 100%;
+    top: 50px;
+  }
+  .tab_links_wrapper {
+    padding: 0px 5px;
+  }
 }

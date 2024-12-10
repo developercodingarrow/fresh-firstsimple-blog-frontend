@@ -7,7 +7,7 @@
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.3); /* Light translucent border */
   position: fixed;
-  z-index: 10;
+  z-index: 100;
   background: rgba(255, 255, 255, 0.2); /* Transparent white background */
   backdrop-filter: blur(5px); /* Glass-like blur effect */
   -webkit-backdrop-filter: blur(5px); /* Safari support for blur effect */
@@ -22,7 +22,7 @@
   top: 10px;
   left: 10px;
   width: 50%;
-  height: 150px;
+  height: 250px;
   box-shadow: var(--th-model-box-shadow);
   background-color: #fff;
   border-radius: 5px;

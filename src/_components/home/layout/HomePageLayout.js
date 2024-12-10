@@ -2,10 +2,11 @@ import React from "react";
 import styles from "./css/homepagelayout.module.css";
 import BtnLinks from "../../buttons/BtnLinks";
 import TabBar from "../../tabs/TabBar";
+import SidbarPagesComponent from "../../sidebards/SidbarPagesComponent";
 export default function HomePageLayout({ children }) {
   const tagList = [
     {
-      text: "Property",
+      text: "Real Estate",
       hrflink: "/real-estate",
     },
     {
@@ -29,7 +30,7 @@ export default function HomePageLayout({ children }) {
       hrflink: "/travel",
     },
     {
-      text: "Food",
+      text: "Food & beverage",
       hrflink: "/food-beverage",
     },
     {
@@ -66,47 +67,23 @@ export default function HomePageLayout({ children }) {
     <div className={styles.main_container}>
       <div className={styles.inner_container}>
         <div className={styles.sidebar_container}>
-          <div className={`${styles.component_container} mg_botom_lg `}>
-            <div>
-              <div className="capitalize_text mg_botom_lg section_medium_heading">
-                blog Topics
-              </div>
-              <div className={styles.topic_list}>
-                {tagList.map((el, index) => {
-                  return (
-                    <BtnLinks
-                      linkText={el.text}
-                      hrflink={el.hrflink}
-                      size="tag_links"
-                    />
-                  );
-                })}
-              </div>
-            </div>
+          <div className="mg_botom_lg ">
+            <SidbarPagesComponent
+              sectionTitle="blog Topics"
+              listData={tagList}
+            />
           </div>
 
-          <div className={styles.component_container}>
-            <div>
-              <div className="capitalize_text mg_botom_lg section_medium_heading">
-                Guid and Tool
-              </div>
-              <div className={styles.topic_list}>
-                {guidlin.map((el, index) => {
-                  return (
-                    <BtnLinks
-                      linkText={el.text}
-                      hrflink={el.hrflink}
-                      size="tag_links"
-                    />
-                  );
-                })}
-              </div>
-            </div>
+          <div className="mg_botom_lg ">
+            <SidbarPagesComponent
+              sectionTitle="Guid articles"
+              listData={guidlin}
+            />
           </div>
         </div>
         <div className={styles.content_container}>
           <div>
-            <TabBar data={tagList} />
+            <TabBar data={tagList} stickypos={50} />
           </div>
           <div>{children}</div>
         </div>

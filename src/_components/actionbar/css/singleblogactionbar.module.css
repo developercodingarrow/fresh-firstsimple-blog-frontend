@@ -1,0 +1,37 @@
+.action_bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5px;
+  border-bottom: 1px solid var(--th-thin-border-color);
+  margin-bottom: 20px;
+}
+
+.actions_wrapper {
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+}
+
+.card_icon_details {
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+}
+
+.icon_details {
+  color: var(--th-text-gray);
+  font-size: 14px;
+  font-weight: 400;
+  font-family: var(--th-font-family);
+}
+
+.icon_box {
+  font-size: 14px;
+  color: var(--th-text-gray);
+  font-weight: 400;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,38 @@
+.main_container {
+  width: 100%;
+}
+
+.inner_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lable_text {
+}
+
+.value_text {
+  display: flex;
+  align-items: center;
+  column-gap: 3px;
+}
+
+.socilaMedia_wrapper {
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  column-gap: 3px;
+}
+
+.img_value {
+  width: 30px;
+  height: 30px;
+  border: 1px solid gainsboro;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.img_style {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}

@@ -2,14 +2,10 @@ import React from "react";
 import styles from "./css/maincard.module.css";
 import Link from "next/link";
 import UserDetailsAvatar from "../../userAvatars/UserDetailsAvatar";
-import {
-  BsThreeDotsVertical,
-  FaHeart,
-  IoEyeOutline,
-  FaComment,
-} from "../../ApplicationIcons";
+import { FaHeart, IoEyeOutline, FaComment } from "../../ApplicationIcons";
 import cardimg from "../../../../public/web-static-img/cardimg.png";
 import Image from "next/image";
+import MainCardActionDotWrapper from "../../actiondote/MainCardActionDotWrapper";
 
 export default function MainCard() {
   return (
@@ -23,11 +19,14 @@ export default function MainCard() {
           />
         </div>
         <div>
-          <BsThreeDotsVertical />
+          <MainCardActionDotWrapper />
         </div>
       </div>
       <div className={styles.card_body}>
-        <Link href={"/"} className={styles.body_inner_container}>
+        <Link
+          href={"/blog/lorem-ipsum-dolor-sit-ame-y"}
+          className={styles.body_inner_container}
+        >
           <div className={styles.deatils_box}>
             <div className={styles.card_title_box}>
               <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>

@@ -1,0 +1,31 @@
+.com_component {
+  position: relative;
+}
+
+.action_dropDown_wrapper {
+  position: absolute;
+}
+
+.action_list_wrapper {
+}
+
+.action_drop_box {
+  background-color: var(--th-white-color);
+  box-shadow: var(--th-box-shadow);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.action_item {
+  padding: 3px 7px;
+  font-size: 12px;
+  border-bottom: 1px solid var(--th-thin-border-color);
+  border-radius: 3px;
+  color: var(--th-blod-gray-text);
+}
+
+.action_item:hover {
+  background-color: var(--th-primary-hover-color);
+  color: var(--th-white-color);
+  border-radius: 3px;
+}

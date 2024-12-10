@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./css/appnavbar.module.css";
 import { HiMagnifyingGlass } from "../../ApplicationIcons";
-export default function NavSearchBar() {
+export default function NavSearchBar(props) {
   return (
     <div className={styles.search_container}>
       <div className={styles.search_iconBox}>

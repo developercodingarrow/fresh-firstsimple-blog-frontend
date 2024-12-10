@@ -1,0 +1,14 @@
+.flex_conatainer {
+  display: flex;
+  padding: 5px 0px;
+  align-items: center;
+  border: 1px solid var(--th-thin-border-color);
+  background-color: var(--th-thin-border-color);
+}
+
+.breadcumb_box {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  padding: 5px;
+}

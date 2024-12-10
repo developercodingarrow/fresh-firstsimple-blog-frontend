@@ -1,0 +1,90 @@
+.main_container {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.inner_container {
+  width: 100%;
+  display: flex;
+  border-radius: 10px;
+  /* border: 1px solid var(--th-border-color); */
+  min-height: 500px;
+}
+
+.Intro_Column {
+  display: flex;
+  align-items: center;
+  padding: 50px;
+  width: 55%;
+  background: rgb(13, 140, 233);
+  background: linear-gradient(
+    34deg,
+    rgba(13, 140, 233, 1) 0%,
+    rgba(12, 140, 233, 1) 99%,
+    rgba(90, 177, 239, 1) 100%
+  );
+  border-radius: 10px;
+  box-shadow: var(--th-model-box-shadow);
+  border: 1px solid var(--th-thin-border-color);
+  color: #fff;
+}
+
+.AuthColumn {
+  width: 45%;
+  background-color: #fff;
+  border-radius: 0 10px 10px 0;
+  border: 1px solid var(--th-thin-border-color);
+}
+
+.authColum_innerContainer {
+  padding: 30px 20px;
+}
+
+.auth_form_wrapper {
+  margin-bottom: 20px;
+}
+
+.form_input_wrapper {
+  margin-bottom: 20px;
+  /* border: 1px solid red; */
+}
+
+.form_input_filedBox {
+  height: 90px;
+}
+
+.submit_btn_wrapper {
+}
+
+.auth_seprate {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  margin-bottom: 10px;
+}
+
+.single_line {
+  border: 1px solid gray;
+  flex-grow: 1;
+}
+
+.forgot_pass_link_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0px;
+  text-transform: capitalize;
+  font-size: 14px;
+  color: var(--th-primary-color);
+}
+
+@media only screen and (max-width: 600px) {
+  .Intro_Column {
+    display: none;
+  }
+  .AuthColumn {
+    width: 100%;
+  }
+  .authColum_innerContainer {
+    padding: 20px 10px;
+  }
+}

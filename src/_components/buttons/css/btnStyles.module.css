@@ -41,6 +41,10 @@
   height: auto;
 }
 
+.fullWidth {
+  width: 100%;
+}
+
 .fill_type_btn {
   background-color: var(--th-primary-color);
   outline: none;

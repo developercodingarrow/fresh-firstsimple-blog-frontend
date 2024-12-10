@@ -1,6 +1,10 @@
+import AuthModel from "@/src/_components/models/AuthModel";
 import "../globals.css";
 import MainFooter from "@/src/_components/footer/MainFooter";
 import MainAppNavbar from "@/src/_components/navbar/appnavbar/MainAppNavbar";
+import AuthContextProvider from "@/src/_contextApi/authContext";
+import ModelContextProvider from "@/src/_contextApi/ModelContextApi";
+import ReportModel from "@/src/_components/models/ReportModel";
 
 export const metadata = {
   title: "Single Blog page",
@@ -19,13 +23,21 @@ export default function SingleblogLayout({ children }) {
         />
       </head>
       <body>
-        <div>
-          <MainAppNavbar />
-        </div>
-        <div className="single_blog_layout_children_wrapper">{children}</div>
-        <div>
-          <MainFooter />
-        </div>
+        <AuthContextProvider>
+          <ModelContextProvider>
+            <AuthModel />
+            <ReportModel />
+            <div>
+              <MainAppNavbar />
+            </div>
+            <div className="single_blog_layout_children_wrapper">
+              {children}
+            </div>
+            <div>
+              <MainFooter />
+            </div>
+          </ModelContextProvider>
+        </AuthContextProvider>
       </body>
     </html>
   );

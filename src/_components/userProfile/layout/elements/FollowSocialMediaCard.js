@@ -7,6 +7,7 @@ import {
   TiSocialInstagram,
   RiTwitterXLine,
 } from "../../../ApplicationIcons";
+import SocialIconsLinks from "@/src/_components/social_icons/SocialIconsLinks";
 export default function FollowSocialMediaCard() {
   return (
     <div className={styles.main_container}>
@@ -18,21 +19,23 @@ export default function FollowSocialMediaCard() {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </div>
         <div className={styles.social_media_icon_wrapper}>
-          <div className={styles.social_iconBox}>
-            <TiSocialFacebook />
-          </div>
-          <div className={styles.social_iconBox}>
-            <TiSocialLinkedin />
-          </div>
-          <div className={styles.social_iconBox}>
-            <TiSocialYoutube />
-          </div>
-          <div className={styles.social_iconBox}>
-            <TiSocialInstagram />
-          </div>
-          <div className={styles.social_iconBox}>
-            <RiTwitterXLine />
-          </div>
+          <SocialIconsLinks
+            showicon="facebook"
+            iconlink="https://www.facebook.com/"
+          />
+          <SocialIconsLinks
+            showicon="youtub"
+            iconlink="https://www.youtube.com/"
+          />
+          <SocialIconsLinks
+            showicon="instagram"
+            iconlink="https://www.instagram.com/"
+          />
+          <SocialIconsLinks
+            showicon="linkedin"
+            iconlink="https://in.linkedin.com/"
+          />
+          <SocialIconsLinks showicon="twitter" iconlink="https://x.com/" />
         </div>
       </div>
     </div>

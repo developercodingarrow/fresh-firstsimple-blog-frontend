@@ -10,11 +10,13 @@ import {
   FaComment,
 } from "../../ApplicationIcons";
 import BlogComment from "../blogcomment/BlogComment";
+import Blogbreadcrumb from "../../breadcrumbs/Blog/Blogbreadcrumb";
+import SingleBlogActionBar from "../../actionbar/SingleBlogActionBar";
 export default function SingleBlogUi() {
   return (
     <div className={styles.main_container}>
       <div className={styles.breadcrumb_wrapper}>
-        <p>home - blog - This is blog</p>
+        <Blogbreadcrumb />
       </div>
       <div className={styles.inner_container}>
         <div className={styles.content_container}>
@@ -30,32 +32,8 @@ export default function SingleBlogUi() {
             {" "}
             image caption{" "}
           </div>
-          <div className={styles.action_bar}>
-            <div>
-              <UserDetailsAvatar boldText="sanjay" lightText="24-aug-2024" />
-            </div>
-            <div className={styles.actions_wrapper}>
-              <div className={styles.card_icon_details}>
-                <div className={styles.icon_box}>
-                  <FaHeart />
-                </div>
-                <div className={styles.icon_details}>200</div>
-              </div>
-              <div className={styles.card_icon_details}>
-                <div className={styles.icon_box}>
-                  {" "}
-                  <IoEyeOutline />{" "}
-                </div>
-
-                <div className={styles.icon_details}>1500</div>
-              </div>
-              <div className={styles.card_icon_details}>
-                <div className={styles.icon_box}>
-                  <FaComment />
-                </div>
-                <div className={styles.icon_details}>30</div>
-              </div>
-            </div>
+          <div className={styles.actionbar_wrapper}>
+            <SingleBlogActionBar />
           </div>
           <div className={styles.content_title}>
             <h1>

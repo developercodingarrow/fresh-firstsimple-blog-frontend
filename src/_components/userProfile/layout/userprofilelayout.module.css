@@ -24,6 +24,10 @@
   padding: 20px 0px;
 }
 
+.mobile_socilaBar_wrapper {
+  display: none;
+}
+
 @media only screen and (max-width: 600px) {
   .left_side_container {
     width: 100%;
@@ -31,5 +35,15 @@
 
   .right_side_container {
     display: none;
+  }
+  .mobile_socilaBar_wrapper {
+    display: block;
+  }
+
+  .social_media_icon_wrapper {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 5px;
+    margin-bottom: 5px;
   }
 }
