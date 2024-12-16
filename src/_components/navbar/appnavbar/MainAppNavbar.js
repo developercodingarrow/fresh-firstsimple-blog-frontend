@@ -3,9 +3,10 @@ import styles from "./css/appnavbar.module.css";
 import NavLogo from "../NavLogo";
 import NavSearchBar from "./NavSearchBar";
 import NavigationLinks from "./NavigationLinks";
-import BtnLinks from "../../buttons/BtnLinks";
+import UserAuthWrapper from "./UserAuthWrapper";
 
-export default function MainAppNavbar() {
+export default function MainAppNavbar(props) {
+  const { authData } = props;
   return (
     <div className={`${styles.container}`}>
       <div className={styles.inner_container}>
@@ -20,7 +21,7 @@ export default function MainAppNavbar() {
         <div className={styles.inner_container_right_side}>
           <NavigationLinks />
 
-          <BtnLinks linkText="login" hrflink="/" size="medium_fill" />
+          <UserAuthWrapper userData={authData} />
         </div>
       </div>
     </div>

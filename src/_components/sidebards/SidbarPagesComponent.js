@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./css/sidebarcomponents.module.css";
 import BtnLinks from "../buttons/BtnLinks";
 export default function SidbarPagesComponent(props) {
-  const { sectionTitle, listData } = props;
+  const { sectionTitle, listData, linkTextName, hrflinkName, path } = props;
 
   return (
     <div className={styles.component_container}>
@@ -14,8 +14,8 @@ export default function SidbarPagesComponent(props) {
           {listData.map((el, index) => {
             return (
               <BtnLinks
-                linkText={el.text}
-                hrflink={el.hrflink}
+                linkText={el[linkTextName]}
+                hrflink={`/${path}/${el[hrflinkName]}`}
                 size="tag_links"
               />
             );

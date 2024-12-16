@@ -1,33 +1,36 @@
-import React from "react";
+"use client";
+import React, { useState, useContext } from "react";
 import styles from "./userdashboardui.module.css";
 import UserDetailsAvatar from "../../userAvatars/UserDetailsAvatar";
 import TabBar from "../../tabs/TabBar";
 import SidbarPagesComponent from "../../sidebards/SidbarPagesComponent";
 import SideBarFeatureList from "../../sidebards/SideBarFeatureList";
+import { AuthContext } from "@/src/_contextApi/authContext";
 
 export default function UserdashboardUi({ children }) {
+  const { authUser } = useContext(AuthContext);
   const userpageLinks = [
     {
       text: "Publihed",
-      hrflink: "/user/blogs/public",
+      hrflink: "/me/blogs/public",
     },
 
     {
       text: "Draft",
-      hrflink: "/user/blogs/drafts",
+      hrflink: "/me/blogs/drafts",
     },
 
     {
       text: "Online Presence",
-      hrflink: "/user/online-presence",
+      hrflink: "/me/online-presence",
     },
     {
       text: "Home",
-      hrflink: "/user/profile",
+      hrflink: "/me/profile",
     },
     {
       text: "Bio",
-      hrflink: "/user/bio",
+      hrflink: "/me/bio",
     },
     {
       text: "Setting",
@@ -57,13 +60,18 @@ export default function UserdashboardUi({ children }) {
         <div className={styles.left_side_container}>
           <section className={styles.header_wapper}>
             <UserDetailsAvatar
-              boldText="Sanjay"
-              lightText="@sanjychauhan"
+              boldText={authUser.name}
+              lightText={authUser?.userName}
               avtar_wrapper="userHeader_avtar"
             />
           </section>
           <div className={styles.tab_wrapper}>
-            <TabBar data={userpageLinks} />
+            <TabBar
+              data={userpageLinks}
+              linkTextName="text"
+              hrflinkName="hrflink"
+              stickypos={50}
+            />
           </div>
 
           <div className={styles.page_content_wrapper}>{children}</div>

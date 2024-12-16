@@ -1,13 +1,24 @@
-import React from "react";
+"use client";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./blogcomments.module.css";
 import ReplyItem from "./ReplyItem";
-// import CommentItem from "./CommentItem";
 
-export default function RepliesList() {
+export default function RepliesList(props) {
+  const { replies, comentID, handelDelete } = props;
+
   return (
     <div className={styles.replies_list}>
       <div className={styles.reply_item}>
-        <ReplyItem />
+        {replies.map((el, index) => {
+          return (
+            <ReplyItem
+              data={el}
+              key={index}
+              handelDelete={handelDelete}
+              comentid={comentID}
+            />
+          );
+        })}
       </div>
     </div>
   );

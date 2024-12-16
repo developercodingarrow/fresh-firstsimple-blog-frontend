@@ -36,3 +36,16 @@
   border-radius: 40px;
   color: var(--th-blod-gray-text);
 }
+
+@media only screen and (max-width: 600px) {
+  .search_container {
+  }
+
+  .search_iconBox {
+    font-size: 16px;
+    padding: 5px;
+  }
+  .search_input {
+    font-size: 16px;
+  }
+}

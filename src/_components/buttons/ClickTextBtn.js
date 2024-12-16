@@ -12,13 +12,14 @@ export default function ClickTextBtn(props) {
     btnType = "fill_type_btn",
     fullWidth = false, // Default is not full width
     clickHandel,
+    actionID,
   } = props;
   //   const { actionID } = useContext(ModelsContext);
 
   const handelClick = () => {
     if (!disabledBtn) {
       //   clickHandel(actionID);
-      clickHandel();
+      clickHandel(actionID);
     }
   };
 

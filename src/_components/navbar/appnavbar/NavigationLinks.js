@@ -10,16 +10,13 @@ export default function NavigationLinks() {
     },
     {
       text: "Tags",
-      hrfLink: "/",
+      hrfLink: "/blog-topics",
     },
     {
       text: "About",
-      hrfLink: "/",
+      hrfLink: "/about",
     },
-    {
-      text: "blogs",
-      hrfLink: "/",
-    },
+
     {
       text: "Story",
       hrfLink: "/",

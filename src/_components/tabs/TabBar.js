@@ -5,7 +5,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "../ApplicationIcons";
 import Link from "next/link";
 
 export default function TabBar(props) {
-  const { data, stickypos = 50 } = props;
+  const { data, linkTextName, hrflinkName, stickypos = 50 } = props;
   const [isSticky, setIsSticky] = useState(false);
   const wrapperRef = useRef(null); // Ref for the scrollable wrapper
 
@@ -49,11 +49,11 @@ export default function TabBar(props) {
         {data.map((el, index) => {
           return (
             <Link
-              href={el.hrflink}
+              href={el[hrflinkName]}
               key={index}
-              className={`${styles.tab_links} text_color_gray medium__text semi_bold_text`}
+              className={`${styles.tab_links} text_color_gray medium__text semi_bold_text capitalize_text`}
             >
-              {el.text}
+              {el[linkTextName]}
             </Link>
           );
         })}

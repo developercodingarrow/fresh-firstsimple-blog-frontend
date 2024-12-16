@@ -1,47 +1,71 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./css/userbioWrapper.module.css";
+import toast, { Toaster } from "react-hot-toast";
 import ReactQuillElement from "../../elements/formelements/ReactQuillElement";
-export default function UserBioWrapper() {
-  const [btnToggle, setbtnToggle] = useState(true);
+import { AuthContext } from "@/src/_contextApi/authContext";
+import { updateUserDetail } from "@/src/app/utils/userAuthaction";
 
-  const handleQuillChange = () => {};
+export default function UserBioWrapper() {
+  const [btnToggle, setbtnToggle] = useState(false);
+  const { authUser, handelUpdateUserProfile } = useContext(AuthContext);
+  const [bioContent, setbioContent] = useState(authUser.bio);
+  const handleQuillChange = (content) => {
+    console.log(content);
+    setbioContent(content);
+  };
+
+  const handelToggle = () => {
+    setbtnToggle(true);
+  };
+
+  const handelSubmitBio = async () => {
+    console.log("handelSubmitBio");
+    try {
+      const obj = {
+        bio: bioContent,
+        _id: authUser._id,
+      };
+      const res = await handelUpdateUserProfile(obj);
+      if (res.data.status === "success") {
+        updateUserDetail(res.data.result);
+        toast.success(res.data.message);
+        console.log(res);
+        setbtnToggle(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className={styles.main_container}>
+      <Toaster />{" "}
       <div className={styles.Btnbar}>
-        <div>{btnToggle ? "edit" : "save"}</div>
+        <div>
+          {btnToggle ? (
+            <div onClick={handelSubmitBio}> save</div>
+          ) : (
+            <div onClick={handelToggle}> Edit</div>
+          )}
+        </div>
       </div>
       <div className={styles.bio_eitor_wrapper}>
         {btnToggle ? (
           <div>
             <ReactQuillElement
-              inputValue="hello"
+              inputValue={bioContent}
               inputChnageHandler={handleQuillChange}
             />
           </div>
         ) : (
           <div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              sodales porta lorem, vel molestie enim feugiat at. Fusce convallis
-              enim nec ante porta pretium. Sed enim risus, molestie ac suscipit
-              luctus, imperdiet sit amet ligula. Integer efficitur, nisl ut
-              pharetra aliquet, lorem turpis semper libero, et facilisis metus
-              ipsum a ante. Cras sed consectetur lorem. Class aptent taciti
-              sociosqu ad litora torquent per conubia nostra, per inceptos
-              himenaeos. Sed id nibh egestas, sagittis lorem et, pellentesque
-              lacus. Mauris scelerisque augue tortor, ut feugiat justo finibus
-              in. Etiam bibendum dapibus eros fringilla rutrum. Nulla eu tortor
-              sit amet tortor malesuada hendrerit. Etiam mollis posuere urna,
-              sit amet feugiat nunc eleifend id. Duis aliquet at diam a
-              malesuada. Suspendisse interdum neque accumsan mi molestie
-              pulvinar. Duis massa metus, pulvinar feugiat nisl eu, tristique
-              volutpat risus. Integer lorem dui, aliquet sit amet lorem sed,
-              fermentum tristique nibh. Vestibulum hendrerit scelerisque
-              scelerisque. Cras eget eros ut nisi vulputate euismod. In bibendum
-              sapien metus, non luctus ex placerat sed. Nunc fermentum eu nibh
-              sit amet fringilla. Vestibulum gravida arcu et luctus elementum.
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: authUser.bio || "",
+              }}
+              className={styles.content}
+            ></p>
           </div>
         )}
       </div>

@@ -7,26 +7,28 @@ import SideBarStats from "./elements/SideBarStats";
 import TabBar from "../../tabs/TabBar";
 import SocialIconsLinks from "../../social_icons/SocialIconsLinks";
 
-export default function UserProfileLayout({ children }) {
+export default function UserProfileLayout({ children, userProfile }) {
   const userpageLinks = [
     {
       text: "Home",
-      hrflink: "/user-profile/sandeep",
+      hrflink: `/user-profile/${userProfile.userName}`,
     },
 
     {
       text: "About",
-      hrflink: "/user-profile/sandeep/about",
+      hrflink: `/user-profile/${userProfile.userName}/about`,
     },
   ];
+
+  console.log("userProfile---", userProfile);
   return (
     <div className={styles.main_container}>
       <div className={styles.inner_container}>
         <div className={styles.left_side_container}>
           <section className={styles.header_wapper}>
             <UserDetailsAvatar
-              boldText="Sanjay"
-              lightText="@sanjychauhan"
+              boldText={userProfile?.name}
+              lightText={userProfile?.userName}
               avtar_wrapper="userHeader_avtar"
             />
           </section>
@@ -53,14 +55,19 @@ export default function UserProfileLayout({ children }) {
             </div>
           </div>
           <div className={styles.tab_wrapper}>
-            <TabBar data={userpageLinks} />
+            <TabBar
+              data={userpageLinks}
+              linkTextName="text"
+              hrflinkName="hrflink"
+              stickypos={50}
+            />
           </div>
 
           <div className={styles.page_content_wrapper}>{children}</div>
         </div>
         <div className={styles.right_side_container}>
           <div className="mg_botom_sm">
-            <FollowSocialMediaCard />
+            <FollowSocialMediaCard data={userProfile} />
           </div>
           <div className="mg_botom_sm">
             <Linkcard />

@@ -3,7 +3,7 @@ import styles from "./css/homepagelayout.module.css";
 import BtnLinks from "../../buttons/BtnLinks";
 import TabBar from "../../tabs/TabBar";
 import SidbarPagesComponent from "../../sidebards/SidbarPagesComponent";
-export default function HomePageLayout({ children }) {
+export default function HomePageLayout({ children, featuredTags }) {
   const tagList = [
     {
       text: "Real Estate",
@@ -50,16 +50,16 @@ export default function HomePageLayout({ children }) {
   const guidlin = [
     {
       text: "Website Traffic",
-      hrflink: "/",
+      hrflink: "/website-traffic",
     },
 
     {
       text: "Content Write Tips",
-      hrflink: "/",
+      hrflink: "/content-writer-topic",
     },
     {
       text: "top website",
-      hrflink: "/",
+      hrflink: "/top-website",
     },
   ];
 
@@ -70,7 +70,10 @@ export default function HomePageLayout({ children }) {
           <div className="mg_botom_lg ">
             <SidbarPagesComponent
               sectionTitle="blog Topics"
-              listData={tagList}
+              listData={featuredTags}
+              linkTextName="tagName"
+              hrflinkName="tagSlug"
+              path="tag"
             />
           </div>
 
@@ -78,12 +81,20 @@ export default function HomePageLayout({ children }) {
             <SidbarPagesComponent
               sectionTitle="Guid articles"
               listData={guidlin}
+              linkTextName="text"
+              hrflinkName="hrflink"
+              path="seo"
             />
           </div>
         </div>
         <div className={styles.content_container}>
           <div>
-            <TabBar data={tagList} stickypos={50} />
+            <TabBar
+              data={featuredTags}
+              linkTextName="tagName"
+              hrflinkName="tagSlug"
+              stickypos={50}
+            />
           </div>
           <div>{children}</div>
         </div>

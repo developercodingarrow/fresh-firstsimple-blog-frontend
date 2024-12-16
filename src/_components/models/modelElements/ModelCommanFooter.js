@@ -4,6 +4,7 @@ import styles from "../css/model.module.css";
 // import ClickTextBtn from "@/_components/elements/buttons/ClickTextBtn";
 import { ModelsContext } from "@/src/_contextApi/ModelContextApi";
 import ClickTextBtn from "../../buttons/ClickTextBtn";
+import SubmitBtn from "../../buttons/SubmitBtn";
 
 export default function ModelCommanFooter(props) {
   const { modelCloseHandler } = props;
@@ -26,6 +27,8 @@ export default function ModelCommanFooter(props) {
         size="medium"
         clickHandel={actionHandler}
       />
+
+      <SubmitBtn btnText="Update" />
     </div>
   );
 }

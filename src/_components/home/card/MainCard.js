@@ -7,14 +7,18 @@ import cardimg from "../../../../public/web-static-img/cardimg.png";
 import Image from "next/image";
 import MainCardActionDotWrapper from "../../actiondote/MainCardActionDotWrapper";
 
-export default function MainCard() {
+export default function MainCard(props) {
+  const { data } = props;
+
+  const name = data.user?.name;
+
   return (
     <div className={styles.card_main_container}>
       <div className={styles.card_header}>
         <div>
           <UserDetailsAvatar
-            boldText="sanjay"
-            lightText="24-aug-2024"
+            boldText={name}
+            lightText={data?.createdAt}
             avtar_wrapper="maincard_avtar_wrapper"
           />
         </div>
@@ -24,19 +28,15 @@ export default function MainCard() {
       </div>
       <div className={styles.card_body}>
         <Link
-          href={"/blog/lorem-ipsum-dolor-sit-ame-y"}
+          href={`/blog/${data.slug}`}
           className={styles.body_inner_container}
         >
           <div className={styles.deatils_box}>
             <div className={styles.card_title_box}>
-              <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
+              <h2>{data.blogTitle}</h2>
             </div>
             <div className={styles.card_meta_details}>
-              <h3 className={"text_color_gray"}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse id nibh sit amet mi tempor ultrices quis at nisl.
-                Nam enim dolor, pulvinar a lorem non, ali
-              </h3>
+              <h3 className={"text_color_gray"}>{data.metaDescription}</h3>
             </div>
           </div>
           <div className={styles.card_img_wrapper}>
@@ -54,7 +54,7 @@ export default function MainCard() {
           <div className={styles.icon_box}>
             <FaHeart />
           </div>
-          <div className={styles.icon_details}>200</div>
+          <div className={styles.icon_details}>{data?.likes?.length}</div>
         </div>
         <div className={styles.card_icon_details}>
           <div className={styles.icon_box}>
@@ -68,7 +68,7 @@ export default function MainCard() {
           <div className={styles.icon_box}>
             <FaComment />
           </div>
-          <div className={styles.icon_details}>30</div>
+          <div className={styles.icon_details}>{data?.comments?.length} </div>
         </div>
       </div>
     </div>

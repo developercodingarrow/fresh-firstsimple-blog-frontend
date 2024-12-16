@@ -38,8 +38,6 @@
   background-color: #ffff;
 }
 
-
-
 .search_iconBox {
   height: 100%;
   display: flex;
@@ -90,6 +88,10 @@
 
 .navigation_linkStyle:hover {
   color: var(--th-primary-color);
+}
+
+.userAuth_container {
+  /* border: 1px solid red; */
 }
 
 @media only screen and (max-width: 600px) {

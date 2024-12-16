@@ -1,6 +1,7 @@
 .logo_container {
   width: 35px;
   height: 35px;
+  display: block;
 }
 
 .logo_style {

@@ -9,7 +9,9 @@ import {
   FaComment,
 } from "../ApplicationIcons";
 import MainCardActionDotWrapper from "../actiondote/MainCardActionDotWrapper";
-export default function SingleBlogActionBar() {
+import LikeAction from "../like_actions/LikeAction";
+export default function SingleBlogActionBar(props) {
+  const { data } = props;
   return (
     <div className={styles.action_bar}>
       <div>
@@ -20,12 +22,7 @@ export default function SingleBlogActionBar() {
         />
       </div>
       <div className={styles.actions_wrapper}>
-        <div className={styles.card_icon_details}>
-          <div className={styles.icon_box}>
-            <FaHeart />
-          </div>
-          <div className={styles.icon_details}>200</div>
-        </div>
+        <LikeAction postLikes={data.likes} elementID={data._id} />
         <div className={styles.card_icon_details}>
           <div className={styles.icon_box}>
             {" "}
@@ -38,7 +35,7 @@ export default function SingleBlogActionBar() {
           <div className={styles.icon_box}>
             <FaComment />
           </div>
-          <div className={styles.icon_details}>30</div>
+          <div className={styles.icon_details}>{data.comments.length}</div>
         </div>
         <div className={styles.card_icon_details}>
           <div className={styles.icon_box}>

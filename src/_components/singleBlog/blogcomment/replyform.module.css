@@ -1,0 +1,32 @@
+.reply_form_container {
+  margin: 5px 0px;
+}
+
+.comment_input_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 5%;
+}
+
+.input_wrapper {
+    flex-grow: 1;
+  }
+
+.input_style {
+  background: none;
+  width: 100%;
+  padding: 12px 12px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #afafaf;
+  outline: none;
+  font-size: 14px;
+  color: var(--th-blod-gray-text);
+  font-family: var(--th-font-family);
+}
+
+.small {
+  padding: 8px 10px;
+}

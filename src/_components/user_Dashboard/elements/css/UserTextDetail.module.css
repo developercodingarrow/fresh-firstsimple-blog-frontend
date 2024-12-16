@@ -17,10 +17,10 @@
 }
 
 .socilaMedia_wrapper {
-  border: 1px solid red;
   display: flex;
   align-items: center;
   column-gap: 3px;
+  cursor: pointer;
 }
 
 .img_value {

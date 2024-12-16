@@ -3,6 +3,49 @@ import styles from "./blogtopicwrapper.module.css";
 import TagSearch from "../tagSearch/TagSearch";
 import Link from "next/link";
 export default function BlogTopicWrapper() {
+  const tagList = [
+    {
+      text: "Real Estate",
+      hrflink: "/real-estate",
+    },
+    {
+      text: "Technology",
+      hrflink: "/technology",
+    },
+    {
+      text: "Health",
+      hrflink: "/health-wellness",
+    },
+    {
+      text: "Education",
+      hrflink: "/education",
+    },
+    {
+      text: "Finance",
+      hrflink: "/finance",
+    },
+    {
+      text: "Travel",
+      hrflink: "/travel",
+    },
+    {
+      text: "Food & beverage",
+      hrflink: "/food-beverage",
+    },
+    {
+      text: "Entertainment",
+      hrflink: "/entertainment",
+    },
+    {
+      text: "Fashion",
+      hrflink: "/fashion",
+    },
+    {
+      text: "Automobiles",
+      hrflink: "/automobiles",
+    },
+  ];
+
   return (
     <div className={styles.main_container}>
       <div className={styles.flex_header}>
@@ -14,10 +57,10 @@ export default function BlogTopicWrapper() {
         </div>
       </div>
       <div className={styles.tag_wrapper}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12, 13, 14, 15].map(() => {
+        {tagList.map((el, index) => {
           return (
-            <Link href={"/"} className={styles.tag_box}>
-              java Script
+            <Link href={`/${el.hrflink}`} className={styles.tag_box}>
+              {el.text}
             </Link>
           );
         })}

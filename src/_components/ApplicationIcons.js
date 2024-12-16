@@ -11,6 +11,7 @@ import { IoIosArrowRoundDown } from "react-icons/io"; // arrow for table sort
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md"; // left ans right arrow
 import { BsThreeDotsVertical } from "react-icons/bs"; // thee dots
 import { FaHeart } from "react-icons/fa"; // Heart for likes
+import { FaRegHeart } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5"; //eye for views
 import { FaComment } from "react-icons/fa"; // comment
 import {
@@ -50,4 +51,5 @@ export {
   IoReaderOutline,
   IoEyeOff,
   IoEye,
+  FaRegHeart,
 };

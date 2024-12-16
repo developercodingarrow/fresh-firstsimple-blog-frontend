@@ -1,19 +1,60 @@
 "use client";
 import React, { useContext, useState } from "react";
+import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 import styles from "./css/authcomponents.module.css";
 import useCustomeAuthForm from "@/src/_custome-hooks/useCustomeAuthForm";
 import ClickTextBtn from "../buttons/ClickTextBtn";
 import Link from "next/link";
+import SubmitBtn from "../buttons/SubmitBtn";
+import { AppContext } from "@/src/_contextApi/AppContext";
+import GoogleAuthClient from "../googleAuth/GoogleAuthClient";
+
 export default function SignInSignUpUI(props) {
-  const { formInputs, formType, forgotpasswordLink } = props;
+  const router = useRouter();
+  const {
+    formInputs,
+    formType,
+    formHandel,
+    btnText,
+    userAuthData,
+    footerText,
+    footerLink,
+    suHeading,
+    forgotpasswordLink,
+  } = props;
+  const { isBtnLoadin, setisBtnLoadin } = useContext(AppContext);
   const { renderInput, handleSubmit, updatedInputs, isValid, errors } =
     useCustomeAuthForm(formInputs, formType);
 
-  const handleForm = () => {
-    alert("form submit");
+  const handleForm = async (data) => {
+    try {
+      setisBtnLoadin(true);
+      const res = await formHandel(data);
+      if (res.error) {
+        toast.error(res.error);
+        setisBtnLoadin(false);
+        return;
+      }
+      // Proceed if there is no error and res.data exists
+      if ((res.data.status = "success")) {
+        if (res.data.apiFor === "register") {
+          toast.success(res.data.message);
+          router.push(`/auth/opt-verification/${res.data.UrlToken}`);
+          setisBtnLoadin(false);
+        } else if (res.data.apiFor === "Login") {
+          toast.success(res.data.message);
+          router.push("/");
+          setisBtnLoadin(false);
+        }
+      }
+    } catch (error) {
+      setisBtnLoadin(false);
+    }
   };
   return (
     <div className={styles.main_container}>
+      <Toaster />
       <div className={styles.inner_container}>
         <div className={styles.Intro_Column}>
           <div>
@@ -63,10 +104,11 @@ export default function SignInSignUpUI(props) {
                   )}
                 </div>
                 <div className={styles.submit_btn_wrapper}>
-                  <ClickTextBtn
-                    btnText="Register"
+                  <SubmitBtn
+                    btnText={btnText}
                     fullWidth={true}
                     size="medium"
+                    btnLoading={isBtnLoadin}
                   />
                 </div>
               </form>
@@ -77,16 +119,16 @@ export default function SignInSignUpUI(props) {
               <span className={styles.single_line}></span>
             </div>
             <div className={`${styles.google_auth_wrapper} mg_botom_lg `}>
-              Google auth
+              <GoogleAuthClient userAuthData={userAuthData} />
             </div>
 
             <div
               className={`${styles.form_redirection_info_wrapper} mg_botom_lg`}
             >
-              <span>Already have an Account? </span>{" "}
+              <span>{suHeading} </span>{" "}
               <span>
                 {" "}
-                <Link href={`/`}>Login </Link>{" "}
+                <Link href={`/${footerLink}`}>{footerText} </Link>{" "}
               </span>
             </div>
           </div>

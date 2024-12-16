@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+}
+
+.icon_box {
+  font-size: 14px;
+  color: var(--th-text-gray);
+  font-weight: 400;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon_details {
+  color: var(--th-text-gray);
+  font-size: 14px;
+  font-weight: 400;
+  font-family: var(--th-font-family);
+}
+
+.liked_iconStyle {
+  color: red;
+}

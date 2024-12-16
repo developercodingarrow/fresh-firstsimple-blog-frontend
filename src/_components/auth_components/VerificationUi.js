@@ -1,19 +1,41 @@
 "use client";
-import React from "react";
+import React, { useContext, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 import styles from "./css/verificationui.module.css";
 import useCustomeAuthForm from "@/src/_custome-hooks/useCustomeAuthForm";
-import ClickTextBtn from "../buttons/ClickTextBtn";
+import SubmitBtn from "../buttons/SubmitBtn";
+import { AppContext } from "@/src/_contextApi/AppContext";
 
 export default function VerificationUi(props) {
-  const { formInputs, formType, formHeading, formSubText } = props;
+  const params = useParams();
+  const { slug } = params;
+  const { formInputs, formType, formHeading, formHandel, formSubText } = props;
+  const { isBtnLoadin, setisBtnLoadin } = useContext(AppContext);
   const { renderInput, handleSubmit, updatedInputs, isValid, errors } =
     useCustomeAuthForm(formInputs, formType);
 
-  const handleForm = () => {
-    alert("form submit");
+  const handleForm = async (data) => {
+    try {
+      setisBtnLoadin(true);
+      const res = await formHandel(data, slug);
+
+      if (res.error) {
+        toast.error(res.error);
+        setisBtnLoadin(false);
+        return;
+      }
+      if (res.data.status === "success") {
+        toast.success(res.data.message);
+        setisBtnLoadin(false);
+      }
+    } catch (error) {
+      setisBtnLoadin(false);
+    }
   };
   return (
     <div className={styles.main_container}>
+      <Toaster />
       <div className={styles.inner_container}>
         <div className={styles.form_wrapper_container}>
           <div className={styles.container_header}>
@@ -40,7 +62,7 @@ export default function VerificationUi(props) {
                 })}
               </div>
               <div className={styles.submit_btn_wrapper}>
-                <ClickTextBtn
+                <SubmitBtn
                   btnText="OTP VERIFICATION"
                   fullWidth={true}
                   size="medium"
