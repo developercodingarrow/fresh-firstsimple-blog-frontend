@@ -9,8 +9,8 @@ export default function SideBarFeatureList(props) {
         {sectionTitle}
       </div>
       <div>
-        {[1, 2, 3, 4, 5].map(() => {
-          return <SideBarCard />;
+        {listData.map((el, index) => {
+          return <SideBarCard data={el} key={index} />;
         })}
       </div>
       <div>

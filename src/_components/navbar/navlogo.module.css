@@ -8,3 +8,63 @@
   width: 100%;
   height: 100%;
 }
+
+.auth_dropdown_container {
+  position: absolute;
+  bottom: -220px;
+  right: 20px;
+  border: 1px solid var(--th-thin-border-color);
+  background-color: var(--th-white-color);
+  border-radius: 8px;
+  z-index: 10 !important;
+  box-shadow: var(--th-box-shadow);
+  padding: 0px 0px 10px 0px;
+  height: 220px;
+  width: 230px;
+}
+
+.drop_header {
+  border-bottom: 1px solid var(--th-thin-border-color);
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.drop_header:hover {
+  color: var(--th-primary-hover-color);
+  background-color: var(--th-thin-border-color);
+}
+
+.drop_option_wrapper {
+  margin-bottom: 20px;
+}
+
+.drop_option_link {
+  display: flex;
+  padding: 5px 20px;
+  align-items: center;
+}
+
+.drop_option_link:hover {
+  color: var(--th-primary-hover-color);
+  background-color: var(--th-thin-border-color);
+}
+
+.auth_drop_footer_wrapper {
+  padding: 5px 20px;
+}
+
+.auth_drop_logOut_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid var(--th-primary-hover-color);
+  color: var(--th-primary-hover-color);
+  padding: 5px;
+  background-color: var(--th-white-color);
+  cursor: pointer;
+}
+
+.auth_drop_logOut_btn:hover {
+  background-color: var(--th-thin-border-color);
+}

@@ -7,6 +7,7 @@ import { InputModelsContext } from "@/src/_contextApi/InputModelContextApi";
 import { AuthContext } from "@/src/_contextApi/authContext";
 import { nameinput, userNameinput } from "@/src/jsonData/userDashbordData";
 import InputDataModel from "../../models/InputDataModel";
+import UserImgModel from "../../models/UserImgModel";
 
 export default function UserProfileWrapper() {
   const { authUser } = useContext(AuthContext);
@@ -18,11 +19,14 @@ export default function UserProfileWrapper() {
     elementId,
     modelApiData,
     actionHandler,
+    isUserImgModel,
   } = useContext(InputModelsContext);
 
   const updatehsndler = () => {};
   return (
     <div className={styles.main_container}>
+      {isUserImgModel && <UserImgModel />}
+
       {isOpenInputModel && (
         <InputDataModel
           modelTitle={modelHeading}
@@ -54,7 +58,11 @@ export default function UserProfileWrapper() {
         />
       </div>
       <div className="mg_botom_lg">
-        <UserImagDetail lableText="User Name" valueText="@Sanjay" />
+        <UserImagDetail
+          lableText="User Image"
+          valueText="@Sanjay"
+          apiData={authUser}
+        />
       </div>
     </div>
   );

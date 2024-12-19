@@ -50,16 +50,16 @@ export default function HomePageLayout({ children, featuredTags }) {
   const guidlin = [
     {
       text: "Website Traffic",
-      hrflink: "/website-traffic",
+      hrflink: "website-traffic",
     },
 
     {
       text: "Content Write Tips",
-      hrflink: "/content-writer-topic",
+      hrflink: "content-write-tips",
     },
     {
       text: "top website",
-      hrflink: "/top-website",
+      hrflink: "top-website",
     },
   ];
 

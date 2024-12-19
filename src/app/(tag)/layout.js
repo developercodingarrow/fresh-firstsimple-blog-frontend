@@ -7,6 +7,7 @@ import MainAppNavbar from "@/src/_components/navbar/appnavbar/MainAppNavbar";
 import TagBlogsLayout from "@/src/_components/tag/TagBlogsLayout";
 import AuthContextProvider from "@/src/_contextApi/authContext";
 import { getSession } from "../lib/authentication";
+import { featuredTagsListAction } from "../utils/tagActions";
 
 export const metadata = {
   title: "user Profile",
@@ -15,6 +16,7 @@ export const metadata = {
 
 export default async function TagBlogsPageLayout({ children }) {
   const userDetails = await getSession();
+  const featuredTags = await featuredTagsListAction();
   return (
     <html lang="en">
       <head>
@@ -34,7 +36,7 @@ export default async function TagBlogsPageLayout({ children }) {
                   <MainAppNavbar authData={userDetails} />
                 </div>
                 <div className="layout_children_wrapper">
-                  <TagBlogsLayout>{children}</TagBlogsLayout>
+                  <TagBlogsLayout featuredTags={featuredTags}>{children}</TagBlogsLayout>
                 </div>
                 <div>
                   <MainFooter />

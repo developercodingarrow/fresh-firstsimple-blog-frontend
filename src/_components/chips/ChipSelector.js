@@ -1,14 +1,31 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import styles from "./css/chipselector.module.css";
 import SuggestList from "../search_elements/SuggestList";
+import ClickTextBtn from "../buttons/ClickTextBtn";
+import { upadteBlogTags } from "@/src/app/utils/blogsAction";
 
 export default function ChipSelector(props) {
-  const { allList, filedName, placeholder, size = "medium" } = props;
+  const {
+    allList,
+    filedName,
+    placeholder,
+    size = "medium",
+    apiTags,
+    slug,
+  } = props;
   const [newValue, setnewValue] = useState("");
   const [fillterList, setfillterList] = useState([]);
   const [list, setlist] = useState("");
   const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    if (apiTags && apiTags.length > 0) {
+      const initialTags = apiTags.map((tag) => tag.tagName);
+      setTags(initialTags);
+    }
+  }, [apiTags]);
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -32,10 +49,36 @@ export default function ChipSelector(props) {
     setfillterList([]); // Clear the filtered dropdown
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" && newValue.trim()) {
+      event.preventDefault();
+      if (!tags.includes(newValue.trim())) {
+        setTags([...tags, newValue.trim()]);
+      }
+      setnewValue("");
+      setfillterList([]);
+    }
+  };
+
   const removeTag = (tagToRemove) => {
     console.log(tagToRemove);
     setTags(tags.filter((tag) => tag !== tagToRemove));
   };
+
+  const handleSubmit = async () => {
+    try {
+      const formData = { tagName: tags };
+      const res = await upadteBlogTags(formData, slug);
+      console.log(res);
+      if (res.status === "success") {
+        toast.success(res.message);
+      }
+    } catch (err) {
+      setError(err.message);
+      setSuccess(null);
+    }
+  };
+
   return (
     <div className={styles.main_conatiner}>
       <div className={`${styles.container} ${styles[size]} `}>
@@ -58,6 +101,7 @@ export default function ChipSelector(props) {
               placeholder={placeholder}
               className={styles.input}
               onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
             />
           </div>
         </div>
@@ -70,6 +114,14 @@ export default function ChipSelector(props) {
           itemClickhandel={handleTagClick}
         />
       )}
+
+      <div className={styles.btn_wrapper}>
+        <ClickTextBtn
+          btnText="update tags"
+          size="small"
+          clickHandel={handleSubmit}
+        />
+      </div>
     </div>
   );
 }

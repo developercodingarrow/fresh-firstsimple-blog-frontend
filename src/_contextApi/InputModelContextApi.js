@@ -10,6 +10,7 @@ export default function InputModelContextProvider({ children }) {
   const [modelHeading, setmodelHeading] = useState("");
   const [actionHandler, setActionHandler] = useState(null);
   const [isOpenInputModel, setisOpenInputModel] = useState(false);
+  const [isUserImgModel, setisUserImgModel] = useState(false);
 
   const handelOpenInputModel = (heading, data, id, fields, handler) => {
     console.log(data);
@@ -36,6 +37,8 @@ export default function InputModelContextProvider({ children }) {
         actionHandler,
         modelApiData,
         elementId,
+        isUserImgModel,
+        setisUserImgModel,
       }}
     >
       {children}

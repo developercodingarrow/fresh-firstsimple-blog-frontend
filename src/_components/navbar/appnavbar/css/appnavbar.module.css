@@ -5,7 +5,7 @@
   height: var(--th-app-navbar-height);
   border-bottom: 1px solid var(--th-thin-border-color);
   background-color: var(--th-body-background);
-  z-index: 10;
+  z-index: 8;
 }
 
 .inner_container {
@@ -25,6 +25,38 @@
 
 .nav_search_wrapper {
   width: 300px;
+  position: relative;
+}
+
+.search_list {
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  border: 1px solid var(--th-thin-border-color);
+  background-color: var(--th-white-color);
+  border-radius: 5px;
+  width: 95%;
+  padding: 10px;
+  box-shadow: var(--th-box-shadow);
+}
+
+.suggest_item {
+  padding: 5px 10px;
+  cursor: pointer;
+  line-height: 1.4; /* 1.4x to 1.5x ratio is ideal */
+  letter-spacing: 0.3px; /* Reduced to a more standard value */
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--th-font-family);
+  background-color: var(--th-white-color);
+  color: var(--th-text-gray);
+  display: block;
+  text-transform: capitalize;
+}
+
+.suggest_item:hover {
+  background-color: var(--th-thin-border-color);
+  border-radius: 3px;
 }
 
 /* nav search  */

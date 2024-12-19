@@ -135,3 +135,54 @@ export async function updateUserDetail(data) {
     httpOnly: false,
   });
 }
+
+export async function LogOutAction() {
+  const url = `${API_BASE_URL}/user-auth/logout`;
+  const method = "post";
+
+  try {
+    const res = await axios({
+      method,
+      url,
+      withCredentials: true, // Send cookies with request
+    });
+
+    // Remove the cookies by setting them with a past expiration date
+    const cookieStore = cookies();
+    cookieStore.set("jwt", "", { expires: new Date(0) });
+    cookieStore.set("user", "", { expires: new Date(0) });
+    cookieStore.set("g_state", "", { expires: new Date(0) });
+
+    return { status: "success", data: res.data };
+  } catch (error) {
+    return { error: error.message };
+  }
+}
+
+export async function updatePassword(formData) {
+  const cookieStore = cookies();
+  const authToken = cookieStore.get("jwt")?.value;
+  const url = `${API_BASE_URL}/user-auth/update-new-password`;
+  const method = "post";
+  try {
+    const res = await axios({
+      method,
+      url,
+      data: formData,
+      headers: {
+        Authorization: `Bearer ${authToken}`, // Add Authorization header
+      },
+      withCredentials: true,
+    });
+
+    if (res.data.status === "success") {
+      console.log(res.data);
+      return { data: res.data };
+    }
+  } catch (error) {
+    if (error.response) {
+      return { error: error.response.data.message || "Unknown error" };
+    }
+    return { error: error.message || "Request failed" };
+  }
+}

@@ -6,6 +6,8 @@ import { tagfillterBlogs } from "../utils/blogsAction";
 
 async function getData(tagquery, page = 1) {
   try {
+
+    
     const res = await tagfillterBlogs(tagquery, page);
     if (!res.result) {
       return [];

@@ -75,8 +75,8 @@ body {
 
 .create_blog_children_wrapper {
   padding-top: 0px;
-  padding-left: 230px;
-  padding-right: 230px;
+  padding-left: 150px;
+  padding-right: 150px;
   padding-bottom: 200px;
 }
 
@@ -149,6 +149,10 @@ h3 {
   font-size: 18px;
   font-family: var(--th-font-family);
   letter-spacing: 0.5px; /* More appropriate spacing */
+}
+
+.text_center {
+  text-align: center;
 }
 
 .medium__text {

@@ -3,14 +3,14 @@ import styles from "./css/UserTextDetail.module.css";
 import userAvtar from "../../../../public/web-static-img/user-avatar-img.png";
 import Image from "next/image";
 export default function UserImagDetail(props) {
-  const { lableText, valueText } = props;
+  const { lableText, valueText, apiData } = props;
   return (
     <div className={styles.main_container}>
       <div className={styles.inner_container}>
         <div className={`${styles.lable_text} medium__text `}>{lableText}</div>
         <div className={`${styles.img_value} medium__text`}>
           <Image
-            src={userAvtar}
+            src={`/usersProfileImg/${apiData.userImg.url}`}
             width={50}
             height={50}
             className={styles.img_style}

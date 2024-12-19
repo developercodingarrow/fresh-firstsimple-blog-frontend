@@ -13,7 +13,8 @@ import ClickTextBtn from "../buttons/ClickTextBtn";
 import { ModelsContext } from "@/src/_contextApi/ModelContextApi";
 import useImageUpload from "@/src/_custome-hooks/useImageUpload";
 
-export default function SingleImgModel() {
+export default function SingleImgModel(props) {
+  const { updateHandler, id } = props;
   const {
     isSingleImgModel,
     handleOpenSingleImgModel,
@@ -30,6 +31,21 @@ export default function SingleImgModel() {
     isValid,
     errors,
   } = useImageUpload();
+
+  const handelSubmitImg = async () => {
+    try {
+      console.log("click");
+      const res = await updateHandler(image, imgData, "blogThumblin", id);
+      console.log(res);
+      if (res.status === "success") {
+        toast.success(res.message);
+      }
+    } catch (error) {}
+  };
+
+  const handelModelClose = () => {
+    handelCloseModel("");
+  };
 
   return (
     <>
@@ -150,10 +166,11 @@ export default function SingleImgModel() {
                   <div className={styles.model_footer_right}>
                     <div>
                       <ClickTextBtn
-                        btnText="save"
+                        btnText="Update.."
                         size="medium"
                         btnLoading={false}
-                        disabledBtn={isValid}
+                        disabledBtn={false}
+                        clickHandel={handelSubmitImg}
                       />
                     </div>
                   </div>

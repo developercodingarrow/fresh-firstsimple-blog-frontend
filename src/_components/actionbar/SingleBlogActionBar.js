@@ -17,7 +17,7 @@ export default function SingleBlogActionBar(props) {
       <div>
         <UserDetailsAvatar
           boldText="sanjay"
-          lightText="24-aug-2024"
+          dateText={data?.createdAt}
           avtar_wrapper="maincard_avtar_wrapper"
         />
       </div>

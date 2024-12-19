@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import ReactQuillElement from "../../elements/formelements/ReactQuillElement";
 import { AuthContext } from "@/src/_contextApi/authContext";
 import { updateUserDetail } from "@/src/app/utils/userAuthaction";
+import ClickTextBtn from "../../buttons/ClickTextBtn";
 
 export default function UserBioWrapper() {
   const [btnToggle, setbtnToggle] = useState(false);
@@ -16,7 +17,7 @@ export default function UserBioWrapper() {
   };
 
   const handelToggle = () => {
-    setbtnToggle(true);
+    setbtnToggle(!btnToggle);
   };
 
   const handelSubmitBio = async () => {
@@ -43,10 +44,33 @@ export default function UserBioWrapper() {
       <Toaster />{" "}
       <div className={styles.Btnbar}>
         <div>
+          {btnToggle && (
+            <ClickTextBtn
+              btnText="Update"
+              size="small"
+              clickHandel={handelSubmitBio}
+            />
+          )}
+        </div>
+        <div>
           {btnToggle ? (
-            <div onClick={handelSubmitBio}> save</div>
+            <div>
+              {" "}
+              <ClickTextBtn
+                btnText="Save"
+                size="small"
+                clickHandel={handelToggle}
+              />{" "}
+            </div>
           ) : (
-            <div onClick={handelToggle}> Edit</div>
+            <div>
+              {" "}
+              <ClickTextBtn
+                btnText="Edit"
+                size="small"
+                clickHandel={handelToggle}
+              />{" "}
+            </div>
           )}
         </div>
       </div>

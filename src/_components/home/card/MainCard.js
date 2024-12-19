@@ -18,8 +18,9 @@ export default function MainCard(props) {
         <div>
           <UserDetailsAvatar
             boldText={name}
-            lightText={data?.createdAt}
+            dateText={data?.createdAt}
             avtar_wrapper="maincard_avtar_wrapper"
+            pageLink={data.user.userName}
           />
         </div>
         <div>
@@ -40,12 +41,19 @@ export default function MainCard(props) {
             </div>
           </div>
           <div className={styles.card_img_wrapper}>
-            <Image
-              src={cardimg}
-              width={500}
-              height={500}
-              className={styles.card_thumblin}
-            />
+            {data.blogThumblin.url ? (
+              <Image
+                src={`/blogthumblin/${data.blogThumblin.url}`}
+                width={500}
+                height={500}
+                className={styles.card_thumblin}
+              />
+            ) : (
+              <div className={styles.card_img_not_avilable}>
+                {" "}
+                No Image Avilable
+              </div>
+            )}
           </div>
         </Link>
       </div>

@@ -1,5 +1,7 @@
 .main_conatiner {
   /* padding: 5px; */
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .container {
@@ -57,6 +59,16 @@
   color: gray;
   letter-spacing: var(--th-letter-spacing);
   border: none;
+}
+
+.btn_wrapper {
+  margin-top: 20px;
+  position: relative;
+  bottom: -20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
 }
 
 @media only screen and (max-width: 600px) {

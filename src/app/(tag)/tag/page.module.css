@@ -1,0 +1,15 @@
+.page_tag_wrapper {
+  margin-bottom: 20px;
+}
+
+.page_tag {
+  border: 1px solid var(--th-thin-border-color);
+  padding: 7px 10px;
+  border-radius: 5px;
+  background-color: var(--th-thin-border-color);
+  text-transform: capitalize;
+  line-height: 1.5;
+  font-size: 18px;
+  font-family: var(--th-font-family);
+  letter-spacing: 0.5px; /* More appropriate spacing */
+}

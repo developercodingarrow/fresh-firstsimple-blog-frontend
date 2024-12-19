@@ -29,6 +29,12 @@
   cursor: pointer;
 }
 
+.container_footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .section_title {
   padding-bottom: 10px;
   border-bottom: 2px solid #d4d4d840;
@@ -38,4 +44,9 @@
   padding: 10px 0px;
   display: flex;
   justify-content: space-between;
+}
+
+.api_imgStyle {
+  width: 100%;
+  height: 100%;
 }

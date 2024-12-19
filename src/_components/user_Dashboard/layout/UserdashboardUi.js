@@ -1,15 +1,21 @@
 "use client";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styles from "./userdashboardui.module.css";
 import UserDetailsAvatar from "../../userAvatars/UserDetailsAvatar";
 import TabBar from "../../tabs/TabBar";
 import SidbarPagesComponent from "../../sidebards/SidbarPagesComponent";
 import SideBarFeatureList from "../../sidebards/SideBarFeatureList";
 import { AuthContext } from "@/src/_contextApi/authContext";
+import { featuresideBlogs } from "@/src/app/utils/blogsAction";
 
 export default function UserdashboardUi({ children }) {
   const { authUser } = useContext(AuthContext);
+  const [sidebarBlogs, setsidebarBlogs] = useState([]);
   const userpageLinks = [
+    {
+      text: "Home",
+      hrflink: "/me/profile",
+    },
     {
       text: "Publihed",
       hrflink: "/me/blogs/public",
@@ -24,17 +30,14 @@ export default function UserdashboardUi({ children }) {
       text: "Online Presence",
       hrflink: "/me/online-presence",
     },
-    {
-      text: "Home",
-      hrflink: "/me/profile",
-    },
+
     {
       text: "Bio",
       hrflink: "/me/bio",
     },
     {
       text: "Setting",
-      hrflink: "/",
+      hrflink: "/me/settings",
     },
   ];
 
@@ -53,6 +56,20 @@ export default function UserdashboardUi({ children }) {
       hrflink: "/",
     },
   ];
+
+  const handelgetSidebarBlogs = async () => {
+    try {
+      const res = await featuresideBlogs();
+      setsidebarBlogs(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    handelgetSidebarBlogs();
+  }, []);
+
   return (
     <div className={styles.main_container}>
       <div className={styles.inner_container}>
@@ -63,6 +80,8 @@ export default function UserdashboardUi({ children }) {
               boldText={authUser.name}
               lightText={authUser?.userName}
               avtar_wrapper="userHeader_avtar"
+              userImage={authUser?.userImg}
+              imgDirectoryPath="/usersProfileImg"
             />
           </section>
           <div className={styles.tab_wrapper}>
@@ -81,10 +100,16 @@ export default function UserdashboardUi({ children }) {
             <SidbarPagesComponent
               sectionTitle="Guid articles"
               listData={guidlin}
+              linkTextName="text"
+              hrflinkName="hrflink"
+              path="seo"
             />
           </div>
           <div className={styles.sidebar_component_wrapper}>
-            <SideBarFeatureList sectionTitle="featured blogs" />
+            <SideBarFeatureList
+              sectionTitle="featured blogs"
+              listData={sidebarBlogs}
+            />
           </div>
         </div>
       </div>

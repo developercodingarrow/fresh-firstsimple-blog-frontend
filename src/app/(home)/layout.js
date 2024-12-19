@@ -8,7 +8,13 @@ import AuthModel from "@/src/_components/models/AuthModel";
 import ReportModel from "@/src/_components/models/ReportModel";
 import { getSession } from "../lib/authentication";
 import AppContextProvider from "@/src/_contextApi/AppContext";
-import { featuredTagsListAction } from "../utils/tagActions";
+import {
+  featuredTagsListAction,
+  verifiedTagsListAction,
+} from "../utils/tagActions";
+import TagContextProvider from "@/src/_contextApi/TagContextApi";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GOOGLE_AUTH_CLIENT_ID } from "@/config";
 
 export const metadata = {
   title: "Create Next App",
@@ -18,6 +24,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   const userDetails = await getSession();
   const featuredTags = await featuredTagsListAction();
+  const verifiedTags = await verifiedTagsListAction();
 
   return (
     <html lang="en">
@@ -31,23 +38,27 @@ export default async function RootLayout({ children }) {
       </head>
       <body>
         <AuthContextProvider authData={userDetails}>
-          <AppContextProvider>
-            <ModelContextProvider>
-              <AuthModel />
-              <ReportModel />
-              <div>
-                <MainAppNavbar authData={userDetails} />
-              </div>
-              <div className="layout_children_wrapper">
-                <HomePageLayout featuredTags={featuredTags}>
-                  {children}
-                </HomePageLayout>
-              </div>
-              <div>
-                <MainFooter />
-              </div>
-            </ModelContextProvider>
-          </AppContextProvider>
+          <GoogleOAuthProvider clientId={GOOGLE_AUTH_CLIENT_ID}>
+            <TagContextProvider verifiedTags={verifiedTags}>
+              <AppContextProvider>
+                <ModelContextProvider>
+                  <AuthModel />
+                  <ReportModel />
+                  <div>
+                    <MainAppNavbar authData={userDetails} />
+                  </div>
+                  <div className="layout_children_wrapper">
+                    <HomePageLayout featuredTags={featuredTags}>
+                      {children}
+                    </HomePageLayout>
+                  </div>
+                  <div>
+                    <MainFooter />
+                  </div>
+                </ModelContextProvider>
+              </AppContextProvider>
+            </TagContextProvider>
+          </GoogleOAuthProvider>
         </AuthContextProvider>
       </body>
     </html>

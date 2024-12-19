@@ -54,3 +54,36 @@ export async function userDetailsPublic(slug) {
     return { error: error.message || "Request failed" };
   }
 }
+
+export async function updateUserProfilePic(formData) {
+  const cookieStore = cookies();
+  const authToken = cookieStore.get("jwt")?.value;
+  const url = `${API_BASE_URL}/user/update-user-profile-pic`;
+  const method = "patch";
+
+  try {
+    const res = await axios({
+      method,
+      url,
+      data: formData,
+      headers: {
+        Authorization: `Bearer ${authToken}`, // Add Authorization header
+      },
+      "Content-Type": "multipart/form-data",
+      Accept: "application/json",
+      withCredentials: true,
+    });
+
+    if (res.data.status === "success") {
+      console.log(res.data);
+      return { data: res.data };
+    }
+  } catch (error) {
+    if (error.response) {
+      return { error: error.response.data.message || "Unknown error" };
+    }
+    return { error: error.message || "Request failed" };
+  }
+}
+
+

@@ -14,7 +14,7 @@ export default function MainAppNavbar(props) {
           <div className={styles.navbar_logo_wrapper}>
             <NavLogo />
           </div>
-          <div className={styles.nav_search_wrapper}>
+          <div>
             <NavSearchBar />
           </div>
         </div>

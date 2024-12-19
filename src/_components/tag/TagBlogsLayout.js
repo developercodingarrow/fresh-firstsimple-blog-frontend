@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./tagbloglayout.module.css";
 import SidbarPagesComponent from "../sidebards/SidbarPagesComponent";
-export default function TagBlogsLayout({ children }) {
+export default function TagBlogsLayout({ children, featuredTags }) {
   const tagList = [
     {
       text: "Real Estate",
@@ -48,16 +48,16 @@ export default function TagBlogsLayout({ children }) {
   const guidlin = [
     {
       text: "Website Traffic",
-      hrflink: "/",
+      hrflink: "website-traffic",
     },
 
     {
       text: "Content Write Tips",
-      hrflink: "/",
+      hrflink: "content-write-tips",
     },
     {
       text: "top website",
-      hrflink: "/",
+      hrflink: "top-website",
     },
   ];
   return (
@@ -67,7 +67,10 @@ export default function TagBlogsLayout({ children }) {
           <div className="mg_botom_lg ">
             <SidbarPagesComponent
               sectionTitle="blog Topics"
-              listData={tagList}
+              listData={featuredTags}
+              linkTextName="tagName"
+              hrflinkName="tagSlug"
+              path="tag"
             />
           </div>
 
@@ -75,13 +78,13 @@ export default function TagBlogsLayout({ children }) {
             <SidbarPagesComponent
               sectionTitle="Guid articles"
               listData={guidlin}
+              linkTextName="text"
+              hrflinkName="hrflink"
+              path="seo"
             />
           </div>
         </div>
         <div className={styles.content_container}>
-          <div className={styles.page_tag_wrapper}>
-            <div className={styles.page_tag}>Programing</div>
-          </div>
           <div>{children}</div>
         </div>
       </div>

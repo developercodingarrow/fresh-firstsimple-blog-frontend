@@ -1,19 +1,48 @@
-import React from "react";
+"use client";
+import React, { useRef, useContext, useEffect } from "react";
+
 import styles from "./css/appnavbar.module.css";
 import BtnLinks from "../../buttons/BtnLinks";
 import dummyImg from "../../../../public/web-static-img/user-avatar-img.png";
 import Image from "next/image";
 import CircleImg from "../../userAvatars/CircleImg";
+import NavAuthDropDown from "../NavAuthDropDown";
+import { AppContext } from "@/src/_contextApi/AppContext";
+
 export default function UserAuthWrapper(props) {
   const { userData } = props;
+
+  const { authDropDown, handelOpenAuthDropDown, handelCloseAuthDropDown } =
+    useContext(AppContext);
+
+  // Ref for dropdown container
+  const dropdownRef = useRef();
+
+  // Handle clicks outside dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        handelCloseAuthDropDown(); // Close dropdown
+      }
+    };
+    // Add event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    // Cleanup event listener on unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [authDropDown, handelCloseAuthDropDown]);
+
   return (
-    <div className={styles.userAuth_container}>
+    <div className={styles.userAuth_container} ref={dropdownRef}>
       {userData ? (
-        <div>
+        <div onClick={handelOpenAuthDropDown}>
           <CircleImg
-            imgSrc={dummyImg}
+            imgSrc={userData?.userImg}
             avtar_wrapperStyle={"navbar_avtar_wrapper"}
+            imgDirectoryPath="/usersProfileImg"
           />
+          {authDropDown && <NavAuthDropDown data={userData} />}
         </div>
       ) : (
         <BtnLinks linkText="login" hrflink="/auth/login" size="medium_fill" />

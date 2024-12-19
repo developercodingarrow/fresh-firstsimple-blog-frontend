@@ -15,18 +15,25 @@ export default function SingleBlogUi(props) {
       </div>
       <div className={styles.inner_container}>
         <div className={styles.content_container}>
-          <div className={styles.blog_thumblin_wrapper}>
-            <Image
-              src={dummyImg}
-              width={500}
-              height={500}
-              className={styles.img_style}
-            />
-          </div>
-          <div className={`${styles.img_caption} text_color_gray tiny_text`}>
-            {" "}
-            image caption{" "}
-          </div>
+          {data.blogThumblin.url && (
+            <>
+              <div className={styles.blog_thumblin_wrapper}>
+                <Image
+                  src={`/blogthumblin/${data.blogThumblin.url}`}
+                  width={900}
+                  height={900}
+                  className={styles.img_style}
+                />
+              </div>
+              <div
+                className={`${styles.img_caption} text_color_gray tiny_text`}
+              >
+                {" "}
+                image caption{" "}
+              </div>
+            </>
+          )}
+
           <div className={styles.actionbar_wrapper}>
             <SingleBlogActionBar data={data} />
           </div>

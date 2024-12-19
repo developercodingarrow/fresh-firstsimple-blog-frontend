@@ -1,8 +1,8 @@
 import React from "react";
 import { userDraftBlogsAction } from "@/src/app/utils/blogsAction";
-import UserauthCard from "@/src/_components/cards/UserauthCard";
 import { cookies } from "next/headers"; // Import cookies here
-
+import DraftBlogCard from "@/src/_components/cards/DraftBlogCard";
+import styles from "../../../page.module.css";
 export default async function DraftBlogspage() {
   const cookieStore = cookies();
   const authToken = cookieStore.get("jwt")?.value; // Access cookies directly here
@@ -22,11 +22,11 @@ export default async function DraftBlogspage() {
     initialData = []; // Handle the case where data is not found
   }
   return (
-    <div>
+    <div className={styles.page_container}>
       {initialData.map((el, index) => {
         return (
           <div key={index}>
-            <UserauthCard />
+            <DraftBlogCard data={el} key={index} />
           </div>
         );
       })}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import styles from "./css/appnavbar.module.css";
+import ActionNavigation from "./ActionNavigation";
 
 export default function NavigationLinks() {
   const navigationLinks = [
@@ -27,11 +28,16 @@ export default function NavigationLinks() {
     <div className={styles.navigation_link_box}>
       {navigationLinks.map((el, index) => {
         return (
-          <Link href={"/"} className={styles.navigation_linkStyle}>
+          <Link
+            href={`${el.hrfLink}`}
+            key={index}
+            className={styles.navigation_linkStyle}
+          >
             {el.text}
           </Link>
         );
       })}
+      <ActionNavigation />
     </div>
   );
 }
