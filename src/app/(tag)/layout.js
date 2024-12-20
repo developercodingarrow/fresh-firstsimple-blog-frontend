@@ -33,10 +33,15 @@ export default async function TagBlogsPageLayout({ children }) {
             <ModelContextProvider>
               <ImgModelContextProvider>
                 <div>
-                  <MainAppNavbar authData={userDetails} />
+                  <MainAppNavbar
+                    authData={userDetails}
+                    suggestList={featuredTags}
+                  />
                 </div>
                 <div className="layout_children_wrapper">
-                  <TagBlogsLayout featuredTags={featuredTags}>{children}</TagBlogsLayout>
+                  <TagBlogsLayout featuredTags={featuredTags}>
+                    {children}
+                  </TagBlogsLayout>
                 </div>
                 <div>
                   <MainFooter />

@@ -8,12 +8,14 @@ import ModelCommanFooter from "./modelElements/ModelCommanFooter";
 import { useCustomApiForm } from "@/src/_custome-hooks/useCutomeApiform";
 import { AuthContext } from "@/src/_contextApi/authContext";
 import { updateUserDetail } from "@/src/app/utils/userAuthaction";
+import { AppContext } from "@/src/_contextApi/AppContext";
 
 export default function InputDataModel(props) {
   const { modelTitle, modelInputfileds, actionID, apiData } = props;
-  const { handelcloseInputModal } = useContext(InputModelsContext);
+  const { handelcloseInputModal, isOpenInputModel } =
+    useContext(InputModelsContext);
   const { handelUpdateUserProfile } = useContext(AuthContext);
-
+  const { isBtnLoadin, setisBtnLoadin } = useContext(AppContext);
   const dynimicData = [];
   const {
     handleSubmit,
@@ -27,6 +29,7 @@ export default function InputDataModel(props) {
   } = useCustomApiForm(apiData, modelInputfileds);
 
   const modelformsubmit = async (data) => {
+    setisBtnLoadin(true);
     const obj = {
       ...data,
       _id: actionID,
@@ -35,19 +38,27 @@ export default function InputDataModel(props) {
       const res = await handelUpdateUserProfile(obj);
 
       if (res.data.status === "success") {
+        setisBtnLoadin(false);
         updateUserDetail(res.data.result);
         toast.success(res.data.message);
         console.log(res);
       }
     } catch (error) {
+      setisBtnLoadin(false);
       console.log(error);
     }
   };
 
   return (
-    <div className={styles.model_full_container}>
+    <div
+      className={`${styles.model_full_container} ${
+        isOpenInputModel ? styles.visible : ""
+      }`}
+    >
       <Toaster />{" "}
-      <div className={styles.model_container}>
+      <div
+        className={`${styles.model_container} ${styles.inputData_model_container}`}
+      >
         {" "}
         <ModelHeader
           modelTitle={modelTitle}
@@ -60,10 +71,10 @@ export default function InputDataModel(props) {
                 <div key={input.id}>{renderInput(input, dynimicData)}</div>
               );
             })}
-            <ModelCommanFooter modelCloseHandler={handelcloseInputModal} />
+            <ModelCommanFooter actionType="submit" />
           </form>
         </div>
-      </div>{" "}
+      </div>
     </div>
   );
 }

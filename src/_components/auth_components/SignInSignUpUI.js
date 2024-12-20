@@ -107,7 +107,7 @@ export default function SignInSignUpUI(props) {
                   <SubmitBtn
                     btnText={btnText}
                     fullWidth={true}
-                    size="medium"
+                    size="large"
                     btnLoading={isBtnLoadin}
                   />
                 </div>

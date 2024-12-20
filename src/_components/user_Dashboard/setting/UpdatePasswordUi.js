@@ -24,7 +24,7 @@ export default function UpdatePasswordUi() {
     <div className={styles.container}>
       {" "}
       <section className={styles.google_auth_section}>
-        <div className={styles.google_auth_subHeading}>
+        <div className={"medium__text text_color_gray"}>
           Your account is registered with Google Auth. Please use your Google
           account to log in and access your account
         </div>
@@ -41,8 +41,8 @@ export default function UpdatePasswordUi() {
         </div>
       </section>
       <section className={styles.form_section}>
-        <div className={styles.section_heading}>
-          <h3>Update Password</h3>
+        <div className={"section_medium_heading mg_botom_lg"}>
+          Update Password
         </div>
         <div className={styles.section_container}>
           <div className={styles.form_container}>
@@ -50,7 +50,7 @@ export default function UpdatePasswordUi() {
               <div className={styles.form_input_wrapper}>
                 {updatedInputs.map((input, index) => {
                   return (
-                    <div key={index} className={styles.form_input_filedBox}>
+                    <div key={index} className={"mg_botom_lg"}>
                       {renderInput(input)}
 
                       {errors[input.name] && (
@@ -72,7 +72,6 @@ export default function UpdatePasswordUi() {
               </div>
             </form>
           </div>
-          <div>details constin</div>
         </div>
       </section>
     </div>

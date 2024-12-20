@@ -15,43 +15,63 @@
   border-radius: 8px; /* Optional for smoother edges */
   display: flex;
   justify-content: center;
+  opacity: 0; /* Initially hidden */
+  transform: scale(0.9); /* Slightly shrink initially */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none; /* Prevent clicks when hidden */
+}
+
+.model_full_container.visible {
+  opacity: 1; /* Fully visible */
+  transform: scale(1); /* Full size */
+  pointer-events: all; /* Enable interactions */
 }
 
 .model_container {
   position: relative;
   top: 10px;
   left: 10px;
-  width: 50%;
-  height: 250px;
   box-shadow: var(--th-model-box-shadow);
   background-color: #fff;
   border-radius: 5px;
   padding: 15px;
   box-sizing: border-box;
-  transition: top 0.3s ease-in-out;
+  transform: translateY(-200px); /* Start slightly above */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.model_full_container.visible .model_container {
+  transform: translateY(0); /* Slide into view */
+  opacity: 1; /* Fully visible */
 }
 
 .auth_model_container {
-  position: relative;
-  top: 10px;
-  left: 10px;
   width: 50%;
   height: 300px;
-  box-shadow: var(--th-model-box-shadow);
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 15px;
-  box-sizing: border-box;
-  transition: top 0.3s ease-in-out;
+}
+
+.repor_model_container {
+  width: 50%;
+  height: 250px;
+}
+
+.inputData_model_container {
+  width: 50%;
+  height: 200px;
+}
+
+.user_image_model_container {
+  width: 50%;
+  height: 150px;
 }
 
 .model_header {
   display: flex;
   justify-content: space-between;
-}
-
-.model_titleBox {
-  font-size: 18px;
+  border-bottom: 1px solid var(--th-thin-border-color);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .model_body {
@@ -221,6 +241,7 @@
 
 .user_img_body {
   display: flex;
+  align-items: center;
   column-gap: 20px;
   padding: 10px 0px;
 }

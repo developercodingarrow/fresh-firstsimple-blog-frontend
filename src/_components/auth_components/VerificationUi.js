@@ -65,7 +65,8 @@ export default function VerificationUi(props) {
                 <SubmitBtn
                   btnText="OTP VERIFICATION"
                   fullWidth={true}
-                  size="medium"
+                  size="large"
+                  btnLoading={isBtnLoadin}
                 />
               </div>
             </form>

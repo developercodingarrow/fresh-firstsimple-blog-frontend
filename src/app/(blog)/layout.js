@@ -7,6 +7,7 @@ import ModelContextProvider from "@/src/_contextApi/ModelContextApi";
 import ReportModel from "@/src/_components/models/ReportModel";
 import { getSession } from "../lib/authentication";
 import AppContextProvider from "@/src/_contextApi/AppContext";
+import { featuredTagsListAction } from "../utils/tagActions";
 
 export const metadata = {
   title: "Single Blog page",
@@ -15,6 +16,7 @@ export const metadata = {
 
 export default async function SingleblogLayout({ children }) {
   const userDetails = await getSession();
+  const featuredTags = await featuredTagsListAction();
   return (
     <html lang="en">
       <head>
@@ -32,7 +34,10 @@ export default async function SingleblogLayout({ children }) {
               <AuthModel />
               <ReportModel />
               <div>
-                <MainAppNavbar authData={userDetails} />
+                <MainAppNavbar
+                  authData={userDetails}
+                  suggestList={featuredTags}
+                />
               </div>
               <div className="single_blog_layout_children_wrapper">
                 {children}

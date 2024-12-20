@@ -21,24 +21,28 @@ export default function ReportModel() {
   };
   return (
     <>
-      {isReportModel && (
-        <div className={styles.model_full_container}>
-          <div className={styles.model_container}>
-            <ModelHeader
-              modelTitle="Report Model"
-              modelCloseHandler={handelCloseReportModel}
-            />
-            <div className={styles.model_body}>
-              <div>
-                <form onSubmit={handleSubmit(handelReportSubmit)}>
-                  {ReportContentradioOptions.map((input) => renderInput(input))}
-                </form>
-              </div>
+      <div
+        className={`${styles.model_full_container} ${
+          isReportModel ? styles.visible : ""
+        }`}
+      >
+        <div
+          className={`${styles.model_container} ${styles.repor_model_container}`}
+        >
+          <ModelHeader
+            modelTitle="Report content"
+            modelCloseHandler={handelCloseReportModel}
+          />
+          <div className={styles.model_body}>
+            <div>
+              <form onSubmit={handleSubmit(handelReportSubmit)}>
+                {ReportContentradioOptions.map((input) => renderInput(input))}
+                <ModelCommanFooter actionType="submit" />
+              </form>
             </div>
-            <ModelCommanFooter modelCloseHandler={handelCloseReportModel} />
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }

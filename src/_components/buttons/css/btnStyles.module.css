@@ -23,13 +23,14 @@
 
 .tag_links {
   display: flex;
+  width: fit-content;
   color: var(--th-blod-gray-text);
   font-size: 16px;
   padding: 4px 0px;
   transition: background-color var(--th-transition-ease-time),
     color var(--th-transition-ease-time);
   line-height: 1.4;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
   font-family: var(--th-font-family);
 }
 
@@ -45,6 +46,19 @@
   width: 100%;
 }
 
+.link_typeBtn {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: var(--th-primary-color);
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+}
+
+.small_link {
+  font-size: 14px;
+}
 .fill_type_btn {
   background-color: var(--th-primary-color);
   outline: none;
@@ -59,20 +73,6 @@
   position: relative;
 }
 
-.link_typeBtn {
-  background: none;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  color: var(--th-primary-color);
-  line-height: 1.4;
-  letter-spacing: 0.5px;
-}
-
-.small_link {
-  font-size: 14px;
-}
-
 .fill_type_btn:hover {
   background-color: var(--th-primary-hover-color);
 }
@@ -81,7 +81,7 @@
   font-size: 14px;
   font-family: var(--font-inter);
   font-weight: 500;
-  padding: 8px 10px; /* Smaller padding for small buttons */
+  padding: 6px 10px; /* Smaller padding for small buttons */
   border-radius: 5px;
   line-height: 1.4; /* 1.4x to 1.5x ratio is ideal */
   letter-spacing: 0.3px;
@@ -91,7 +91,7 @@
   font-size: 16px;
   font-family: var(--font-inter);
   font-weight: 600;
-  padding: 10px 16px;
+  padding: 8px 14px;
   border-radius: 5px;
   line-height: 1.4;
   letter-spacing: 0.5px;
@@ -103,6 +103,6 @@
   line-height: 1.4;
   letter-spacing: 0.5px;
   font-weight: 600;
-  padding: 12px 14px;
+  padding: 10px 12px;
   border-radius: 5px;
 }

@@ -8,6 +8,7 @@ import ImgModelContextProvider from "@/src/_contextApi/ImgModelContextApi";
 import ModelContextProvider from "@/src/_contextApi/ModelContextApi";
 import { getSession } from "../lib/authentication";
 import InputModelContextProvider from "@/src/_contextApi/InputModelContextApi";
+import { featuredTagsListAction } from "../utils/tagActions";
 
 export const metadata = {
   title: "user Profile",
@@ -16,6 +17,7 @@ export const metadata = {
 
 export default async function UserpanelLayout({ children }) {
   const userDetails = await getSession();
+  const featuredTags = await featuredTagsListAction();
   return (
     <html lang="en">
       <head>
@@ -33,7 +35,10 @@ export default async function UserpanelLayout({ children }) {
               <ModelContextProvider>
                 <ImgModelContextProvider>
                   <div>
-                    <MainAppNavbar authData={userDetails} />
+                    <MainAppNavbar
+                      authData={userDetails}
+                      suggestList={featuredTags}
+                    />
                   </div>
                   <div className="single_blog_layout_children_wrapper">
                     <UserdashboardUi>{children}</UserdashboardUi>

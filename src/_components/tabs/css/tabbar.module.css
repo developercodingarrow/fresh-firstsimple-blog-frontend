@@ -68,7 +68,12 @@
 
 @media only screen and (max-width: 600px) {
   .tab_container {
-    height: 50px;
+    height: 40px;
+  }
+
+  .arrow_box {
+    width: 25px;
+    font-size: 20px;
   }
   .sticky {
     width: 100%;
@@ -76,5 +81,9 @@
   }
   .tab_links_wrapper {
     padding: 0px 5px;
+  }
+
+  .tab_links {
+    padding: 10px 5px;
   }
 }

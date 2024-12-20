@@ -8,6 +8,7 @@ export default function AppContextProvider({ children }) {
   const [isBtnLoadin, setisBtnLoadin] = useState(false);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
   const [authDropDown, setauthDropDown] = useState(false);
+  const [isMobileSearchModel, setisMobileSearchModel] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
   };
@@ -19,6 +20,11 @@ export default function AppContextProvider({ children }) {
   const handelCloseAuthDropDown = () => {
     setauthDropDown(false);
   };
+
+  const handelTogleMobileSearch = () => {
+    setisMobileSearchModel(!isMobileSearchModel);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -30,6 +36,8 @@ export default function AppContextProvider({ children }) {
         authDropDown,
         handelOpenAuthDropDown,
         handelCloseAuthDropDown,
+        isMobileSearchModel,
+        handelTogleMobileSearch,
       }}
     >
       {children}

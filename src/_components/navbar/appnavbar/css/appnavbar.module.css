@@ -114,7 +114,6 @@
   padding: 7px;
   text-transform: capitalize;
   color: var(--th-blod-gray-text);
-  font-size: 16px;
   font-family: "Inter";
 }
 
@@ -126,11 +125,17 @@
   /* border: 1px solid red; */
 }
 
+.mobile_searchIcon_wrraper {
+  display: none;
+}
+
 @media only screen and (max-width: 600px) {
   .container {
-    padding: 0px 10px;
+    padding: 0px 20px;
     height: 50px;
     border-bottom: none;
+    box-shadow: var(--th-box-shadow);
+    border: 1px solid var(--th-thin-border-color);
   }
   .nav_search_wrapper {
     display: none;
@@ -138,5 +143,10 @@
 
   .inner_container_right_side {
     display: none;
+  }
+  .mobile_searchIcon_wrraper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

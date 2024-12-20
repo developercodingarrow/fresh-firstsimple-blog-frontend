@@ -6,7 +6,7 @@ export default function BtnLinks(props) {
   return (
     <Link
       href={hrflink}
-      className={`${styles.link_style} capitalize_text ${styles[size]}`}
+      className={`${styles.link_style} capitalize_text  ${styles[size]}`}
     >
       {linkText}
     </Link>

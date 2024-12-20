@@ -6,6 +6,7 @@ import AppContextProvider from "@/src/_contextApi/AppContext";
 import MainAppNavbar from "@/src/_components/navbar/appnavbar/MainAppNavbar";
 import { getSession } from "../lib/authentication";
 import AuthContextProvider from "@/src/_contextApi/authContext";
+import { featuredTagsListAction } from "../utils/tagActions";
 
 export const metadata = {
   title: "user Profile",
@@ -14,6 +15,7 @@ export const metadata = {
 
 export default async function TagPageLayout({ children }) {
   const userDetails = await getSession();
+  const featuredTags = await featuredTagsListAction();
   return (
     <html lang="en">
       <head>
@@ -30,7 +32,10 @@ export default async function TagPageLayout({ children }) {
             <ModelContextProvider>
               <ImgModelContextProvider>
                 <div>
-                  <MainAppNavbar authData={userDetails} />
+                  <MainAppNavbar
+                    authData={userDetails}
+                    suggestList={featuredTags}
+                  />
                 </div>
                 <div className="layout_children_wrapper">{children}</div>
                 <div>

@@ -15,6 +15,7 @@ import {
 import TagContextProvider from "@/src/_contextApi/TagContextApi";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GOOGLE_AUTH_CLIENT_ID } from "@/config";
+import MobileSearchModel from "@/src/_components/models/MobileSearchModel";
 
 export const metadata = {
   title: "Create Next App",
@@ -44,8 +45,12 @@ export default async function RootLayout({ children }) {
                 <ModelContextProvider>
                   <AuthModel />
                   <ReportModel />
+                  <MobileSearchModel suggestList={featuredTags} />
                   <div>
-                    <MainAppNavbar authData={userDetails} />
+                    <MainAppNavbar
+                      authData={userDetails}
+                      suggestList={featuredTags}
+                    />
                   </div>
                   <div className="layout_children_wrapper">
                     <HomePageLayout featuredTags={featuredTags}>

@@ -66,15 +66,16 @@
   .mobile_footer_container {
     width: 100%;
     height: 100%;
-    background-color: #1a1a1a;
+    background-color: var(--th-white-color);
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 10px 0;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.3);
-    color: #cfcfcf;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-shadow: var(--th-box-shadow);
+    border: 1px solid var(--th-thin-border-color);
+    color: var(--th-blod-gray-text);
     z-index: 10;
   }
 
@@ -87,13 +88,13 @@
   }
 
   .footer_item:hover {
-    color: #ffffff;
+    color: var(--th-primary-color);
     transform: scale(1.1);
   }
 
   .icon {
     font-size: 24px;
-    color: #ffffff;
+    color: var(--th-blod-gray-text);
   }
 
   .footer_item span {

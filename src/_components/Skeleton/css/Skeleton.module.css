@@ -1,0 +1,164 @@
+/* Main card start */
+
+.card_main_container {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid var(--th-thin-border-color);
+  background-color: rgba(0, 0, 0, 0.11);
+  position: relative;
+  overflow: hidden;
+}
+
+.card_main_container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+/*------------ Main card End---------- */
+/* card_header */
+
+.card_header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* SkeletonUserDetails start */
+.user_inLine_avatar {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+}
+.maincard_avtar_wrapper {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #f0f0f0;
+  background-color: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+.maincard_user_deatils {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.boldText,
+.lightText {
+  border: 1px solid #f0f0f0;
+  background-color: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.boldText {
+  width: 70px;
+  height: 10px;
+}
+
+.lightText {
+  width: 70px;
+  height: 7px;
+}
+/*------------------ SkeletonUserDetails End------------- */
+
+/* SkeletonThreeDote start */
+.three_dotBox {
+  border: 1px solid #f0f0f0;
+  background-color: #f0f0f0;
+  width: 5px;
+  height: 30px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.dote {
+  border: 1px solid #f0f0f0;
+  background-color: rgba(0, 0, 0, 0.11);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+}
+
+/* -------------SkeletonThreeDote End-------------- */
+/* Card title descreption start */
+.card_title_box,
+.card_meta_details {
+  border: 1px solid #f0f0f0;
+  background-color: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.card_title_box {
+  margin-bottom: 10px;
+  height: 20px;
+}
+
+.card_meta_details {
+  margin-bottom: 10px;
+  height: 50px;
+}
+
+/*------------ Card title descreption End---------------- */
+/* SkeletonCardImg Start */
+.card_img_wrapper {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  border: 1px solid #f0f0f0;
+  background-color: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+/* ---------------SkeletonCardImg End--------------- */
+/* SkeletonCardFooter Start */
+.card_footer {
+  display: flex;
+  align-items: center;
+  border: 1px solid #f0f0f0;
+  background-color: #f0f0f0;
+  height: 20px;
+  column-gap: 10px;
+  padding: 0px 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer_action {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #f0f0f0;
+  background-color: rgba(0, 0, 0, 0.11);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ------------SkeletonCardFooter End--------------- */
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

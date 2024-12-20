@@ -38,7 +38,9 @@ export default function SocialMediaDetail(props) {
   return (
     <div className={styles.main_container}>
       <div className={styles.inner_container}>
-        <div className={`${styles.lable_text} medium__text `}>{lableText}</div>
+        <div className={`${styles.lable_text} medium__text semi_bold_text`}>
+          {lableText}
+        </div>
         <div className={`${styles.socilaMedia_wrapper} `} onClick={handleOpen}>
           <div>
             <SocialIcon showicon={icon} />

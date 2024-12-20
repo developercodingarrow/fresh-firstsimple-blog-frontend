@@ -1,6 +1,7 @@
 "use client";
 import React, { useContext } from "react";
 import styles from "./css/btnStyles.module.css";
+import BtnLoading from "../loading_elements/BtnLoading";
 
 export default function SubmitBtn(props) {
   const {
@@ -20,8 +21,7 @@ export default function SubmitBtn(props) {
         } ${btnLoading ? "loading" : ""}`}
         disabled={disabledBtn || btnLoading} // Disable button during loading
       >
-        {btnLoading && <span className={styles.spinner}></span>}
-        <span>{btnText}</span>
+        {btnLoading ? <BtnLoading /> : <span>{btnText}</span>}
       </button>
     </div>
   );

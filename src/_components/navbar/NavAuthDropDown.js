@@ -52,7 +52,10 @@ export default function NavAuthDropDown(props) {
         })}
       </div>
       <div className={styles.auth_drop_footer_wrapper}>
-        <div className={styles.auth_drop_logOut_btn} onClick={handellogOut}>
+        <div
+          className={`${styles.auth_drop_logOut_btn} medium__text`}
+          onClick={handellogOut}
+        >
           Log out
         </div>
       </div>

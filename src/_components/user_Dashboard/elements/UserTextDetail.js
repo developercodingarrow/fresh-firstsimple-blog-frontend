@@ -25,9 +25,11 @@ export default function UserTextDetail(props) {
   return (
     <div className={styles.main_container}>
       <div className={styles.inner_container}>
-        <div className={`${styles.lable_text} medium__text `}>{lableText}</div>
+        <div className={`${styles.lable_text} medium__text semi_bold_text `}>
+          {lableText}
+        </div>
         <div
-          className={`${styles.value_text} medium__text`}
+          className={`${styles.value_text} medium__text semi_bold_text`}
           onClick={handleOpen}
         >
           {valueText}

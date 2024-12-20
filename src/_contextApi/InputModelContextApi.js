@@ -26,6 +26,18 @@ export default function InputModelContextProvider({ children }) {
   const handelcloseInputModal = () => {
     setisOpenInputModel(false);
   };
+
+  const handelOpenUserImgModel = (id, imgUrl) => {
+    setisUserImgModel(true);
+    setelementId(id);
+    setmodelApiData(imgUrl);
+    console.log(isUserImgModel);
+  };
+
+  const handelCloseUserImgModel = () => {
+    setisUserImgModel(false);
+    setelementId(null);
+  };
   return (
     <InputModelsContext.Provider
       value={{
@@ -39,6 +51,8 @@ export default function InputModelContextProvider({ children }) {
         elementId,
         isUserImgModel,
         setisUserImgModel,
+        handelOpenUserImgModel,
+        handelCloseUserImgModel,
       }}
     >
       {children}

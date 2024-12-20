@@ -8,6 +8,7 @@ import ModelContextProvider from "@/src/_contextApi/ModelContextApi";
 import ReportModel from "@/src/_components/models/ReportModel";
 import { getSession } from "../../../lib/authentication";
 import { API_BASE_URL } from "@/config";
+import { featuredTagsListAction } from "@/src/app/utils/tagActions";
 
 export const metadata = {
   title: "user Profile",
@@ -16,6 +17,7 @@ export const metadata = {
 
 export default async function ProfileLayout({ children, params }) {
   const userDetails = await getSession();
+  const featuredTags = await featuredTagsListAction();
   const slug = params?.slug;
   let userProfiledata;
   try {
@@ -53,7 +55,10 @@ export default async function ProfileLayout({ children, params }) {
             <AuthModel />
             <ReportModel />
             <div>
-              <MainAppNavbar authData={userDetails} />
+              <MainAppNavbar
+                authData={userDetails}
+                suggestList={featuredTags}
+              />
             </div>
             <div className="single_blog_layout_children_wrapper">
               <UserProfileLayout userProfile={userProfiledata}>

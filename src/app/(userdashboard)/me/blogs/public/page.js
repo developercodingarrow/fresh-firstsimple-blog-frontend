@@ -10,7 +10,7 @@ export default async function PublicBlogpage() {
   let initialData;
   try {
     const res = await userPublisedBlogsAction(authToken);
-
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     if (res.error) {
       initialData = [];
     } else if (res.status === "success") {

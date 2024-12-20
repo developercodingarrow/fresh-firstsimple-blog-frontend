@@ -83,12 +83,11 @@ export default function UserBioWrapper() {
             />
           </div>
         ) : (
-          <div>
+          <div className={styles.content_text}>
             <p
               dangerouslySetInnerHTML={{
                 __html: authUser.bio || "",
               }}
-              className={styles.content}
             ></p>
           </div>
         )}

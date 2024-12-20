@@ -4,9 +4,10 @@ import NavLogo from "../NavLogo";
 import NavSearchBar from "./NavSearchBar";
 import NavigationLinks from "./NavigationLinks";
 import UserAuthWrapper from "./UserAuthWrapper";
+import MobileNavSearchWrapper from "../MobileNavSearchWrapper";
 
 export default function MainAppNavbar(props) {
-  const { authData } = props;
+  const { authData, suggestList } = props;
   return (
     <div className={`${styles.container}`}>
       <div className={styles.inner_container}>
@@ -15,13 +16,16 @@ export default function MainAppNavbar(props) {
             <NavLogo />
           </div>
           <div>
-            <NavSearchBar />
+            <NavSearchBar searchSuggest={suggestList} />
           </div>
         </div>
         <div className={styles.inner_container_right_side}>
           <NavigationLinks />
 
           <UserAuthWrapper userData={authData} />
+        </div>
+        <div className={styles.mobile_searchIcon_wrraper}>
+          <MobileNavSearchWrapper />
         </div>
       </div>
     </div>

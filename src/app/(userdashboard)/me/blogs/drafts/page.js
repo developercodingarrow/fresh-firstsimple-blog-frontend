@@ -10,6 +10,7 @@ export default async function DraftBlogspage() {
   let initialData;
   try {
     const res = await userDraftBlogsAction(authToken);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     if (res.error) {
       initialData = [];
     } else if (res.status === "success") {

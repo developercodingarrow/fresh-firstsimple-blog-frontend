@@ -5,7 +5,13 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "../ApplicationIcons";
 import Link from "next/link";
 
 export default function TabBar(props) {
-  const { data, linkTextName, hrflinkName, stickypos = 50 } = props;
+  const {
+    data,
+    linkTextName,
+    hrflinkName,
+    stickypos = 50,
+    redirectType = "page",
+  } = props;
   const [isSticky, setIsSticky] = useState(false);
   const wrapperRef = useRef(null); // Ref for the scrollable wrapper
 
@@ -46,17 +52,37 @@ export default function TabBar(props) {
         <MdKeyboardArrowLeft />{" "}
       </div>
       <div className={styles.tab_links_wrapper} ref={wrapperRef}>
-        {data.map((el, index) => {
-          return (
-            <Link
-              href={el[hrflinkName]}
-              key={index}
-              className={`${styles.tab_links} text_color_gray medium__text semi_bold_text capitalize_text`}
-            >
-              {el[linkTextName]}
-            </Link>
-          );
-        })}
+        {redirectType === "page" && (
+          <>
+            {data.map((el, index) => {
+              return (
+                <Link
+                  href={el[hrflinkName]}
+                  key={index}
+                  className={`${styles.tab_links} text_color_gray medium__text semi_bold_text capitalize_text`}
+                >
+                  {el[linkTextName]}
+                </Link>
+              );
+            })}
+          </>
+        )}
+
+        {redirectType === "query" && (
+          <>
+            {data.map((el, index) => {
+              return (
+                <Link
+                  href={`?tag=${el[hrflinkName]}`}
+                  key={index}
+                  className={`${styles.tab_links} text_color_gray medium__text semi_bold_text capitalize_text`}
+                >
+                  {el[linkTextName]}
+                </Link>
+              );
+            })}
+          </>
+        )}
       </div>
       <div className={styles.arrow_box} onClick={scrollRight}>
         <MdKeyboardArrowRight />

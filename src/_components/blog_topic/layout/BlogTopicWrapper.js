@@ -59,7 +59,10 @@ export default function BlogTopicWrapper() {
       <div className={styles.tag_wrapper}>
         {tagList.map((el, index) => {
           return (
-            <Link href={`/${el.hrflink}`} className={styles.tag_box}>
+            <Link
+              href={`/${el.hrflink}`}
+              className={`${styles.tag_box} medium__text semi_bold_text`}
+            >
               {el.text}
             </Link>
           );

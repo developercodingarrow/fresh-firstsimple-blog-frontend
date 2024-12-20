@@ -25,16 +25,13 @@ export default function UserProfileWrapper() {
   const updatehsndler = () => {};
   return (
     <div className={styles.main_container}>
-      {isUserImgModel && <UserImgModel />}
-
-      {isOpenInputModel && (
-        <InputDataModel
-          modelTitle={modelHeading}
-          modelInputfileds={modelInputFild}
-          actionID={elementId}
-          apiData={authUser}
-        />
-      )}
+      <UserImgModel actionId={elementId} imgUrl={modelApiData} />
+      <InputDataModel
+        modelTitle={modelHeading}
+        modelInputfileds={modelInputFild}
+        actionID={elementId}
+        apiData={authUser}
+      />
       <div className="mg_botom_lg">
         <UserTextDetail
           lableText="Name"

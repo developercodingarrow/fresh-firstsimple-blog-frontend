@@ -8,6 +8,8 @@ import SingleBlogActionBar from "../../actionbar/SingleBlogActionBar";
 export default function SingleBlogUi(props) {
   const { data } = props;
 
+  console.log(data);
+
   return (
     <div className={styles.main_container}>
       <div className={styles.breadcrumb_wrapper}>
@@ -28,8 +30,7 @@ export default function SingleBlogUi(props) {
               <div
                 className={`${styles.img_caption} text_color_gray tiny_text`}
               >
-                {" "}
-                image caption{" "}
+                {data?.blogThumblin?.caption}
               </div>
             </>
           )}
@@ -46,7 +47,6 @@ export default function SingleBlogUi(props) {
               dangerouslySetInnerHTML={{
                 __html: data.blogDescreption || "",
               }}
-              className={styles.content}
             ></p>
           </div>
         </div>

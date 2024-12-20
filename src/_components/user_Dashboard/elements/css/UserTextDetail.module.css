@@ -8,12 +8,14 @@
 }
 
 .lable_text {
+  color: var(--th-blod-gray-text);
 }
 
 .value_text {
   display: flex;
   align-items: center;
   column-gap: 3px;
+  color: var(--th-blod-gray-text);
 }
 
 .socilaMedia_wrapper {
@@ -21,6 +23,7 @@
   align-items: center;
   column-gap: 3px;
   cursor: pointer;
+  color: var(--th-blod-gray-text);
 }
 
 .img_value {

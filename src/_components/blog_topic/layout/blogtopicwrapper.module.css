@@ -29,13 +29,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--th-border-color);
-  border-radius: 20px;
-  padding: 7px 10px;
-  font-size: 14px;
+  /* border: 1px solid var(--th-border-color); */
+  border: 1px solid var(--th-primary-color);
+  border-radius: 5px;
+  padding: 7px 8px;
   text-transform: capitalize;
   background-color: #fff;
   white-space: nowrap;
+  color: var(--th-blod-gray-text);
   flex-shrink: 0;
   transition: "color" "background-color" var(--th-transition-ease-time);
 }

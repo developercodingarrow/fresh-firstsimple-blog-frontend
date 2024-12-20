@@ -68,3 +68,12 @@
 .auth_drop_logOut_btn:hover {
   background-color: var(--th-thin-border-color);
 }
+
+.nav_search_icon {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--th-blod-gray-text);
+  cursor: pointer;
+}

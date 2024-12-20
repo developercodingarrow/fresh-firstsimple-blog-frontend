@@ -1,53 +1,12 @@
 "use client";
 import React, { useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 import styles from "./css/appnavbar.module.css";
 import { HiMagnifyingGlass } from "../../ApplicationIcons";
 import Link from "next/link";
 export default function NavSearchBar(props) {
-  const tags = [
-    {
-      tagName: "real estate",
-      tagSlug: "real-estate",
-    },
-    {
-      tagName: "bollewood",
-      tagSlug: "bollewood",
-    },
-    {
-      tagName: "news",
-      tagSlug: "news",
-    },
-    {
-      tagName: "property",
-      tagSlug: "property",
-    },
-    {
-      tagName: "technology",
-      tagSlug: "technology",
-    },
-    {
-      tagName: "javascript",
-      tagSlug: "javascript",
-    },
-    {
-      tagName: "insurence",
-      tagSlug: "insurence",
-    },
-    {
-      tagName: "loans",
-      tagSlug: "loans",
-    },
-
-    {
-      tagName: "entertment",
-      tagSlug: "entertment",
-    },
-    {
-      tagName: "movie",
-      tagSlug: "movie",
-    },
-  ];
-
+  const { searchSuggest } = props;
+  const router = useRouter();
   const [searchText, setSearchText] = useState(""); // To manage search input
   const [filteredTags, setFilteredTags] = useState([]); // To store filtered suggestions
 
@@ -57,12 +16,21 @@ export default function NavSearchBar(props) {
 
     // Show suggestions only if input has 3 or more characters
     if (value.length >= 3) {
-      const suggestions = tags.filter((tag) =>
+      const suggestions = searchSuggest.filter((tag) =>
         tag.tagName.toLowerCase().includes(value.toLowerCase())
       );
       setFilteredTags(suggestions);
     } else {
       setFilteredTags([]); // Clear suggestions if input is less than 3 characters
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" && searchText.trim()) {
+      const formattedText = searchText
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "-"); // Replace spaces with dashes and make lowercase
+      router.push(`?tag=${formattedText}`);
     }
   };
 
@@ -78,6 +46,7 @@ export default function NavSearchBar(props) {
             placeholder="search..."
             value={searchText}
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
           />
         </div>
       </div>
@@ -87,7 +56,7 @@ export default function NavSearchBar(props) {
         <div className={styles.search_list}>
           {filteredTags.map((el, index) => (
             <Link
-              href={`/${el.tagSlug}`}
+              href={`tag/${el.tagSlug}`}
               className={styles.suggest_item}
               key={index}
             >

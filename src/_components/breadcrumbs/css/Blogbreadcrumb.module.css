@@ -9,6 +9,6 @@
 .breadcumb_box {
   display: flex;
   align-items: center;
-  font-size: 16px;
   padding: 5px;
+  color: var(--th-blod-gray-text);
 }

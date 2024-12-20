@@ -31,7 +31,7 @@ export default function NavigationLinks() {
           <Link
             href={`${el.hrfLink}`}
             key={index}
-            className={styles.navigation_linkStyle}
+            className={`${styles.navigation_linkStyle} medium__text semi_bold_text`}
           >
             {el.text}
           </Link>

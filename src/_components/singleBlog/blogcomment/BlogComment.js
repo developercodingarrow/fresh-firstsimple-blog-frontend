@@ -139,7 +139,7 @@ export default function BlogComment(props) {
               />
               <input
                 type="text"
-                placeholder="Add a Cooment"
+                placeholder="Add a Comment..."
                 name="comment"
                 className={`${styles.input_style} ${styles["small"]}`}
                 {...register("comment", { required: true })}

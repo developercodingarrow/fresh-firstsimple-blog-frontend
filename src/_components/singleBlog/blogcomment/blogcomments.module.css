@@ -73,6 +73,8 @@
   border: 1px solid #afafaf;
   outline: none;
   font-size: 16px;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
   color: var(--th-blod-gray-text);
   font-family: var(--th-font-family);
 }

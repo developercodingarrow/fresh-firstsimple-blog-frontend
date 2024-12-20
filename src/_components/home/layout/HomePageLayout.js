@@ -94,6 +94,7 @@ export default function HomePageLayout({ children, featuredTags }) {
               linkTextName="tagName"
               hrflinkName="tagSlug"
               stickypos={50}
+              redirectType="query"
             />
           </div>
           <div>{children}</div>

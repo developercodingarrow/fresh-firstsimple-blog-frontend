@@ -33,7 +33,7 @@ export default function MainCard(props) {
           className={styles.body_inner_container}
         >
           <div className={styles.deatils_box}>
-            <div className={styles.card_title_box}>
+            <div className={styles.card_title}>
               <h2>{data.blogTitle}</h2>
             </div>
             <div className={styles.card_meta_details}>
