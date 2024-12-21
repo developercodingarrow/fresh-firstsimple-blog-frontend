@@ -8,6 +8,7 @@ export default function AppContextProvider({ children }) {
   const [isBtnLoadin, setisBtnLoadin] = useState(false);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
   const [authDropDown, setauthDropDown] = useState(false);
+  const [isfooterAuthPopUp, setisfooterAuthPopUp] = useState(false);
   const [isMobileSearchModel, setisMobileSearchModel] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
@@ -19,6 +20,14 @@ export default function AppContextProvider({ children }) {
 
   const handelCloseAuthDropDown = () => {
     setauthDropDown(false);
+  };
+
+  const handelOpenFooterPopUp = () => {
+    setisfooterAuthPopUp(!authDropDown);
+  };
+
+  const handelCloseFooterPopUp = () => {
+    setisfooterAuthPopUp(!authDropDown);
   };
 
   const handelTogleMobileSearch = () => {
@@ -38,6 +47,9 @@ export default function AppContextProvider({ children }) {
         handelCloseAuthDropDown,
         isMobileSearchModel,
         handelTogleMobileSearch,
+        handelOpenFooterPopUp,
+        handelCloseFooterPopUp,
+        isfooterAuthPopUp,
       }}
     >
       {children}

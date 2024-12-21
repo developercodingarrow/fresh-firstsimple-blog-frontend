@@ -58,7 +58,7 @@ export default async function RootLayout({ children }) {
                     </HomePageLayout>
                   </div>
                   <div>
-                    <MainFooter />
+                    <MainFooter authData={userDetails} />
                   </div>
                 </ModelContextProvider>
               </AppContextProvider>

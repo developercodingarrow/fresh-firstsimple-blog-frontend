@@ -68,7 +68,7 @@ export default function UserImgModel(props) {
             )}
           </div>
           <div>
-            <div className="medium__text mg_botom_sm">
+            <div className="small_text mg_botom_sm">
               Recommended: Square JPG, PNG, or GIF, at least 1,000 pixels per
               side.
             </div>

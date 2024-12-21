@@ -36,6 +36,10 @@
   border: 1px solid var(--th-thin-border-color);
 }
 
+.form_subheading {
+  display: block;
+}
+
 .authColum_innerContainer {
   padding: 30px 20px;
 }
@@ -46,7 +50,6 @@
 
 .form_input_wrapper {
   margin-bottom: 20px;
-  /* border: 1px solid red; */
 }
 
 .form_input_filedBox {
@@ -61,6 +64,7 @@
   align-items: center;
   column-gap: 10px;
   margin-bottom: 10px;
+  font-size: 14px;
 }
 
 .single_line {
@@ -77,6 +81,9 @@
   color: var(--th-primary-color);
 }
 
+.form_redirection_info_wrapper {
+}
+
 @media only screen and (max-width: 600px) {
   .Intro_Column {
     display: none;
@@ -84,7 +91,29 @@
   .AuthColumn {
     width: 100%;
   }
+
+  .form_subheading {
+    display: none;
+  }
   .authColum_innerContainer {
     padding: 20px 10px;
+  }
+  .form_input_filedBox {
+    height: 80px;
+    margin-bottom: 1px;
+  }
+  .forgot_pass_link_wrapper {
+    font-size: 12px;
+  }
+  .form_input_wrapper {
+    margin-bottom: 5px;
+  }
+  .auth_seprate {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 400;
   }
 }

@@ -1,3 +1,9 @@
 .page_container {
   padding: 0px 20px;
 }
+
+@media only screen and (max-width: 600px) {
+  .page_container {
+    padding: 0px 5px;
+  }
+}

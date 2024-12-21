@@ -67,7 +67,7 @@ export const userLoginInputs = [
     name: "password",
     type: "password",
     placeholder: "password",
-    lable: "password",
+    lable: "Password",
     inputType: "password",
     inputSize: "small",
     inputLink: {

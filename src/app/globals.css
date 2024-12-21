@@ -278,11 +278,16 @@ h3 {
     line-height: 1.2; /* 1.4x to 1.5x ratio is ideal */
     letter-spacing: 0.2px; /* Reduced to a more standard value */
     font-size: 12px;
+    font-weight: 300;
   }
   .tiny_text {
     line-height: 1.2; /* 1.4x to 1.5x ratio is ideal */
     letter-spacing: 0.2px; /* Reduced to a more standard value */
     font-size: 10px;
+  }
+
+  .mg_botom_sm {
+    margin-bottom: 5px;
   }
 
   .layout_children_wrapper {
@@ -310,5 +315,18 @@ h3 {
     padding-left: 0px;
     padding-right: 0px;
     padding-bottom: 50px;
+  }
+
+  .section_medium_heading {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.4px;
+  }
+
+  .large__text {
+    line-height: 1.3;
+    font-size: 16px;
+    letter-spacing: 0.4px; /* More appropriate spacing */
   }
 }

@@ -8,7 +8,6 @@
 
 .left_side_container {
   width: 60%;
-  /* border: 1px solid var(--th-thin-border-color); */
 }
 
 .right_side_container {
@@ -35,5 +34,8 @@
 
   .right_side_container {
     display: none;
+  }
+  .header_wapper {
+    padding: 10px 5px;
   }
 }

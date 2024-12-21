@@ -46,6 +46,23 @@
   display: none;
 }
 
+.footer_popUp {
+  position: absolute;
+  top: -35px;
+  background-color: var(--th-white-color);
+  border: 1px solid var(--th-thin-border-color);
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 600px) {
   .dekstop_footer_wrapper {
     display: none;
@@ -99,5 +116,13 @@
 
   .footer_item span {
     margin-top: 2px;
+  }
+  .footer_auth_img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--th-blod-gray-text);
+    font-size: 12px;
   }
 }

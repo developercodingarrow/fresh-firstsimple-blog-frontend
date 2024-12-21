@@ -123,7 +123,7 @@ export default function SignInSignUpUI(props) {
             </div>
 
             <div
-              className={`${styles.form_redirection_info_wrapper} mg_botom_lg`}
+              className={`${styles.form_redirection_info_wrapper} small_text mg_botom_lg`}
             >
               <span>{suHeading} </span>{" "}
               <span>

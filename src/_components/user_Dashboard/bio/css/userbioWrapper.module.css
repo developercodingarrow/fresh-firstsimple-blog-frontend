@@ -17,3 +17,11 @@
   text-align: justify;
   color: var(--th-text-black);
 }
+
+@media only screen and (max-width: 600px) {
+  .content_text {
+    line-height: 1.2;
+    font-size: 14px;
+    letter-spacing: 0.3px; /* More appropriate spacing */
+  }
+}

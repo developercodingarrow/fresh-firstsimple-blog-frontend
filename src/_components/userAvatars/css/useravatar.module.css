@@ -22,8 +22,19 @@
   height: 50px;
 }
 
+.mobile_footer_avtar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 600px) {
   .user_inLine_avatar {
     column-gap: 6px;
+  }
+  .userHeader_avtar {
+    width: 40px;
+    height: 40px;
   }
 }

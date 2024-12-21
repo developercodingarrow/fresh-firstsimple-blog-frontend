@@ -4,7 +4,7 @@ export const nameinput = [
     name: "name",
     placeholder: "enter your name !",
     type: "text",
-    // lable: "user Name",
+    inputSize: "small",
     inputType: "text",
     validation: {
       required: "Name is required.",
@@ -18,7 +18,7 @@ export const userNameinput = [
     name: "userName",
     placeholder: "username !",
     type: "text",
-    // lable: "user Name",
+    inputSize: "small",
     inputType: "text",
     validation: {
       required: "Name is required.",
@@ -32,7 +32,7 @@ export const emaiinput = [
     name: "email",
     placeholder: "email !",
     type: "text",
-    // lable: "user Name",
+    inputSize: "small",
     inputType: "text",
     validation: {
       required: "Name is required.",
@@ -59,7 +59,7 @@ export const webisteinput = [
     name: "businessWebsite",
     placeholder: "Website !",
     type: "text",
-    // lable: "user Name",
+    inputSize: "small",
     inputType: "text",
     validation: {
       required: "Website is required.",
@@ -73,7 +73,7 @@ export const facbookinput = [
     name: "facebook",
     placeholder: "facebook !",
     type: "text",
-    // lable: "user Name",
+    inputSize: "small",
     inputType: "text",
     validation: {
       required: "facebook profile link is required.",
@@ -87,7 +87,7 @@ export const twitterinput = [
     name: "twitter",
     placeholder: "twitter !",
     type: "text",
-    // lable: "user Name",
+    inputSize: "small",
     inputType: "text",
     validation: {
       required: "twitter profile link is required.",
@@ -101,7 +101,7 @@ export const instagraminput = [
     name: "instagram",
     placeholder: "instagram !",
     type: "text",
-    // lable: "user Name",
+    inputSize: "small",
     inputType: "text",
     validation: {
       required: "instagram profile link is required.",

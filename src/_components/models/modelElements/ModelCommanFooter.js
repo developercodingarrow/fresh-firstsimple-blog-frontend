@@ -14,7 +14,9 @@ export default function ModelCommanFooter(props) {
 
   return (
     <div className={styles.model_footer}>
-      {actionType && <SubmitBtn btnText="Update" btnLoading={isBtnLoadin} />}
+      {actionType && (
+        <SubmitBtn btnText="Update" btnLoading={isBtnLoadin} size="small" />
+      )}
     </div>
   );
 }
