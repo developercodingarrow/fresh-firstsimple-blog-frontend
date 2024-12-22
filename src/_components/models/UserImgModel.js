@@ -1,6 +1,7 @@
 "use client";
 import React, { useContext, useState, useRef } from "react";
 import styles from "./css/model.module.css";
+import toast, { Toaster } from "react-hot-toast";
 import { ModelsContext } from "@/src/_contextApi/ModelContextApi";
 import ModelHeader from "./modelElements/ModelHeader";
 import CircleImg from "../userAvatars/CircleImg";
@@ -9,11 +10,16 @@ import Image from "next/image";
 import { handeluplodUserPic } from "@/src/app/imghandlers/imageHandlers";
 import ClickTextBtn from "../buttons/ClickTextBtn";
 import { InputModelsContext } from "@/src/_contextApi/InputModelContextApi";
+import { AppContext } from "@/src/_contextApi/AppContext";
+import { updateUserDetail } from "@/src/app/utils/userAuthaction";
+import { AuthContext } from "@/src/_contextApi/authContext";
 
 export default function UserImgModel(props) {
   const { actionId, imgUrl } = props;
   const { handelCloseUserImgModel, isUserImgModel } =
     useContext(InputModelsContext);
+  const { setisBtnLoadin } = useContext(AppContext);
+  const { setauthUser } = useContext(AuthContext);
   const fileInputRef = useRef(null);
 
   const { previewImage, image, handleImageUpload, removeImg } =
@@ -27,7 +33,13 @@ export default function UserImgModel(props) {
     try {
       const res = await handeluplodUserPic(image, "userImg", actionId);
 
-      console.log(res);
+      if (res.data.status === "success") {
+        setisBtnLoadin(false);
+        updateUserDetail(res.data.result);
+        setauthUser(res.data.result);
+        toast.success(res.data.message);
+        console.log(res);
+      }
     } catch (error) {
       console.log("error---", error);
     }
@@ -39,7 +51,7 @@ export default function UserImgModel(props) {
         isUserImgModel ? styles.visible : ""
       }`}
     >
-      {" "}
+      <Toaster />
       <div
         className={`${styles.model_container} ${styles.user_image_model_container}`}
       >

@@ -29,7 +29,7 @@ export default async function WriteLayout({ children }) {
             <ModelContextProvider>
               <ImgModelContextProvider>
                 <div>{/* <MainAppNavbar /> */}</div>
-                <div className="create_blog_children_wrapper">{children}</div>
+                <div>{children}</div>
                 <div>
                   <MainFooter />
                 </div>

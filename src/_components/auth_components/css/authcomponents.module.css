@@ -7,7 +7,6 @@
   width: 100%;
   display: flex;
   border-radius: 10px;
-  /* border: 1px solid var(--th-border-color); */
   min-height: 500px;
 }
 
@@ -53,7 +52,7 @@
 }
 
 .form_input_filedBox {
-  height: 90px;
+  height: 80px;
 }
 
 .submit_btn_wrapper {
@@ -68,7 +67,7 @@
 }
 
 .single_line {
-  border: 1px solid gray;
+  border: 1px solid var(--th-thin-border-color);
   flex-grow: 1;
 }
 
@@ -81,7 +80,12 @@
   color: var(--th-primary-color);
 }
 
-.form_redirection_info_wrapper {
+.page_link {
+  color: var(--th-text-black);
+}
+
+.page_link:hover {
+  color: var(--th-primary-color);
 }
 
 @media only screen and (max-width: 600px) {
@@ -98,10 +102,7 @@
   .authColum_innerContainer {
     padding: 20px 10px;
   }
-  .form_input_filedBox {
-    height: 80px;
-    margin-bottom: 1px;
-  }
+
   .forgot_pass_link_wrapper {
     font-size: 12px;
   }

@@ -8,6 +8,9 @@ import TagBlogsLayout from "@/src/_components/tag/TagBlogsLayout";
 import AuthContextProvider from "@/src/_contextApi/authContext";
 import { getSession } from "../lib/authentication";
 import { featuredTagsListAction } from "../utils/tagActions";
+import GoogleOneTap from "@/src/_components/googleAuth/GoogleOneTap";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GOOGLE_AUTH_CLIENT_ID } from "@/config";
 
 export const metadata = {
   title: "user Profile",
@@ -29,26 +32,29 @@ export default async function TagBlogsPageLayout({ children }) {
       </head>
       <body>
         <AuthContextProvider authData={userDetails}>
-          <AppContextProvider>
-            <ModelContextProvider>
-              <ImgModelContextProvider>
-                <div>
-                  <MainAppNavbar
-                    authData={userDetails}
-                    suggestList={featuredTags}
-                  />
-                </div>
-                <div className="layout_children_wrapper">
-                  <TagBlogsLayout featuredTags={featuredTags}>
-                    {children}
-                  </TagBlogsLayout>
-                </div>
-                <div>
-                  <MainFooter />
-                </div>
-              </ImgModelContextProvider>
-            </ModelContextProvider>
-          </AppContextProvider>
+          <GoogleOAuthProvider clientId={GOOGLE_AUTH_CLIENT_ID}>
+            <AppContextProvider>
+              <ModelContextProvider>
+                <ImgModelContextProvider>
+                  <div>
+                    <MainAppNavbar
+                      authData={userDetails}
+                      suggestList={featuredTags}
+                    />
+                    {!userDetails && <GoogleOneTap />}
+                  </div>
+                  <div className="layout_children_wrapper">
+                    <TagBlogsLayout featuredTags={featuredTags}>
+                      {children}
+                    </TagBlogsLayout>
+                  </div>
+                  <div>
+                    <MainFooter authData={userDetails} />
+                  </div>
+                </ImgModelContextProvider>
+              </ModelContextProvider>
+            </AppContextProvider>
+          </GoogleOAuthProvider>
         </AuthContextProvider>
       </body>
     </html>

@@ -16,6 +16,7 @@ import TagContextProvider from "@/src/_contextApi/TagContextApi";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GOOGLE_AUTH_CLIENT_ID } from "@/config";
 import MobileSearchModel from "@/src/_components/models/MobileSearchModel";
+import GoogleOneTap from "@/src/_components/googleAuth/GoogleOneTap";
 
 export const metadata = {
   title: "Create Next App",
@@ -51,6 +52,7 @@ export default async function RootLayout({ children }) {
                       authData={userDetails}
                       suggestList={featuredTags}
                     />
+                    {!userDetails && <GoogleOneTap />}
                   </div>
                   <div className="layout_children_wrapper">
                     <HomePageLayout featuredTags={featuredTags}>

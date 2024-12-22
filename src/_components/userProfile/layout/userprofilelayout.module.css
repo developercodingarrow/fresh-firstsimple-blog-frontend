@@ -1,4 +1,5 @@
 .main_container {
+  margin-bottom: 50px;
 }
 
 .inner_container {
@@ -33,11 +34,16 @@
     width: 100%;
   }
 
+  .header_wapper {
+    padding: 20px 10px;
+  }
+
   .right_side_container {
     display: none;
   }
   .mobile_socilaBar_wrapper {
     display: block;
+    padding: 5px 10px;
   }
 
   .social_media_icon_wrapper {

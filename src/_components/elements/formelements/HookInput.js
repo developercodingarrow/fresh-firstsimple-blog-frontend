@@ -6,10 +6,8 @@ function HookInput(props, ref) {
   const { lable, inputType, inputSize = "medium", ...inputProps } = props;
   return (
     <div className={styles.inputHook_container}>
-      <div className={styles.lable_wraper}>
-        <label className={`${styles.lable_style} capitalize_text`}>
-          {lable}
-        </label>
+      <div>
+        <label className={`capitalize_text`}>{lable}</label>
       </div>
       <div className={styles.input_wrapper}>
         <input

@@ -16,9 +16,10 @@ export default function Loginwrapper() {
         btnText="LOGIN"
         userAuthData={authUser}
         footerLink="auth/signup"
+        formheading="Welcome Back"
         suHeading="if have no Account?"
         footerText="signup"
-        forgotpasswordLink="auth/forgot-password"
+        forgotpasswordLink="auth/forgotpassword"
       />
     </div>
   );

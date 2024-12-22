@@ -24,6 +24,7 @@ import { RiTwitterXLine } from "react-icons/ri"; // twitter x
 import { TbWorldWww } from "react-icons/tb"; // web internet website
 import { IoReaderOutline } from "react-icons/io5"; // blog reading book
 import { IoEyeOff, IoEye } from "react-icons/io5"; // eyes on off
+import { IoArrowBackSharp } from "react-icons/io5";
 
 export {
   MdDashboard,
@@ -52,4 +53,5 @@ export {
   IoEyeOff,
   IoEye,
   FaRegHeart,
+  IoArrowBackSharp,
 };

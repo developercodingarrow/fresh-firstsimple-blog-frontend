@@ -9,7 +9,7 @@ import useCustomForm from "@/src/_custome-hooks/useCustomForm";
 
 export default function ReportModel() {
   const {
-    isReportModel,
+    isReportModel = true,
     setisReportModel,
     handelOpenReportModel,
     handelCloseReportModel,

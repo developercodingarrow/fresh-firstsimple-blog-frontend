@@ -117,8 +117,9 @@ export default function ChipSelector(props) {
 
       <div className={styles.btn_wrapper}>
         <ClickTextBtn
-          btnText="update tags"
-          size="small"
+          btnText="Update Tags"
+          btnType="link_typeBtn"
+          size="small_link"
           clickHandel={handleSubmit}
         />
       </div>

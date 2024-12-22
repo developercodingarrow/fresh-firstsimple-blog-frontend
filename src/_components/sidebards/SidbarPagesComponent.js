@@ -16,7 +16,7 @@ export default function SidbarPagesComponent(props) {
         <div className="capitalize_text mg_botom_sm section_medium_heading">
           {sectionTitle}
         </div>
-        <div className={styles.topic_list}>
+        <div>
           {listData.length > 1 ? (
             listData.map((el, index) => (
               <BtnLinks

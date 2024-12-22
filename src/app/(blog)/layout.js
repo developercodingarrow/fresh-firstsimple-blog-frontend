@@ -8,6 +8,9 @@ import ReportModel from "@/src/_components/models/ReportModel";
 import { getSession } from "../lib/authentication";
 import AppContextProvider from "@/src/_contextApi/AppContext";
 import { featuredTagsListAction } from "../utils/tagActions";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GOOGLE_AUTH_CLIENT_ID } from "@/config";
+import GoogleOneTap from "@/src/_components/googleAuth/GoogleOneTap";
 
 export const metadata = {
   title: "Single Blog page",
@@ -29,24 +32,27 @@ export default async function SingleblogLayout({ children }) {
       </head>
       <body>
         <AuthContextProvider authData={userDetails}>
-          <AppContextProvider>
-            <ModelContextProvider>
-              <AuthModel />
-              <ReportModel />
-              <div>
-                <MainAppNavbar
-                  authData={userDetails}
-                  suggestList={featuredTags}
-                />
-              </div>
-              <div className="single_blog_layout_children_wrapper">
-                {children}
-              </div>
-              <div>
-                <MainFooter />
-              </div>
-            </ModelContextProvider>
-          </AppContextProvider>
+          <GoogleOAuthProvider clientId={GOOGLE_AUTH_CLIENT_ID}>
+            <AppContextProvider>
+              <ModelContextProvider>
+                <AuthModel />
+                <ReportModel />
+                <div>
+                  <MainAppNavbar
+                    authData={userDetails}
+                    suggestList={featuredTags}
+                  />
+                  {!userDetails && <GoogleOneTap />}
+                </div>
+                <div className="single_blog_layout_children_wrapper">
+                  {children}
+                </div>
+                <div>
+                  <MainFooter authData={userDetails} />
+                </div>
+              </ModelContextProvider>
+            </AppContextProvider>
+          </GoogleOAuthProvider>
         </AuthContextProvider>
       </body>
     </html>

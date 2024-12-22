@@ -1,4 +1,5 @@
 import React, { Suspense } from "react";
+import styles from "../../../page.module.css";
 
 import { API_BASE_URL } from "@/config";
 
@@ -33,7 +34,7 @@ export default async function UserAboutpage(pathname) {
           dangerouslySetInnerHTML={{
             __html: data?.bio || "",
           }}
-          // className={styles.content}
+          className={styles.content_text}
         ></p>
       </Suspense>
     </div>

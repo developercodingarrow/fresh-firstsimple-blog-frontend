@@ -4,9 +4,9 @@ export const userRegistraionInputs = [
     name: "name",
     placeholder: "enter your name !",
     type: "text",
-    lable: "user Name",
+    lable: "Name",
     inputType: "text",
-    inputSize: "small",
+    inputSize: "extra_large",
     validation: {
       required: "Name is required.",
     },
@@ -19,7 +19,7 @@ export const userRegistraionInputs = [
     type: "text",
     lable: "Email",
     inputType: "text",
-    inputSize: "small",
+    inputSize: "extra_large",
     validation: {
       required: "Email is required.",
       pattern: {
@@ -36,7 +36,7 @@ export const userRegistraionInputs = [
     placeholder: "password",
     lable: "password",
     inputType: "password",
-    inputSize: "small",
+    inputSize: "extra_large",
     validation: {
       required: "Password is required.",
     },
@@ -52,7 +52,7 @@ export const userLoginInputs = [
     lable: "Email",
 
     inputType: "text",
-    inputSize: "small",
+    inputSize: "extra_large",
     validation: {
       required: "Email is required.",
       pattern: {
@@ -69,7 +69,7 @@ export const userLoginInputs = [
     placeholder: "password",
     lable: "Password",
     inputType: "password",
-    inputSize: "small",
+    inputSize: "extra_large",
     inputLink: {
       name: "forgot password",
       hrfLink: "forgot-password",
@@ -88,7 +88,7 @@ export const otpInputFiled = [
     type: "text",
     lable: "OTP",
     inputType: "text",
-    inputSize: "small",
+    inputSize: "extra_large",
     validation: {
       required: "OTP is required.",
     },
@@ -103,7 +103,7 @@ export const forgotPasswordInputFileds = [
     type: "text",
     lable: "Email",
     inputType: "text",
-    inputSize: "small",
+    inputSize: "extra_large",
     validation: {
       required: "Email is required.",
       pattern: {

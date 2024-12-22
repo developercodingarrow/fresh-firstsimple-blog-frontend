@@ -10,6 +10,7 @@ export default function ModelContextProvider({ children }) {
   const [isSingleImgModel, setisSingleImgModel] = useState(false);
   const [isAuthModel, setisAuthModel] = useState(false);
   const [isReportModel, setisReportModel] = useState(false);
+  const [isMobileCommentModel, setisMobileCommentModel] = useState(false);
 
   const handelOpenDeleteModel = (data, handler) => {
     setactionID(data);
@@ -46,6 +47,14 @@ export default function ModelContextProvider({ children }) {
     setisReportModel(false);
   };
 
+  const handelOpenMobileCommentModel = () => {
+    setisMobileCommentModel(true);
+  };
+
+  const handelClosenMobileCommentModel = () => {
+    setisMobileCommentModel(false);
+  };
+
   return (
     <ModelsContext.Provider
       value={{
@@ -67,6 +76,9 @@ export default function ModelContextProvider({ children }) {
         setisReportModel,
         handelOpenReportModel,
         handelCloseReportModel,
+        isMobileCommentModel,
+        handelOpenMobileCommentModel,
+        handelClosenMobileCommentModel,
       }}
     >
       {" "}

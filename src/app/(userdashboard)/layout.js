@@ -9,6 +9,7 @@ import ModelContextProvider from "@/src/_contextApi/ModelContextApi";
 import { getSession } from "../lib/authentication";
 import InputModelContextProvider from "@/src/_contextApi/InputModelContextApi";
 import { featuredTagsListAction } from "../utils/tagActions";
+import DeleteModel from "@/src/_components/models/DeleteModel";
 
 export const metadata = {
   title: "user Profile",
@@ -34,6 +35,7 @@ export default async function UserpanelLayout({ children }) {
             <InputModelContextProvider>
               <ModelContextProvider>
                 <ImgModelContextProvider>
+                  <DeleteModel />
                   <div>
                     <MainAppNavbar
                       authData={userDetails}

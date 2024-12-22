@@ -7,8 +7,11 @@ import AuthContextProvider from "@/src/_contextApi/authContext";
 import ModelContextProvider from "@/src/_contextApi/ModelContextApi";
 import ReportModel from "@/src/_components/models/ReportModel";
 import { getSession } from "../../../lib/authentication";
-import { API_BASE_URL } from "@/config";
+import { API_BASE_URL, GOOGLE_AUTH_CLIENT_ID } from "@/config";
 import { featuredTagsListAction } from "@/src/app/utils/tagActions";
+import GoogleOneTap from "@/src/_components/googleAuth/GoogleOneTap";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import AppContextProvider from "@/src/_contextApi/AppContext";
 
 export const metadata = {
   title: "user Profile",
@@ -51,24 +54,29 @@ export default async function ProfileLayout({ children, params }) {
       </head>
       <body>
         <AuthContextProvider authData={userDetails}>
-          <ModelContextProvider>
-            <AuthModel />
-            <ReportModel />
-            <div>
-              <MainAppNavbar
-                authData={userDetails}
-                suggestList={featuredTags}
-              />
-            </div>
-            <div className="single_blog_layout_children_wrapper">
-              <UserProfileLayout userProfile={userProfiledata}>
-                {children}
-              </UserProfileLayout>
-            </div>
-            <div>
-              <MainFooter />
-            </div>
-          </ModelContextProvider>
+          <GoogleOAuthProvider clientId={GOOGLE_AUTH_CLIENT_ID}>
+            <AppContextProvider>
+              <ModelContextProvider>
+                <AuthModel />
+                <ReportModel />
+                <div>
+                  <MainAppNavbar
+                    authData={userDetails}
+                    suggestList={featuredTags}
+                  />
+                  {!userDetails && <GoogleOneTap />}
+                </div>
+                <div className="single_blog_layout_children_wrapper">
+                  <UserProfileLayout userProfile={userProfiledata}>
+                    {children}
+                  </UserProfileLayout>
+                </div>
+                <div>
+                  <MainFooter authData={userDetails} />
+                </div>
+              </ModelContextProvider>
+            </AppContextProvider>
+          </GoogleOAuthProvider>
         </AuthContextProvider>
       </body>
     </html>

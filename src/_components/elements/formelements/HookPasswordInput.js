@@ -24,8 +24,8 @@ function HookPasswordInput(props, ref) {
   };
   return (
     <div className={styles.passInput_hook_container}>
-      <div className={styles.lable_wraper}>
-        <label className={styles.lable_style}>{lable}</label>
+      <div>
+        <label className={`capitalize_text`}>{lable}</label>
       </div>
       <div className={styles.Password_input_wrapper}>
         <input

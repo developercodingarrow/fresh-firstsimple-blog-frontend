@@ -8,6 +8,7 @@ import { formatDate } from "@/src/_logicalFunctions/formatDate";
 export default function DraftBlogCard(props) {
   const { data } = props;
   const date = formatDate(data?.createdAt);
+  
   return (
     <div className={styles.main_container}>
       <div className={`${styles.card_title_box} mg_botom_sm`}>

@@ -20,6 +20,7 @@ export default function SignInSignUpUI(props) {
     userAuthData,
     footerText,
     footerLink,
+    formheading,
     suHeading,
     forgotpasswordLink,
   } = props;
@@ -68,12 +69,7 @@ export default function SignInSignUpUI(props) {
             <div className={styles.form_header}>
               {" "}
               <div className={`${styles.form_heading} mg_botom_sm`}>
-                <h2>Create an account</h2>
-              </div>
-              <div
-                className={`${styles.form_subheading} mg_botom_sm  medium__text text_color_gray`}
-              >
-                Register your account !
+                <h2>{formheading}</h2>
               </div>
             </div>
             <div className={styles.auth_form_wrapper}>
@@ -107,7 +103,7 @@ export default function SignInSignUpUI(props) {
                   <SubmitBtn
                     btnText={btnText}
                     fullWidth={true}
-                    size="large"
+                    size="extra_large"
                     btnLoading={isBtnLoadin}
                   />
                 </div>
@@ -115,20 +111,25 @@ export default function SignInSignUpUI(props) {
             </div>
             <div className={styles.auth_seprate}>
               <span className={styles.single_line}></span>
-              <span className="medium_text_wrapper">Or With</span>
+              <span className="small_text text_color_gray">Or With</span>
               <span className={styles.single_line}></span>
             </div>
             <div className={`${styles.google_auth_wrapper} mg_botom_lg `}>
               <GoogleAuthClient userAuthData={userAuthData} />
             </div>
 
-            <div
-              className={`${styles.form_redirection_info_wrapper} small_text mg_botom_lg`}
-            >
-              <span>{suHeading} </span>{" "}
+            <div>
+              <span className={`small_text text_color_gray mg_botom_lg`}>
+                {suHeading}{" "}
+              </span>{" "}
               <span>
                 {" "}
-                <Link href={`/${footerLink}`}>{footerText} </Link>{" "}
+                <Link
+                  href={`/${footerLink}`}
+                  className={`${styles.page_link} small_text capitalize_text `}
+                >
+                  {footerText}{" "}
+                </Link>{" "}
               </span>
             </div>
           </div>

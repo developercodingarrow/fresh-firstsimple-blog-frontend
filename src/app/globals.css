@@ -52,6 +52,14 @@ body {
   margin: 0;
 }
 
+label {
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--th-font-family);
+}
+
 .layout_children_wrapper {
   padding-top: var(--th-app-navbar-height);
   padding-left: 230px;
@@ -164,7 +172,7 @@ h3 {
   letter-spacing: 0.5px; /* More appropriate spacing */
   font-size: 16px;
   font-family: var(--th-font-family);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .small_text {
@@ -199,6 +207,8 @@ h3 {
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--th-thin-border-color);
+  padding-bottom: 10px;
 }
 
 .icon_box {
@@ -253,6 +263,14 @@ h3 {
 }
 
 @media only screen and (max-width: 600px) {
+  label {
+    line-height: 1.7;
+    letter-spacing: 0.4px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: var(--th-font-family);
+  }
+
   h1 {
     font-size: 16px;
     font-weight: 600;
@@ -270,20 +288,27 @@ h3 {
     margin-bottom: 0px;
   }
 
+  .section_heading {
+    font-family: var(--th-font-family);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 0.4px;
+  }
+
   .medium__text {
     font-size: 14px;
     font-weight: 500;
   }
-  .small_text {
-    line-height: 1.2; /* 1.4x to 1.5x ratio is ideal */
-    letter-spacing: 0.2px; /* Reduced to a more standard value */
-    font-size: 12px;
-    font-weight: 300;
-  }
+
   .tiny_text {
     line-height: 1.2; /* 1.4x to 1.5x ratio is ideal */
     letter-spacing: 0.2px; /* Reduced to a more standard value */
     font-size: 10px;
+  }
+
+  .mg_botom_lg {
+    margin-bottom: 10px;
   }
 
   .mg_botom_sm {

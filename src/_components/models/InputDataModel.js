@@ -14,9 +14,10 @@ export default function InputDataModel(props) {
   const { modelTitle, modelInputfileds, actionID, apiData } = props;
   const { handelcloseInputModal, isOpenInputModel } =
     useContext(InputModelsContext);
-  const { handelUpdateUserProfile } = useContext(AuthContext);
-  const { isBtnLoadin, setisBtnLoadin } = useContext(AppContext);
+  const { handelUpdateUserProfile, setauthUser } = useContext(AuthContext);
+  const { setisBtnLoadin } = useContext(AppContext);
   const dynimicData = [];
+
   const {
     handleSubmit,
     formState,
@@ -40,6 +41,7 @@ export default function InputDataModel(props) {
       if (res.data.status === "success") {
         setisBtnLoadin(false);
         updateUserDetail(res.data.result);
+        setauthUser(res.data.result);
         toast.success(res.data.message);
         console.log(res);
       }

@@ -125,7 +125,11 @@ export default function BlogComment(props) {
 
   return (
     <div className={styles.main_container}>
-      <div className={`mg_botom_lg section_medium_heading`}>Comment</div>
+      <div
+        className={`${styles.Cooment_heading}  mg_botom_lg section_medium_heading`}
+      >
+        Comment
+      </div>
       {userId ? (
         <form onSubmit={handleSubmit(handelCreateComment)}>
           <div className={styles.comment_input_wrapper}>

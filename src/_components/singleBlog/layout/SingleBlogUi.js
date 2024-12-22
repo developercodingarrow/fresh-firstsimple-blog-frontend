@@ -5,13 +5,13 @@ import Image from "next/image";
 import BlogComment from "../blogcomment/BlogComment";
 import Blogbreadcrumb from "../../breadcrumbs/Blog/Blogbreadcrumb";
 import SingleBlogActionBar from "../../actionbar/SingleBlogActionBar";
+import MobileCommentModel from "../../models/MobileCommentModel";
 export default function SingleBlogUi(props) {
   const { data } = props;
 
-  console.log(data);
-
   return (
     <div className={styles.main_container}>
+      <MobileCommentModel data={data} />
       <div className={styles.breadcrumb_wrapper}>
         <Blogbreadcrumb pageTitle={data?.blogTitle} />
       </div>

@@ -27,6 +27,7 @@ export default function useCustomeAuthForm(customeInputs, formType) {
         inputType: "text",
         placeholder: "password Confirm",
         lable: "password Confirm",
+        inputSize: "extra_large",
         validation: {
           required: "Confirm Password is required.",
           validate: (value) =>

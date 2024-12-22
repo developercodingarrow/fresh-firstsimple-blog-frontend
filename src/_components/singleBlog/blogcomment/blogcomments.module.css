@@ -7,6 +7,10 @@
   overflow-y: auto;
 }
 
+.Cooment_heading {
+  display: block;
+}
+
 .comment_input_wrapper {
   display: flex;
   align-items: center;
@@ -82,4 +86,18 @@
 .small {
   padding: 8px 10px;
   border-radius: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  .main_container {
+    border: 1px solid var(--th-thin-border-color);
+    background-color: var(--th-thin-border-color);
+    border-radius: 8px;
+    padding: 10px;
+    max-height: 100%;
+    overflow-y: auto;
+  }
+  .Cooment_heading {
+    display: none;
+  }
 }

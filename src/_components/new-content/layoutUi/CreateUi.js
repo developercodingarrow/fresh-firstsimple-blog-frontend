@@ -1,5 +1,6 @@
 "use client";
 import React, { useContext, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import styles from "./css/createui.module.css";
 import ClickTextBtn from "../../buttons/ClickTextBtn";
@@ -12,8 +13,10 @@ import SingleImgModel from "../../models/SingleImgModel";
 import { updateBlogContent } from "@/src/app/utils/blogsAction";
 import { handelUploadThumblin } from "@/src/app/imghandlers/imageHandlers";
 import { TagContext } from "@/src/_contextApi/TagContextApi";
+import { IoArrowBackSharp } from "../../ApplicationIcons";
 
 export default function CreateUi(props) {
+  const router = useRouter();
   const { apiData, slug } = props;
   const { trustedTags } = useContext(TagContext);
 
@@ -124,85 +127,99 @@ export default function CreateUi(props) {
       console.log(error);
     }
   };
+
+  const handleBack = () => {
+    if (window.history.length > 2) {
+      router.back(); // Go to the previous page in history
+    } else {
+      router.push("/"); // Fallback to the home page if no history exists
+    }
+  };
   return (
     <div className={styles.main_container}>
       <Toaster />
       <SingleImgModel updateHandler={handelUploadThumblin} id={slug} />
       <div className={styles.section_header}>
-        <div>icon</div>
+        <div onClick={handleBack} className={styles.backBtn_box}>
+          <IoArrowBackSharp />
+        </div>
         <div>
           <ClickTextBtn
             btnText="Publish"
-            size="medium"
+            size="medium_fill"
             disabledBtn={false}
             btnLoading={false}
             clickHandel={handelUpdateContent}
           />
         </div>
       </div>
-      <section className={styles.top_section}>
-        <div className={styles.section_left}>
-          <div className={"section_heading mg_botom_lg"}>General</div>
-          <div className={styles.form_elements_wrapper}>
-            <div className={styles.form_element_Box}>
-              <div className={styles.input_lable}>
-                <label>Blog Title</label>
+      <div className="create_blog_children_wrapper">
+        <section className={styles.top_section}>
+          <div className={styles.section_left}>
+            <div className={styles.form_elements_wrapper}>
+              <div className={styles.form_element_Box}>
+                <div className={styles.input_lable}>
+                  <label>Blog Title</label>
+                </div>
+                <div className={styles.input_wrapper}>
+                  <SimpleInput
+                    inputPlaceholder="Enter Blog Title"
+                    inputValue={blogData.blogTitle}
+                    inputName="blogTitle"
+                    inputChnageHandler={handelChange}
+                    inputSize="medium"
+                  />
+                </div>
+                <span className={styles.error_msg}>{errors.blogTitle}</span>
               </div>
-              <div className={styles.input_wrapper}>
-                <SimpleInput
-                  inputPlaceholder="Enter Blog Title"
-                  inputValue={blogData.blogTitle}
-                  inputName="blogTitle"
-                  inputChnageHandler={handelChange}
+              <div className={styles.form_element_Box}>
+                <div className={styles.input_lable}>
+                  <label>Meta Descreption</label>
+                </div>
+                <div className={styles.input_wrapper}>
+                  <SimpleTextArea
+                    inputPlaceholder="Enter Blog Meta Descreption"
+                    inputValue={blogData.metaDescription}
+                    inputName="metaDescription"
+                    inputChnageHandler={handelChange}
+                  />
+                </div>
+                <span className={styles.error_msg}>
+                  {errors.metaDescription}
+                </span>
+              </div>
+              <div className={styles.form_element_Box}>
+                <ReactQuillElement
+                  inputValue={blogData.blogDescreption}
+                  inputChnageHandler={handleQuillChange}
                 />
               </div>
-              <span className={styles.error_msg}>{errors.blogTitle}</span>
-            </div>
-            <div className={styles.form_element_Box}>
-              <div className={styles.input_lable}>
-                <label>Meta Descreption</label>
-              </div>
-              <div className={styles.input_wrapper}>
-                <SimpleTextArea
-                  inputPlaceholder="Enter Blog Meta Descreption"
-                  inputValue={blogData.metaDescription}
-                  inputName="metaDescription"
-                  inputChnageHandler={handelChange}
-                />
-              </div>
-              <span className={styles.error_msg}>{errors.metaDescription}</span>
-            </div>
-            <div className={styles.form_element_Box}>
-              <ReactQuillElement
-                inputValue={blogData.blogDescreption}
-                inputChnageHandler={handleQuillChange}
-              />
-            </div>
-            <span className={styles.error_msg}>{errors.blogDescreption}</span>
-          </div>
-        </div>
-        <div className={styles.section_right}>
-          <div className={styles.componenet_section}>
-            <div className={"section_heading mg_botom_lg"}>Thumblin</div>
-            <div className={styles.section_component_wrapper}>
-              <SingleImgUplod apiImg={apiData} imageFor="blogThumblin" />
+              <span className={styles.error_msg}>{errors.blogDescreption}</span>
             </div>
           </div>
+          <div className={styles.section_right}>
+            <div className={styles.componenet_section}>
+              <div className={"section_heading mg_botom_lg"}>Thumblin</div>
+              <div className={styles.section_component_wrapper}>
+                <SingleImgUplod apiImg={apiData} imageFor="blogThumblin" />
+              </div>
+            </div>
 
-          <div className={styles.componenet_section}>
-            <div className={"section_heading mg_botom_lg"}>Tags</div>
-            <div className={styles.section_component_wrapper}>
-              <ChipSelector
-                allList={trustedTags}
-                filedName="tagName"
-                placeholder="Enter your tag"
-                apiTags={apiData?.blogTags}
-                slug={slug}
-              />
+            <div className={styles.componenet_section}>
+              <div className={"section_heading mg_botom_lg"}>Tags</div>
+              <div className={styles.section_component_wrapper}>
+                <ChipSelector
+                  allList={trustedTags}
+                  filedName="tagName"
+                  placeholder="Enter your tag"
+                  apiTags={apiData?.blogTags}
+                  slug={slug}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }

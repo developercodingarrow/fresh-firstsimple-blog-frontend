@@ -20,7 +20,6 @@ export default function UserProfileLayout({ children, userProfile }) {
     },
   ];
 
-  console.log("userProfile---", userProfile);
   return (
     <div className={styles.main_container}>
       <div className={styles.inner_container}>
@@ -71,9 +70,6 @@ export default function UserProfileLayout({ children, userProfile }) {
           </div>
           <div className="mg_botom_sm">
             <Linkcard />
-          </div>
-          <div className="mg_botom_sm">
-            <SideBarStats />
           </div>
         </div>
       </div>

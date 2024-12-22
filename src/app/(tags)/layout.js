@@ -7,6 +7,9 @@ import MainAppNavbar from "@/src/_components/navbar/appnavbar/MainAppNavbar";
 import { getSession } from "../lib/authentication";
 import AuthContextProvider from "@/src/_contextApi/authContext";
 import { featuredTagsListAction } from "../utils/tagActions";
+import GoogleOneTap from "@/src/_components/googleAuth/GoogleOneTap";
+import { GOOGLE_AUTH_CLIENT_ID } from "@/config";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 export const metadata = {
   title: "user Profile",
@@ -28,22 +31,25 @@ export default async function TagPageLayout({ children }) {
       </head>
       <body>
         <AuthContextProvider authData={userDetails}>
-          <AppContextProvider>
-            <ModelContextProvider>
-              <ImgModelContextProvider>
-                <div>
-                  <MainAppNavbar
-                    authData={userDetails}
-                    suggestList={featuredTags}
-                  />
-                </div>
-                <div className="layout_children_wrapper">{children}</div>
-                <div>
-                  <MainFooter />
-                </div>
-              </ImgModelContextProvider>
-            </ModelContextProvider>
-          </AppContextProvider>
+          <GoogleOAuthProvider clientId={GOOGLE_AUTH_CLIENT_ID}>
+            <AppContextProvider>
+              <ModelContextProvider>
+                <ImgModelContextProvider>
+                  <div>
+                    <MainAppNavbar
+                      authData={userDetails}
+                      suggestList={featuredTags}
+                    />
+                    {!userDetails && <GoogleOneTap />}
+                  </div>
+                  <div className="layout_children_wrapper">{children}</div>
+                  <div>
+                    <MainFooter authData={userDetails} />
+                  </div>
+                </ImgModelContextProvider>
+              </ModelContextProvider>
+            </AppContextProvider>
+          </GoogleOAuthProvider>
         </AuthContextProvider>
       </body>
     </html>

@@ -5,10 +5,10 @@
 
 .medium_fill {
   display: flex;
-  font-size: 16px;
+  font-size: 14px;
   font-family: var(--th-font-family);
-  font-weight: 600;
-  padding: 8px 16px;
+  font-weight: 500;
+  padding: 7px 16px;
   border-radius: 5px;
   line-height: 1.4;
   letter-spacing: 0.5px;
@@ -81,16 +81,16 @@
   font-size: 14px;
   font-family: var(--font-inter);
   font-weight: 500;
-  padding: 6px 10px; /* Smaller padding for small buttons */
+  padding: 5px 12px;
   border-radius: 5px;
-  line-height: 1.4; /* 1.4x to 1.5x ratio is ideal */
+  line-height: 1.4;
   letter-spacing: 0.3px;
 }
 
 .medium {
-  font-size: 16px;
+  font-size: 14px;
   font-family: var(--font-inter);
-  font-weight: 600;
+  font-weight: 500;
   padding: 8px 14px;
   border-radius: 5px;
   line-height: 1.4;
@@ -98,16 +98,35 @@
 }
 
 .large {
-  font-size: 18px;
+  font-size: 16px;
   font-family: var(--font-inter);
-  line-height: 1.4;
+  line-height: 1.5;
   letter-spacing: 0.5px;
-  font-weight: 600;
+  font-weight: 500;
+  padding: 10px 12px;
+  border-radius: 5px;
+}
+
+.extra_large {
+  font-size: 16px;
+  font-family: var(--th-font-family);
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  font-weight: 500;
   padding: 10px 12px;
   border-radius: 5px;
 }
 
 @media only screen and (max-width: 600px) {
+  .extra_large {
+    font-size: 14px;
+    font-family: var(--font-inter);
+    line-height: 1.4;
+    letter-spacing: 0.4px;
+    font-weight: 400;
+    padding: 8px 10px;
+    border-radius: 5px;
+  }
   .large {
     font-size: 16px;
     line-height: 1.3;
@@ -122,12 +141,13 @@
     padding: 6px 12px;
     line-height: 1.3;
     letter-spacing: 0.4px;
+    border-radius: 3px;
   }
   .small {
     font-size: 12px;
     font-weight: 300;
-    padding: 5px 8px; /* Smaller padding for small buttons */
-    line-height: 1.2; /* 1.4x to 1.5x ratio is ideal */
+    padding: 5px 8px;
+    line-height: 1.2;
     letter-spacing: 0.3px;
     border-radius: 3px;
   }

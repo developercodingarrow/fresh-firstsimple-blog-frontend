@@ -24,7 +24,7 @@ export default function UpdatePasswordUi() {
     <div className={styles.container}>
       {" "}
       <section className={styles.google_auth_section}>
-        <div className={"medium__text text_color_gray"}>
+        <div className={"medium__text "}>
           Your account is registered with Google Auth. Please use your Google
           account to log in and access your account
         </div>

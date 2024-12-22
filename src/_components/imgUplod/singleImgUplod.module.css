@@ -1,6 +1,7 @@
 .img_uplodBox_wrapper {
   height: 150px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+  border: 1px solid var(--th-border-color);
 }
 
 .image_upod_box {
@@ -16,7 +17,6 @@
   border-radius: 8px;
   height: 100%;
   width: 100%;
-  margin-bottom: 24px;
   cursor: pointer;
   position: relative;
 }
@@ -36,8 +36,6 @@
 }
 
 .section_title {
-  padding-bottom: 10px;
-  border-bottom: 2px solid #d4d4d840;
 }
 
 .details_box {

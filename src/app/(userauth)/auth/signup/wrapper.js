@@ -15,6 +15,7 @@ export default function SingUpWrapper() {
         formHandel={userRegisterAction}
         btnText="Register"
         userAuthData={authUser}
+        formheading="Create an account"
         suHeading="Already have an Account?"
         footerLink="auth/login"
         footerText="Login"
