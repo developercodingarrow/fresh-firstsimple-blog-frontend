@@ -46,7 +46,7 @@ export default async function UserpanelLayout({ children }) {
                     <UserdashboardUi>{children}</UserdashboardUi>
                   </div>
                   <div>
-                    <MainFooter />
+                    <MainFooter authData={userDetails} />
                   </div>
                 </ImgModelContextProvider>
               </ModelContextProvider>

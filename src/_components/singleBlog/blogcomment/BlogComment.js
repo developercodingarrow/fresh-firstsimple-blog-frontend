@@ -29,34 +29,38 @@ export default function BlogComment(props) {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors, isValid },
   } = useForm();
 
   const handelCreateComment = async (data) => {
     try {
       const res = await createCommentAction(data);
-      console.log(res.data);
-      setComments([
-        ...comments,
-        {
-          id: res.data._id,
-          comment: res.data.comment,
-          commentBy: {
-            name: res.data.commentBy.name, // Replace with the actual user's name
-            userImg: {
-              url: res.data.commentBy.userImg.url,
+      console.log("create comment---", res);
+
+      if (res.data.status === "success") {
+        setComments([
+          ...comments,
+          {
+            id: res.data.newComment._id,
+            comment: res.data.newComment.comment,
+            commentBy: {
+              name: res.data.newComment.commentBy.name, // Replace with the actual user's name
+              userImg: {
+                url: res.data.newComment.commentBy.userImg.url,
+              },
             },
+            replies: [],
           },
-          replies: [],
-        },
-      ]);
-      router.refresh();
+        ]);
+        reset();
+        router.refresh();
+      }
     } catch (error) {}
   };
 
   const handleReplyAdded = (commentId, newReply) => {
     // Find the comment to update
-
     setComments((prevComments) =>
       prevComments.map((comment) =>
         comment.id === commentId
@@ -150,7 +154,7 @@ export default function BlogComment(props) {
               />
             </div>
             <div className={styles.btn_wrapper}>
-              <SubmitBtn btnText="Comment" size="small" />
+              <SubmitBtn btnText="Comment" size="medium" />
             </div>
           </div>
         </form>

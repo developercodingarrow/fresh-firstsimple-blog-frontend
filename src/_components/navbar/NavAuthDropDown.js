@@ -34,7 +34,10 @@ export default function NavAuthDropDown(props) {
   };
 
   return (
-    <div className={styles.auth_dropdown_container}>
+    <div
+      className={styles.auth_dropdown_container}
+      onClick={(e) => e.stopPropagation()}
+    >
       <div className={styles.drop_header}>
         <div className="medium__text">{data?.name}</div>
         <div className="tiny_text text_color_gray">{data?.userName}</div>

@@ -23,6 +23,8 @@ export default function CommentItem(props) {
     handelDeleteReply,
   } = props;
 
+  console.log("comments---", data);
+
   const handelReplyformOpen = (data) => {
     console.log(data);
     handelsetCommentId(data);
@@ -34,7 +36,8 @@ export default function CommentItem(props) {
     <div className={styles.comment_profile}>
       <div className={styles.comment_user_avtar_wrapper}>
         <CircleImg
-          imgSrc={userAvtar}
+          imgSrc={data.commentBy.userImg}
+          imgDirectoryPath="/usersProfileImg"
           avtar_wrapperStyle="maincard_avtar_wrapper"
         />
       </div>

@@ -21,6 +21,7 @@ export default function UserAuthWrapper(props) {
   // Handle clicks outside dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
+      // Check if click is outside the dropdown container
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         handelCloseAuthDropDown(); // Close dropdown
       }
@@ -31,7 +32,7 @@ export default function UserAuthWrapper(props) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [authDropDown, handelCloseAuthDropDown]);
+  }, [authDropDown]);
 
   return (
     <div className={styles.userAuth_container} ref={dropdownRef}>

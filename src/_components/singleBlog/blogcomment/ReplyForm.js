@@ -1,11 +1,13 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./replyform.module.css";
 import { useForm } from "react-hook-form";
 import SubmitBtn from "../../buttons/SubmitBtn";
 import { createReplyAction } from "@/src/app/utils/blogCommentActions";
 
 export default function ReplyForm(props) {
+  const router = useRouter();
   const { commentId, onReplyAdded } = props;
   const {
     register,
@@ -16,15 +18,23 @@ export default function ReplyForm(props) {
 
   const handelCreateReply = async (formData) => {
     try {
+      console.log("formData---", formData);
       const res = await createReplyAction(formData);
       if (res.data.status === "success") {
+        console.log("reply result---", res.data);
         const newTempReply = {
-          comment: res.formData.comment,
-          replyBy: { name: res.data.commentToUpdate.commentBy.name }, // Replace with actual user's name
+          comment: formData.comment,
+          replyBy: {
+            name: res.data.commentToUpdate.commentBy.name,
+            userImg: {
+              url: res.data.commentToUpdate.commentBy.userImg.url,
+            },
+          }, // Replace with actual user's name
           createdAt: new Date().toISOString(), // Current timestamp
         };
         onReplyAdded(formData.commentId, newTempReply);
         reset();
+        router.refresh();
       }
     } catch (error) {}
   };

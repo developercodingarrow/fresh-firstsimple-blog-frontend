@@ -22,7 +22,7 @@ export async function createCommentAction(formData) {
 
     if (res.data.status === "success") {
       console.log(res.data.newComment);
-      return { data: res.data.newComment };
+      return { data: res.data };
     }
   } catch (error) {
     if (error.response) {

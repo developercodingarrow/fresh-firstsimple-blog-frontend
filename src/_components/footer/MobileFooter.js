@@ -23,6 +23,7 @@ export default function MobileFooter(props) {
         <CiCirclePlus className={styles.icon} />
         <span>Create</span>
       </div>
+
       <FooterAutn authData={userData} />
     </div>
   );

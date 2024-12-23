@@ -14,6 +14,8 @@ export default function FooterAutn(props) {
   const { authData } = props;
   const footerRef = useRef();
 
+  console.log(authData);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (footerRef.current && !footerRef.current.contains(event.target)) {
@@ -30,14 +32,15 @@ export default function FooterAutn(props) {
   return (
     <div ref={footerRef}>
       {authData ? (
-        <div className={styles.footer_auth_img} onClick={handelOpenFooterPopUp}>
-          <CircleImg
-            imgSrc={authData?.userImg}
-            avtar_wrapperStyle="mobile_footer_avtar"
-            imgDirectoryPath="/usersProfileImg"
-          />
-          <span>you</span>
-          {isfooterAuthPopUp && <FooterAuthDropDown data={authData} />}
+        <div>
+          <Link href={"/me/profile"} className={styles.footer_auth_img}>
+            <CircleImg
+              imgSrc={authData?.userImg}
+              avtar_wrapperStyle="mobile_footer_avtar"
+              imgDirectoryPath="/usersProfileImg"
+            />
+            <span>you</span>
+          </Link>
         </div>
       ) : (
         <Link href={"/auth/login"} className={styles.footer_item}>

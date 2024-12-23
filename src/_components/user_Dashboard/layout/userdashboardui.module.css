@@ -17,6 +17,9 @@
 
 .header_wapper {
   padding: 20px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .page_content_wrapper {
@@ -25,6 +28,10 @@
 
 .sidebar_component_wrapper {
   margin: 20px 20px;
+}
+
+.mobile_logout {
+  display: none;
 }
 
 @media only screen and (max-width: 600px) {
@@ -37,5 +44,11 @@
   }
   .header_wapper {
     padding: 10px 5px;
+  }
+
+  .mobile_logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

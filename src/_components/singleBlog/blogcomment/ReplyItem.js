@@ -18,11 +18,14 @@ export default function ReplyItem(props) {
     replyId: data._id,
   };
 
+ 
+
   return (
     <div className={styles.comment_profile}>
       <div className={styles.comment_user_avtar_wrapper}>
         <CircleImg
-          imgSrc={userAvtar}
+          imgSrc={data.replyBy.userImg}
+          imgDirectoryPath="/usersProfileImg"
           avtar_wrapperStyle="maincard_avtar_wrapper"
         />
       </div>
