@@ -18,10 +18,8 @@ export default function ReplyForm(props) {
 
   const handelCreateReply = async (formData) => {
     try {
-      console.log("formData---", formData);
       const res = await createReplyAction(formData);
       if (res.data.status === "success") {
-        console.log("reply result---", res.data);
         const newTempReply = {
           comment: formData.comment,
           replyBy: {

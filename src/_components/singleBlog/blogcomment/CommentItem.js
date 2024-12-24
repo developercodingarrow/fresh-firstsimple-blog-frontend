@@ -23,10 +23,7 @@ export default function CommentItem(props) {
     handelDeleteReply,
   } = props;
 
-  console.log("comments---", data);
-
   const handelReplyformOpen = (data) => {
-    console.log(data);
     handelsetCommentId(data);
   };
 

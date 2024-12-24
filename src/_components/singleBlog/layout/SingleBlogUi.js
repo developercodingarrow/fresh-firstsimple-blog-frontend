@@ -6,6 +6,7 @@ import BlogComment from "../blogcomment/BlogComment";
 import Blogbreadcrumb from "../../breadcrumbs/Blog/Blogbreadcrumb";
 import SingleBlogActionBar from "../../actionbar/SingleBlogActionBar";
 import MobileCommentModel from "../../models/MobileCommentModel";
+
 export default function SingleBlogUi(props) {
   const { data } = props;
 
@@ -17,7 +18,7 @@ export default function SingleBlogUi(props) {
       </div>
       <div className={styles.inner_container}>
         <div className={styles.content_container}>
-          {data.blogThumblin.url && (
+          {data?.blogThumblin?.url && (
             <>
               <div className={styles.blog_thumblin_wrapper}>
                 <Image
@@ -45,16 +46,16 @@ export default function SingleBlogUi(props) {
             {" "}
             <p
               dangerouslySetInnerHTML={{
-                __html: data.blogDescreption || "",
+                __html: data?.blogDescreption || "",
               }}
             ></p>
           </div>
         </div>
         <div className={styles.comment_container}>
           <BlogComment
-            blogComments={data.comments}
-            blogId={data._id}
-            blogBy={data.user}
+            blogComments={data?.comments}
+            blogId={data?._id}
+            blogBy={data?.user}
           />
         </div>
       </div>

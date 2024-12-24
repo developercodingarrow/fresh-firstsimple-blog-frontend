@@ -70,7 +70,7 @@ export default function MainCard(props) {
             <IoEyeOutline />{" "}
           </div>
 
-          <div className={styles.icon_details}>1500</div>
+          <div className={styles.icon_details}>{data?.viewCount}</div>
         </div>
         <div className={styles.card_icon_details}>
           <div className={styles.icon_box}>

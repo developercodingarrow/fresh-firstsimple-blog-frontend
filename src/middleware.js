@@ -1,7 +1,31 @@
 import { NextResponse } from "next/server";
 import { getSession } from "./app/lib/authentication";
+import { cookies } from "next/headers"; // Import cookies function
+import { v4 as uuidv4 } from "uuid";
 
+function generateSessionId() {
+  return `${uuidv4()}-${Date.now()}`; // Combines UUID and timestamp
+}
 export async function middleware(request) {
+  const cookieStore = cookies();
+  const sessionId = cookieStore.get("sessionId")?.value;
+
+  if (!sessionId) {
+    const newSessionId = generateSessionId();
+
+    // Create response object and set the sessionId cookie
+    const response = NextResponse.next();
+    response.cookies.set("sessionId", newSessionId, {
+      httpOnly: true, // To prevent client-side access to the cookie
+      maxAge: 60 * 60 * 24 * 30, // Set cookie expiry (30 days)
+      path: "/",
+      secure: process.env.NODE_ENV === "production", // Secure cookies in production
+    });
+
+    // Return the modified response with the new cookie
+    return response;
+  }
+
   const isAuthToken = request.cookies.get("jwt")?.value;
 
   const userData = await getSession(); // Get decrypted user data

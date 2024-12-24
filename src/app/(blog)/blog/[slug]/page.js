@@ -1,13 +1,10 @@
 import React, { Suspense } from "react";
 import { API_BASE_URL } from "@/config";
 import SingleBlogUi from "@/src/_components/singleBlog/layout/SingleBlogUi";
-
-export default async function SingleBlogpage(pathname) {
-  const slug = pathname.params?.slug;
+export default async function SingleBlogpage({ params }) {
+  const { slug } = params;
   let data;
   try {
-    // Fetch the web stats using the auth token
-
     const res = await fetch(`${API_BASE_URL}/blog/public-single-blog/${slug}`, {
       method: "GET", // GET request to fetch the blog
       credentials: "include", // Include cookies in the request

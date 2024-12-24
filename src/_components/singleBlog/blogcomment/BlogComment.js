@@ -13,17 +13,17 @@ import {
   createCommentAction,
   deleteCommentAction,
   deleteCommentReplyAction,
+  getBlogcomments,
 } from "@/src/app/utils/blogCommentActions";
-
 export default function BlogComment(props) {
   const router = useRouter();
   const { blogComments, blogId, blogBy } = props;
   const { authUser } = useContext(AuthContext);
   const userId = authUser?._id;
-
   // State to manage comments
-  const [comments, setComments] = useState(blogComments);
+  const [comments, setComments] = useState([]);
   const [activeCommentId, setActiveCommentId] = useState(null);
+  const [loading, setloading] = useState(true);
 
   const {
     register,
@@ -33,10 +33,25 @@ export default function BlogComment(props) {
     formState: { errors, isValid },
   } = useForm();
 
+  const handelgetComments = async () => {
+    try {
+      const res = await getBlogcomments({ blogId: blogId });
+      if (res.status === "success") {
+        console.log(res.result);
+        setComments(res.result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    handelgetComments();
+  }, [loading]);
+
   const handelCreateComment = async (data) => {
     try {
       const res = await createCommentAction(data);
-      console.log("create comment---", res);
 
       if (res.data.status === "success") {
         setComments([
@@ -53,6 +68,7 @@ export default function BlogComment(props) {
             replies: [],
           },
         ]);
+        setloading(!loading);
         reset();
         router.refresh();
       }
@@ -68,6 +84,7 @@ export default function BlogComment(props) {
           : comment
       )
     );
+    setloading(!loading);
     router.refresh();
     setActiveCommentId(null);
   };
@@ -77,7 +94,6 @@ export default function BlogComment(props) {
   };
 
   const deleteComment = async (data) => {
-    console.log("data--", data);
     const formData = {
       commentId: data,
     };
@@ -85,7 +101,6 @@ export default function BlogComment(props) {
       const res = await deleteCommentAction(formData); // Call the API function
 
       if (res.data.status === "success") {
-        console.log(res);
         const updatedComments = comments.filter(
           (comment) => comment.id !== formData.commentId
         );
@@ -106,7 +121,7 @@ export default function BlogComment(props) {
   const deleteReply = async (data) => {
     try {
       const res = await deleteCommentReplyAction(data);
-      console.log(res);
+
       if (res.data.status === "success") {
         // Optimistically remove the reply from the UI
         const updatedComments = comments.map((comment) => {

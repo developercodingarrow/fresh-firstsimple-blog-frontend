@@ -1,4 +1,6 @@
 import { cookies } from "next/headers"; // Import the cookies function
+import { v4 as uuidv4 } from "uuid";
+import { setCookie } from "nookies"; // For cookie handling
 import CryptoJS from "crypto-js";
 
 const encryptionKey = process.env.NEXT_PUBLIC_ENCRYPTION_KEY;

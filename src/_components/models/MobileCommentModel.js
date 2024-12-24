@@ -28,9 +28,9 @@ export default function MobileCommentModel(props) {
         />
         <div className={styles.comment_model_innerBody}>
           <BlogComment
-            blogComments={data.comments}
-            blogId={data._id}
-            blogBy={data.user}
+            blogComments={data?.comments}
+            blogId={data?._id}
+            blogBy={data?.user}
           />
         </div>
       </div>

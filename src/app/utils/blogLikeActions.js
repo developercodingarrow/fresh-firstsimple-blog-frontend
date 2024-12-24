@@ -31,3 +31,25 @@ export async function blogLikeAction(formData) {
     return { error: error.message || "Request failed" };
   }
 }
+
+export async function blogViewCountAction(slug) {
+  const url = `${API_BASE_URL}/blog/single-blog-view/${slug}`;
+  const method = "get";
+  try {
+    const res = await axios({
+      method,
+      url,
+      withCredentials: true,
+    });
+
+    if (res.data.status === "success") {
+      console.log(res.data);
+      return { data: res.data };
+    }
+  } catch (error) {
+    if (error.response) {
+      return { error: error.response.data.message || "Unknown error" };
+    }
+    return { error: error.message || "Request failed" };
+  }
+}
