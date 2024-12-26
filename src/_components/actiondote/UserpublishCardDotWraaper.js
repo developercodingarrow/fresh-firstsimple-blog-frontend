@@ -27,9 +27,14 @@ export default function UserpublishCardDotWraaper(props) {
     }
   };
 
+  const handelEditBlog = async (id, slug) => {
+    router.push(`/content/${id}`);
+  };
+
   const publishBlogAction = [
     { label: "Draft", handler: handelDraftBlog },
     { label: "Delete", handler: handelOpenModelDelete },
+    { label: "Edit", handler: handelEditBlog },
   ];
   return (
     <div>

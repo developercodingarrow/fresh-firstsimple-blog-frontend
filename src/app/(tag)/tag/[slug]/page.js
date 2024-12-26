@@ -34,6 +34,7 @@ export default async function TagBlogspage(pathname) {
   } catch (error) {
     console.error("Error fetching data:", error);
     data = null;
+    throw new Error(`Failed to fetch data: ${error}`);
   }
 
   return (

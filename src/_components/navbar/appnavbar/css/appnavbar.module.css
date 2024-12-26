@@ -115,6 +115,7 @@
   text-transform: capitalize;
   color: var(--th-blod-gray-text);
   font-family: "Inter";
+  cursor: pointer;
 }
 
 .navigation_linkStyle:hover {

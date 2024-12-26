@@ -20,7 +20,7 @@ export default function MainAppNavbar(props) {
           </div>
         </div>
         <div className={styles.inner_container_right_side}>
-          <NavigationLinks />
+          <NavigationLinks authData={authData} />
 
           <UserAuthWrapper userData={authData} />
         </div>

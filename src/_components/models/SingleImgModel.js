@@ -1,6 +1,7 @@
 "use client";
 import React, { useContext, useEffect } from "react";
 import styles from "./css/model.module.css";
+import toast, { Toaster } from "react-hot-toast";
 import { IoCloseSharp, MdDelete } from "../ApplicationIcons";
 
 import dummyImg from "../../../public/web-static-img/cardimg.png";
@@ -50,6 +51,7 @@ export default function SingleImgModel(props) {
           isSingleImgModel ? styles.visible : ""
         }`}
       >
+        <Toaster />
         <div className={styles.inner_container}>
           <div className={styles.img_model_container}>
             <ModelHeader
@@ -158,7 +160,7 @@ export default function SingleImgModel(props) {
                 <div className={styles.model_footer_right}>
                   <div>
                     <ClickTextBtn
-                      btnText="Update.."
+                      btnText="Update"
                       size="medium"
                       btnLoading={false}
                       disabledBtn={false}

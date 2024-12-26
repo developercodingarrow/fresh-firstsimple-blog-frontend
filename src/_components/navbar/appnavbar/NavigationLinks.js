@@ -3,7 +3,8 @@ import React from "react";
 import styles from "./css/appnavbar.module.css";
 import ActionNavigation from "./ActionNavigation";
 
-export default function NavigationLinks() {
+export default function NavigationLinks(props) {
+  const { authData } = props;
   const navigationLinks = [
     {
       text: "Home",
@@ -15,7 +16,7 @@ export default function NavigationLinks() {
     },
     {
       text: "About",
-      hrfLink: "/about",
+      hrfLink: "/about-us",
     },
 
     {
@@ -37,7 +38,8 @@ export default function NavigationLinks() {
           </Link>
         );
       })}
-      <ActionNavigation />
+
+      {authData && <ActionNavigation />}
     </div>
   );
 }

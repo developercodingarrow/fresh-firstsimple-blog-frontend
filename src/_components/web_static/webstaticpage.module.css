@@ -1,0 +1,16 @@
+.main_container {
+}
+
+.inner_container {
+  padding: 30px;
+}
+
+.children_wrapper {
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .inner_container {
+    padding: 5px;
+  }
+}

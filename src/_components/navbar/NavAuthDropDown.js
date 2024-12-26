@@ -11,15 +11,15 @@ export default function NavAuthDropDown(props) {
   const dropOptions = [
     {
       option: "Dashbord",
-      hrfLink: "me/profile",
+      hrfLink: "/me/profile",
     },
     {
       option: "Blogs",
-      hrfLink: "me/blogs/public",
+      hrfLink: "/me/blogs/public",
     },
     {
       option: "Setting",
-      hrfLink: "me/blogs/public",
+      hrfLink: "/me/settings",
     },
   ];
 

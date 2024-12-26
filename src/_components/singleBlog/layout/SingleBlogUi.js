@@ -39,8 +39,11 @@ export default function SingleBlogUi(props) {
           <div className={styles.actionbar_wrapper}>
             <SingleBlogActionBar data={data} />
           </div>
-          <div className={styles.content_title}>
+          <div className={"mg_botom_lg"}>
             <h1>{data?.blogTitle}</h1>
+          </div>
+          <div className={`${styles.content_meta} mg_botom_lg`}>
+            <h2>{data?.metaDescription} </h2>
           </div>
           <div className={styles.content_text}>
             {" "}
