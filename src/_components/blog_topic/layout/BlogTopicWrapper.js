@@ -1,50 +1,29 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import styles from "./blogtopicwrapper.module.css";
-import TagSearch from "../tagSearch/TagSearch";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-export default function BlogTopicWrapper() {
-  const tagList = [
-    {
-      text: "Real Estate",
-      hrflink: "/real-estate",
-    },
-    {
-      text: "Technology",
-      hrflink: "/technology",
-    },
-    {
-      text: "Health",
-      hrflink: "/health-wellness",
-    },
-    {
-      text: "Education",
-      hrflink: "/education",
-    },
-    {
-      text: "Finance",
-      hrflink: "/finance",
-    },
-    {
-      text: "Travel",
-      hrflink: "/travel",
-    },
-    {
-      text: "Food & beverage",
-      hrflink: "/food-beverage",
-    },
-    {
-      text: "Entertainment",
-      hrflink: "/entertainment",
-    },
-    {
-      text: "Fashion",
-      hrflink: "/fashion",
-    },
-    {
-      text: "Automobiles",
-      hrflink: "/automobiles",
-    },
-  ];
+import TagSearch from "../tagSearch/TagSearch";
+export default function BlogTopicWrapper(props) {
+  const { data } = props;
+  // State to manage filtered tags
+  const [filteredTags, setFilteredTags] = useState(data);
+
+  // Handle search input change
+  const handleSearch = (searchTerm) => {
+    if (searchTerm === "") {
+      setFilteredTags(data);
+    } else {
+      const filtered = data.filter((el) =>
+        el.tagName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredTags(filtered);
+    }
+  };
+
+  useEffect(() => {
+    setFilteredTags(data);
+  }, [data]);
 
   return (
     <div className={styles.main_container}>
@@ -53,17 +32,18 @@ export default function BlogTopicWrapper() {
           <h1>Browse Blog Toipc</h1>
         </div>
         <div className={styles.search_box}>
-          <TagSearch />
+          <TagSearch onSearch={handleSearch} />
         </div>
       </div>
       <div className={styles.tag_wrapper}>
-        {tagList.map((el, index) => {
+        {filteredTags.map((el, index) => {
           return (
             <Link
-              href={`/${el.hrflink}`}
-              className={`${styles.tag_box} medium__text semi_bold_text`}
+              href={`/tag/${el.tagSlug}`}
+              className={`${styles.tag_box} medium__text `}
+              key={index}
             >
-              {el.text}
+              {el.tagName}
             </Link>
           );
         })}

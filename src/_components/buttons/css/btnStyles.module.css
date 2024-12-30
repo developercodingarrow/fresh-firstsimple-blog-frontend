@@ -3,38 +3,48 @@
     color var(--th-transition-ease-time);
 }
 
-.medium_fill {
-  display: flex;
-  font-size: 14px;
-  font-family: var(--th-font-family);
+.small {
+  font-size: 1.4rem;
+  font-family: var(--font-inter);
   font-weight: 500;
-  padding: 7px 16px;
+  padding: 6px 14px;
   border-radius: 5px;
   line-height: 1.4;
-  letter-spacing: 0.5px;
-  background-color: var(--th-primary-color);
-  color: var(--th-white-color);
-  border: 1px solid var(--th-primary-color);
+  letter-spacing: 0.05rem;
 }
 
-.medium_fill:hover {
-  background-color: var(--th-primary-hover-color);
+.medium {
+  font-size: 1.6rem;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 0.5rem;
+  line-height: 1.4;
+  letter-spacing: 0.05rem;
 }
 
-.tag_links {
+.medium:disabled {
+  font-size: 16px;
+  padding: 7px 14px;
+  border-radius: 0.5rem;
+  background-color: var(--th-btn-disable-color);
+  cursor: not-allowed;
+}
+
+.medium_tag_links {
   display: flex;
   width: fit-content;
   color: var(--th-blod-gray-text);
-  font-size: 16px;
+  font-size: 1.6rem;
   padding: 4px 0px;
   transition: background-color var(--th-transition-ease-time),
     color var(--th-transition-ease-time);
   line-height: 1.4;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05rem;
   font-family: var(--th-font-family);
 }
 
-.tag_links:hover {
+.medium_tag_links:hover {
   color: var(--th-primary-color);
 }
 
@@ -77,26 +87,6 @@
   background-color: var(--th-primary-hover-color);
 }
 
-.small {
-  font-size: 14px;
-  font-family: var(--font-inter);
-  font-weight: 500;
-  padding: 5px 12px;
-  border-radius: 5px;
-  line-height: 1.4;
-  letter-spacing: 0.3px;
-}
-
-.medium {
-  font-size: 14px;
-  font-family: var(--font-inter);
-  font-weight: 500;
-  padding: 8px 14px;
-  border-radius: 5px;
-  line-height: 1.4;
-  letter-spacing: 0.5px;
-}
-
 .large {
   font-size: 16px;
   font-family: var(--font-inter);
@@ -115,6 +105,14 @@
   font-weight: 500;
   padding: 10px 12px;
   border-radius: 5px;
+}
+
+.extra_large:disabled {
+  font-size: 16px;
+  padding: 10px 12px;
+  border-radius: 5px;
+  background-color: var(--th-btn-disable-color);
+  cursor: not-allowed;
 }
 
 @media only screen and (max-width: 600px) {

@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import styles from "../../../page.module.css";
-
 import { API_BASE_URL } from "@/config";
 
 export default async function UserAboutpage(pathname) {
@@ -28,7 +27,6 @@ export default async function UserAboutpage(pathname) {
 
   return (
     <div>
-      {" "}
       <Suspense fallback={<h1>Loading...</h1>}>
         <p
           dangerouslySetInnerHTML={{

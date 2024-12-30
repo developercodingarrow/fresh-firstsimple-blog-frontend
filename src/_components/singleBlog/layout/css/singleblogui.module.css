@@ -87,7 +87,7 @@
 
 .content_text {
   line-height: 1.3;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-family: var(--th-font-family);
   letter-spacing: 0.4px; /* More appropriate spacing */
   text-align: justify;

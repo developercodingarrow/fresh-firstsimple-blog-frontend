@@ -18,10 +18,8 @@
 
 .action_item {
   padding: 3px 7px;
-  font-size: 12px;
   border-bottom: 1px solid var(--th-thin-border-color);
   border-radius: 3px;
-  color: var(--th-blod-gray-text);
 }
 
 .action_item:hover {

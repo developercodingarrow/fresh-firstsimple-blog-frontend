@@ -1,7 +1,7 @@
 .drop_container {
   box-shadow: var(--th-box-shadow);
   /* height: 220px; */
-  padding: 5px 0px;
+  padding: 1rem;
   overflow-y: auto;
   border-radius: 8px;
 }
@@ -12,13 +12,19 @@
 }
 
 .list_items {
-  padding: 8px;
+  padding: 5px 10px;
   cursor: pointer;
+  line-height: 1.4; /* 1.4x to 1.5x ratio is ideal */
+  letter-spacing: 0.3px; /* Reduced to a more standard value */
+  font-weight: 500;
+  font-family: var(--th-font-family);
+  display: block;
   text-transform: capitalize;
-  color: var(--th-small-text-color);
+  font-size: 1.6rem;
+  color: var(--th-blod-gray-text);
 }
 
 .list_items:hover {
-  background-color: rgb(236, 242, 255);
-  color: rgb(93, 135, 255);
+  background-color: var(--th-thin-border-color);
+  border-radius: 3px;
 }

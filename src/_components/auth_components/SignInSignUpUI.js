@@ -55,7 +55,11 @@ export default function SignInSignUpUI(props) {
   };
   return (
     <div className={styles.main_container}>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          className: "medium__text ",
+        }}
+      />
       <div className={styles.inner_container}>
         <div className={styles.Intro_Column}>
           <div>
@@ -105,6 +109,7 @@ export default function SignInSignUpUI(props) {
                     fullWidth={true}
                     size="extra_large"
                     btnLoading={isBtnLoadin}
+                    disabledBtn={!isValid}
                   />
                 </div>
               </form>

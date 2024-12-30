@@ -9,6 +9,7 @@ import {
   facbookinput,
   twitterinput,
   instagraminput,
+  webisteinput,
 } from "@/src/jsonData/userDashbordData";
 import { AuthContext } from "@/src/_contextApi/authContext";
 
@@ -80,7 +81,8 @@ export default function OnlinePresenceWrapper() {
           icon="website"
           openModal={handelOpenInputModel}
           modelHeading="Update Webste Domain"
-          apiData="website-domain"
+          apiData={authUser}
+          modelInputs={webisteinput}
           modelActionHandler={updatehsndler}
         />
       </div>

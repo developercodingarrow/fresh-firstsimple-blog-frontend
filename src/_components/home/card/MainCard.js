@@ -2,10 +2,9 @@ import React from "react";
 import styles from "./css/maincard.module.css";
 import Link from "next/link";
 import UserDetailsAvatar from "../../userAvatars/UserDetailsAvatar";
-import { FaHeart, IoEyeOutline, FaComment } from "../../ApplicationIcons";
-import cardimg from "../../../../public/web-static-img/cardimg.png";
 import Image from "next/image";
 import MainCardActionDotWrapper from "../../actiondote/MainCardActionDotWrapper";
+import MainCardFooter from "./MainCardFooter";
 
 export default function MainCard(props) {
   const { data } = props;
@@ -21,6 +20,8 @@ export default function MainCard(props) {
             dateText={data?.createdAt}
             avtar_wrapper="maincard_avtar_wrapper"
             pageLink={data.user.userName}
+            userImage={data?.user?.userImg}
+            imgDirectoryPath="/usersProfileImg"
           />
         </div>
         <div>
@@ -57,28 +58,7 @@ export default function MainCard(props) {
           </div>
         </Link>
       </div>
-      <div className={styles.card_footer}>
-        <div className={styles.card_icon_details}>
-          <div className={styles.icon_box}>
-            <FaHeart />
-          </div>
-          <div className={styles.icon_details}>{data?.likes?.length}</div>
-        </div>
-        <div className={styles.card_icon_details}>
-          <div className={styles.icon_box}>
-            {" "}
-            <IoEyeOutline />{" "}
-          </div>
-
-          <div className={styles.icon_details}>{data?.viewCount}</div>
-        </div>
-        <div className={styles.card_icon_details}>
-          <div className={styles.icon_box}>
-            <FaComment />
-          </div>
-          <div className={styles.icon_details}>{data?.comments?.length} </div>
-        </div>
-      </div>
+      <MainCardFooter data={data} />
     </div>
   );
 }

@@ -10,7 +10,10 @@ import ReactQuillElement from "../../elements/formelements/ReactQuillElement";
 import SingleImgUplod from "../../imgUplod/SingleImgUplod";
 import ChipSelector from "../../chips/ChipSelector";
 import SingleImgModel from "../../models/SingleImgModel";
-import { updateBlogContent } from "@/src/app/utils/blogsAction";
+import {
+  deleteBlogThumblinImages,
+  updateBlogContent,
+} from "@/src/app/utils/blogsAction";
 import { handelUploadThumblin } from "@/src/app/imghandlers/imageHandlers";
 import { TagContext } from "@/src/_contextApi/TagContextApi";
 import { IoArrowBackSharp } from "../../ApplicationIcons";
@@ -146,7 +149,7 @@ export default function CreateUi(props) {
         <div>
           <ClickTextBtn
             btnText="Publish"
-            size="medium_fill"
+            size="medium"
             disabledBtn={false}
             btnLoading={false}
             clickHandel={handelUpdateContent}
@@ -199,14 +202,24 @@ export default function CreateUi(props) {
           </div>
           <div className={styles.section_right}>
             <div className={styles.componenet_section}>
-              <div className={"section_heading mg_botom_lg"}>Thumblin</div>
+              <div className={"mg_botom_lg"}>
+                <label>Thumblin</label>
+              </div>
+
               <div className={styles.section_component_wrapper}>
-                <SingleImgUplod apiImg={apiData} imageFor="blogThumblin" />
+                <SingleImgUplod
+                  apiData={apiData}
+                  imageFor="blogThumblin"
+                  deleteHandel={deleteBlogThumblinImages}
+                />
               </div>
             </div>
 
             <div className={styles.componenet_section}>
-              <div className={"section_heading mg_botom_lg"}>Tags</div>
+              <div className={"mg_botom_lg"}>
+                <label>Tags</label>
+              </div>
+
               <div className={styles.section_component_wrapper}>
                 <ChipSelector
                   allList={trustedTags}

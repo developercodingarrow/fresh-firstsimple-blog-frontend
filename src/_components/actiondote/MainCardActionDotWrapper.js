@@ -13,7 +13,6 @@ export default function MainCardActionDotWrapper(props) {
 
   const blogReportAction = [
     { label: "Report", handler: handelOpenreportModel },
-    { label: "Hide", handler: handelOpenreportModel },
   ];
   return (
     <div>

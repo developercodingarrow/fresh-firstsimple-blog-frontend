@@ -55,7 +55,7 @@
   outline: none;
   background-color: transparent;
   font-family: var(--th-font-family);
-  font-size: var(--th-font-small-size);
+  font-size: 1.6rem;
   color: gray;
   letter-spacing: var(--th-letter-spacing);
   border: none;

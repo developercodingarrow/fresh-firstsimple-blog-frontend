@@ -9,7 +9,12 @@
   background-color: var(--th-thin-border-color);
   text-transform: capitalize;
   line-height: 1.5;
-  font-size: 18px;
+  font-size: 1.6rem;
   font-family: var(--th-font-family);
   letter-spacing: 0.5px; /* More appropriate spacing */
+  color: var(--th-blod-gray-text);
+}
+
+.card_wrapper {
+  min-height: 200px;
 }

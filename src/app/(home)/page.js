@@ -5,6 +5,7 @@ import MainCard from "@/src/_components/home/card/MainCard";
 import { API_BASE_URL } from "@/config";
 import Loading from "./loading";
 import Pagination from "./Pagination";
+import NotDataFound from "@/src/_components/CustomErrors/NotDataFound";
 
 async function getData(page = 1, limit = 1, tag) {
   const url = `${API_BASE_URL}/blog/all-public-blogs?limit=${limit}&page=${page}&tag=${tag}`;
@@ -81,11 +82,11 @@ export async function generateMetadata({ searchParams }) {
 export default async function Homepage(pathname) {
   const tagquery = pathname.searchParams?.tag || "";
   const page = parseInt(pathname.searchParams?.page) || 1;
-  const limit = 1;
+  const limit = 10;
 
   const { result: blogs, totalPages } = await getData(page, limit, tagquery);
   // Dynamically generate Schema.org JSON-LD
-  const schema = {
+  const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
     name: `Simple Blogs - Page ${page}${tagquery ? ` | ${tagquery}` : ""}`,
@@ -113,11 +114,14 @@ export default async function Homepage(pathname) {
   return (
     <div className={`${styles.page_container} mg_botom_lg`}>
       {/* Inject Schema.org JSON-LD */}
-      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Render MainCard components */}
       <div className={`${styles.card_wrapper} mg_botom_lg`}>
         {blogs.length === 0 ? (
-          <p>No blogs found.</p>
+          <NotDataFound msg="No blogs found." />
         ) : (
           blogs.map((el, index) => <MainCard data={el} key={index} />)
         )}

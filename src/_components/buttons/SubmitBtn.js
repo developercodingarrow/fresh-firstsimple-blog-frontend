@@ -18,10 +18,10 @@ export default function SubmitBtn(props) {
         type="submit"
         className={`${styles.btn_style}  ${styles[btnType]} ${styles[size]} ${
           fullWidth ? styles.fullWidth : ""
-        } ${btnLoading ? "loading" : ""}`}
+        } `}
         disabled={disabledBtn || btnLoading} // Disable button during loading
       >
-        {btnLoading ? <BtnLoading /> : <span>{btnText}</span>}
+        {btnLoading ? <BtnLoading spinerSize={size} /> : <span>{btnText}</span>}
       </button>
     </div>
   );

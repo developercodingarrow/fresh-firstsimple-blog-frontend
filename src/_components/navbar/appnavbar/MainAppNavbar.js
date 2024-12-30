@@ -5,6 +5,7 @@ import NavSearchBar from "./NavSearchBar";
 import NavigationLinks from "./NavigationLinks";
 import UserAuthWrapper from "./UserAuthWrapper";
 import MobileNavSearchWrapper from "../MobileNavSearchWrapper";
+import MobileHangBug from "./MobileHangBug";
 
 export default function MainAppNavbar(props) {
   const { authData, suggestList } = props;
@@ -12,6 +13,9 @@ export default function MainAppNavbar(props) {
     <div className={`${styles.container}`}>
       <div className={styles.inner_container}>
         <div className={styles.inner_container_left_side}>
+          <div className={styles.mobile_hangBug_wrapper}>
+            <MobileHangBug />
+          </div>
           <div className={styles.navbar_logo_wrapper}>
             <NavLogo />
           </div>

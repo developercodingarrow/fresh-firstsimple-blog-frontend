@@ -54,19 +54,29 @@ export default function ActionDot(props) {
   }, [isOpen]);
 
   return (
-    <div className={styles.com_component}>
+    <div className={styles.com_component} ref={dropdownRef}>
       {authUser ? (
-        <div onClick={handelOpen}>
+        <div
+          onClick={handelOpen}
+          className="small_iconSize text_color_bold_gray cursor_pointer"
+        >
           <BsThreeDotsVertical />{" "}
         </div>
       ) : (
-        <div onClick={handelOpenAuthModel}>
+        <div
+          onClick={handelOpenAuthModel}
+          className="small_iconSize text_color_bold_gray cursor_pointer"
+        >
           <BsThreeDotsVertical />{" "}
         </div>
       )}
 
       {isOpen && (
-        <div className={styles.action_dropDown_wrapper} style={dropdownStyle}>
+        <div
+          className={styles.action_dropDown_wrapper}
+          style={dropdownStyle}
+          ref={dropdownRef}
+        >
           <ThreeDotActionDropDown
             actionList={actionList}
             actionId={actionId}

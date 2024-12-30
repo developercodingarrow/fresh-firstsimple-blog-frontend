@@ -12,6 +12,8 @@ export default function ImgModelContextProvider({ children }) {
     caption: "",
     description: "",
   });
+
+  useEffect(() => {}, [previewImage]);
   return (
     <ImgModelContext.Provider
       value={{

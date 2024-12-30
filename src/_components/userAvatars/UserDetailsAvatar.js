@@ -17,6 +17,8 @@ export default function UserDetailsAvatar(props) {
   } = props;
 
   const date = formatDate(dateText);
+  console.log("Client-side dateText:", dateText);
+
   return (
     <Link
       href={`/user-profile/${pageLink}`}
@@ -30,10 +32,7 @@ export default function UserDetailsAvatar(props) {
         />
       </div>
       <div className={styles.maincard_user_deatils}>
-        <TextElements
-          text={boldText}
-          textStyle="small_text semi_bold_text text_color_black"
-        />
+        <TextElements text={boldText} textStyle="small_text text_color_black" />
 
         {dateText && (
           <TextElements text={date} textStyle="tiny_text text_color_gray" />

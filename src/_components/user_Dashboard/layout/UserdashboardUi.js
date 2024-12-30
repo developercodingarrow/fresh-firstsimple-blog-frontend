@@ -7,8 +7,6 @@ import SidbarPagesComponent from "../../sidebards/SidbarPagesComponent";
 import SideBarFeatureList from "../../sidebards/SideBarFeatureList";
 import { AuthContext } from "@/src/_contextApi/authContext";
 import { featuresideBlogs } from "@/src/app/utils/blogsAction";
-import { IoPower } from "../../ApplicationIcons";
-import MobileLogOut from "../mobilelogout/MobileLogOut";
 
 export default function UserdashboardUi({ children }) {
   const { authUser } = useContext(AuthContext);
@@ -85,10 +83,6 @@ export default function UserdashboardUi({ children }) {
               userImage={authUser?.userImg}
               imgDirectoryPath="/usersProfileImg"
             />
-
-            <div className={styles.mobile_logout}>
-              <MobileLogOut />
-            </div>
           </section>
           <div className={styles.tab_wrapper}>
             <TabBar

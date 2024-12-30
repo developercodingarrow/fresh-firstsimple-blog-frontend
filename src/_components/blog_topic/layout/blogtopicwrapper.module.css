@@ -29,12 +29,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border: 1px solid var(--th-border-color); */
-  border: 1px solid var(--th-primary-color);
+  border: 1px solid var(--th-thin-border-color);
+  background-color: var(--th-thin-border-color);
   border-radius: 5px;
   padding: 7px 8px;
   text-transform: capitalize;
-  background-color: #fff;
   white-space: nowrap;
   color: var(--th-blod-gray-text);
   flex-shrink: 0;
@@ -42,8 +41,7 @@
 }
 
 .tag_box:hover {
-  background-color: var(--th-primary-hover-color);
-  color: var(--th-white-color);
+  color: var(--th-primary-hover-color);
 }
 
 @media only screen and (max-width: 600px) {

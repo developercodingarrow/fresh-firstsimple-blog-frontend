@@ -46,7 +46,7 @@ export default function UserAuthWrapper(props) {
           {authDropDown && <NavAuthDropDown data={userData} />}
         </div>
       ) : (
-        <BtnLinks linkText="login" hrflink="/auth/login" size="medium_fill" />
+        <BtnLinks linkText="login" hrflink="/auth/login" size="small" />
       )}
     </div>
   );

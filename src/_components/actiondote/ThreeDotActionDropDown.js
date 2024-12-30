@@ -17,7 +17,7 @@ export default function ThreeDotActionDropDown(props) {
         {actionList.map((action, index) => (
           <div
             key={index}
-            className={styles.action_item}
+            className={`${styles.action_item} tiny_text text_color_bold_gray`}
             onClick={() => handelAction(action.handler, actionId, slug)}
           >
             <div className={styles.text_wrapper}>{action.label}</div>

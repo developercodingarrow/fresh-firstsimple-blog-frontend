@@ -77,8 +77,8 @@
   border-bottom: 1px solid var(--th-thin-border-color);
   padding-bottom: 10px;
   padding-top: 15px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
   margin-bottom: 10px;
 }
 
@@ -271,7 +271,15 @@
   display: flex;
   justify-content: center;
   column-gap: 10px;
-  font-size: 18px;
+  font-size: 1.4rem;
+}
+
+.page_link {
+  color: var(--th-text-black);
+}
+
+.page_link:hover {
+  color: var(--th-primary-color);
 }
 
 @media only screen and (max-width: 600px) {

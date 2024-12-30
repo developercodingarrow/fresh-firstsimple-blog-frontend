@@ -1,4 +1,6 @@
+import { Inter, Noto_Serif, Poppins } from "next/font/google";
 import MainAppNavbar from "@/src/_components/navbar/appnavbar/MainAppNavbar";
+
 import "../globals.css";
 import HomePageLayout from "@/src/_components/home/layout/HomePageLayout";
 import MainFooter from "@/src/_components/footer/MainFooter";
@@ -17,6 +19,28 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GOOGLE_AUTH_CLIENT_ID } from "@/config";
 import MobileSearchModel from "@/src/_components/models/MobileSearchModel";
 import GoogleOneTap from "@/src/_components/googleAuth/GoogleOneTap";
+import MobileAppDrawer from "@/src/_components/app_Drawer/MobileAppDrawer";
+import CustomePageLoading from "@/src/_components/loading/CustomePageLoading";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const notoSerif = Noto_Serif({
+  subsets: ["latin"],
+  variable: "--font-noto-serif",
+  display: "swap",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+  variable: "--font-poppins",
+  display: "swap",
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -29,13 +53,18 @@ export default async function homeLayout({ children }) {
   const verifiedTags = await verifiedTagsListAction();
 
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${inter.variable} ${notoSerif.variable} ${poppins.variable}`}
+    >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-          rel="stylesheet"
+        {/* Include serialized initial data for hydration */}
+        <script
+          id="initial-data"
+          type="application/json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({ userDetails, featuredTags, verifiedTags }),
+          }}
         />
       </head>
       <body>
@@ -44,6 +73,8 @@ export default async function homeLayout({ children }) {
             <TagContextProvider verifiedTags={verifiedTags}>
               <AppContextProvider>
                 <ModelContextProvider>
+                  <CustomePageLoading />
+                  <MobileAppDrawer />
                   <AuthModel />
                   <ReportModel />
                   <MobileSearchModel suggestList={featuredTags} />
@@ -52,7 +83,9 @@ export default async function homeLayout({ children }) {
                       authData={userDetails}
                       suggestList={featuredTags}
                     />
-                    {!userDetails && <GoogleOneTap />}
+                    {typeof userDetails !== "undefined" && !userDetails && (
+                      <GoogleOneTap />
+                    )}
                   </div>
                   <div className="layout_children_wrapper">
                     <HomePageLayout featuredTags={featuredTags}>

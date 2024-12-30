@@ -25,6 +25,10 @@ import { TbWorldWww } from "react-icons/tb"; // web internet website
 import { IoReaderOutline } from "react-icons/io5"; // blog reading book
 import { IoEyeOff, IoEye } from "react-icons/io5"; // eyes on off
 import { IoArrowBackSharp } from "react-icons/io5";
+import { GoHomeFill } from "react-icons/go";
+import { BiSolidPurchaseTagAlt } from "react-icons/bi";
+import { IoMdInformationCircle } from "react-icons/io";
+import { CiCirclePlus } from "react-icons/ci";
 
 export {
   MdDashboard,
@@ -54,4 +58,8 @@ export {
   IoEye,
   FaRegHeart,
   IoArrowBackSharp,
+  GoHomeFill,
+  BiSolidPurchaseTagAlt,
+  IoMdInformationCircle,
+  CiCirclePlus,
 };

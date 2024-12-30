@@ -59,7 +59,7 @@ export default function TabBar(props) {
                 <Link
                   href={el[hrflinkName]}
                   key={index}
-                  className={`${styles.tab_links} text_color_gray medium__text semi_bold_text capitalize_text`}
+                  className={`${styles.tab_links} text_color_bold_gray medium__text  capitalize_text`}
                 >
                   {el[linkTextName]}
                 </Link>

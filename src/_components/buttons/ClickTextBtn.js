@@ -1,6 +1,7 @@
 "use client";
 import React, { useContext } from "react";
 import styles from "./css/btnStyles.module.css";
+import BtnLoading from "../loading_elements/BtnLoading";
 // import { ModelsContext } from "@/_contextApi/ModelContextApi";
 
 export default function ClickTextBtn(props) {
@@ -33,8 +34,7 @@ export default function ClickTextBtn(props) {
         disabled={disabledBtn || btnLoading} // Disable button during loading
         onClick={handelClick}
       >
-        {btnLoading && <span className={styles.spinner}></span>}
-        <span>{btnText}</span>
+        {btnLoading ? <BtnLoading spinerSize={size} /> : <span>{btnText}</span>}
       </button>
     </div>
   );

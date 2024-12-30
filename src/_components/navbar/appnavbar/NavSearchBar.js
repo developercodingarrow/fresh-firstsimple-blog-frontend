@@ -30,7 +30,7 @@ export default function NavSearchBar(props) {
         .trim()
         .toLowerCase()
         .replace(/\s+/g, "-"); // Replace spaces with dashes and make lowercase
-      router.push(`?tag=${formattedText}`);
+      router.push(`/?tag=${formattedText}`);
     }
   };
 
@@ -42,7 +42,7 @@ export default function NavSearchBar(props) {
         </div>
         <div className={styles.search_input_box}>
           <input
-            className={styles.search_input}
+            className={`${styles.search_input} medium__text text_color_bold_gray`}
             placeholder="search..."
             value={searchText}
             onChange={handleInputChange}
@@ -57,7 +57,7 @@ export default function NavSearchBar(props) {
           {filteredTags.map((el, index) => (
             <Link
               href={`tag/${el.tagSlug}`}
-              className={styles.suggest_item}
+              className={`${styles.suggest_item} capitalize_text text_color_bold_gray small_text`}
               key={index}
             >
               {el.tagName}

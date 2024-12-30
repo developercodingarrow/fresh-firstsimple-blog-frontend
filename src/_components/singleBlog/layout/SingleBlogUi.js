@@ -9,6 +9,7 @@ import MobileCommentModel from "../../models/MobileCommentModel";
 
 export default function SingleBlogUi(props) {
   const { data } = props;
+  console.log("Server-side dateText:", data.createdAt);
 
   return (
     <div className={styles.main_container}>

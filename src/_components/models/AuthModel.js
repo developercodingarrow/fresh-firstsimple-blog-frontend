@@ -47,7 +47,12 @@ export default function AuthModel() {
               If you have no acount ?{" "}
               <span>
                 {" "}
-                <Link href={"/auth/signup"}>Create</Link>{" "}
+                <Link
+                  href={"/auth/signup"}
+                  className={`${styles.page_link} small_text capitalize_text `}
+                >
+                  Sing up
+                </Link>{" "}
               </span>
             </div>
           </div>

@@ -5,10 +5,10 @@
 
 .radio_title {
   font-weight: 400;
-  margin-bottom: 10px;
-  font-size: var(--th-font-medium-size);
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
   letter-spacing: 0.5px;
-  font-family: Arial, sans-serif;
+  font-family: var(--th-font-family);
 }
 
 .radioOptionBox {

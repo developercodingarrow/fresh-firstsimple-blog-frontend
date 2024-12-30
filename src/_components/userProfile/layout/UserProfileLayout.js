@@ -29,6 +29,8 @@ export default function UserProfileLayout({ children, userProfile }) {
               boldText={userProfile?.name}
               lightText={userProfile?.userName}
               avtar_wrapper="userHeader_avtar"
+              userImage={userProfile?.userImg}
+              imgDirectoryPath="/usersProfileImg"
             />
           </section>
           <div className={styles.mobile_socilaBar_wrapper}>
@@ -69,7 +71,11 @@ export default function UserProfileLayout({ children, userProfile }) {
             <FollowSocialMediaCard data={userProfile} />
           </div>
           <div className="mg_botom_sm">
-            <Linkcard />
+            <Linkcard
+              data={userProfile}
+              filedName="businessWebsite"
+              cardTitle="Business Website"
+            />
           </div>
         </div>
       </div>

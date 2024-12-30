@@ -25,7 +25,8 @@ export default function SidbarPagesComponent(props) {
                 } /* Always include a unique key when rendering lists */
                 linkText={el[linkTextName]}
                 hrflink={`/${path}/${el[hrflinkName]}`}
-                size="tag_links"
+                btnType="link_style"
+                size="medium_tag_links"
               />
             ))
           ) : (

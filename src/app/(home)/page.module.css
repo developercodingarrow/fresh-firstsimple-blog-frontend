@@ -1,9 +1,21 @@
+.page_container {
+  position: relative;
+}
+
 .card_wrapper {
   min-height: 200px;
 }
 .pagination_wrapper {
   display: flex;
   justify-content: flex-end;
+  position: relative;
+}
+
+.number_btns_wrapper {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
 }
 
 .pagination {
@@ -16,7 +28,6 @@
 }
 
 .pageButton {
-  /* padding: 5px 10px; */
   width: 3rem;
   height: 3rem;
   font-size: 14px;
@@ -57,17 +68,39 @@
 }
 
 @media (max-width: 768px) {
+  .page_container {
+    position: relative;
+  }
+  .card_wrapper {
+    min-height: 200px;
+    padding-top: 40px;
+  }
+  .pagination_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    top: 120px;
+    right: 0px;
+    padding-right: 10px;
+  }
   .pagination {
     gap: 5px;
+    margin: 5px 0;
+  }
+
+  .number_btns_wrapper {
+    display: none;
   }
 
   .pageButton {
-    padding: 8px 12px;
-    font-size: 12px;
+    width: 2rem;
+    height: 2rem;
   }
 
   .prev,
   .next {
-    font-size: 3rem;
+    font-size: 2rem;
+    font-weight: 500;
   }
 }

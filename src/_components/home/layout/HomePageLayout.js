@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./css/homepagelayout.module.css";
-import BtnLinks from "../../buttons/BtnLinks";
 import TabBar from "../../tabs/TabBar";
 import SidbarPagesComponent from "../../sidebards/SidbarPagesComponent";
 export default function HomePageLayout({ children, featuredTags }) {

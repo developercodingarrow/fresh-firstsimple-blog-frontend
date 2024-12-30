@@ -18,11 +18,6 @@ export default function NavigationLinks(props) {
       text: "About",
       hrfLink: "/about-us",
     },
-
-    {
-      text: "Story",
-      hrfLink: "/",
-    },
   ];
 
   return (
@@ -32,7 +27,7 @@ export default function NavigationLinks(props) {
           <Link
             href={`${el.hrfLink}`}
             key={index}
-            className={`${styles.navigation_linkStyle} medium__text semi_bold_text`}
+            className={`${styles.navigation_linkStyle} medium__text capitalize_text text_color_bold_gray`}
           >
             {el.text}
           </Link>

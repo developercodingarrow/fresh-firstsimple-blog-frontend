@@ -14,10 +14,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
   padding: 8px;
   border-radius: 40px;
-  color: var(--th-blod-gray-text);
 }
 
 .search_input_box {
@@ -32,9 +30,7 @@
   width: 100%;
   border: none;
   outline: none;
-  font-size: 24px;
   border-radius: 40px;
-  color: var(--th-blod-gray-text);
 }
 
 @media only screen and (max-width: 600px) {

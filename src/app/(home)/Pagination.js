@@ -24,22 +24,23 @@ const Pagination = ({ totalPages, tag }) => {
           </button>
         </Link>
       )}
-
-      {/* Page Numbers */}
-      {Array.from({ length: totalPages }, (_, index) => (
-        <Link
-          key={index}
-          href={`?page=${index + 1}${tag ? `&tag=${tag}` : ""}`}
-        >
-          <button
-            className={`${styles.pageButton} ${
-              currentPage === index + 1 ? styles.active : ""
-            }`}
+      <div className={styles.number_btns_wrapper}>
+        {/* Page Numbers */}
+        {Array.from({ length: totalPages }, (_, index) => (
+          <Link
+            key={index}
+            href={`?page=${index + 1}${tag ? `&tag=${tag}` : ""}`}
           >
-            {index + 1}
-          </button>
-        </Link>
-      ))}
+            <button
+              className={`${styles.pageButton} ${
+                currentPage === index + 1 ? styles.active : ""
+              }`}
+            >
+              {index + 1}
+            </button>
+          </Link>
+        ))}
+      </div>
 
       {/* Next Button */}
       {currentPage < totalPages && (
