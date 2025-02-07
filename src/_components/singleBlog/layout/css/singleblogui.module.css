@@ -92,6 +92,14 @@
   letter-spacing: 0.4px; /* More appropriate spacing */
   text-align: justify;
   color: var(--th-text-black);
+  position: relative;
+}
+
+.content_text img {
+  max-width: 100%; /* Ensure images fit within the container */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove unwanted spacing */
+  margin: 0 auto; /* Center images if needed */
 }
 
 .comment_container {

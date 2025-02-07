@@ -8,18 +8,17 @@ import MainCardFooter from "./MainCardFooter";
 
 export default function MainCard(props) {
   const { data } = props;
-
-  const name = data.user?.name;
+  const imageUrl = data?.blogThumblin?.url;
 
   return (
     <div className={styles.card_main_container}>
       <div className={styles.card_header}>
         <div>
           <UserDetailsAvatar
-            boldText={name}
+            boldText={data.user?.name}
             dateText={data?.createdAt}
             avtar_wrapper="maincard_avtar_wrapper"
-            pageLink={data.user.userName}
+            pageLink={data?.user?.userName}
             userImage={data?.user?.userImg}
             imgDirectoryPath="/usersProfileImg"
           />
@@ -42,11 +41,12 @@ export default function MainCard(props) {
             </div>
           </div>
           <div className={styles.card_img_wrapper}>
-            {data.blogThumblin.url ? (
+            {imageUrl && imageUrl.startsWith("http") ? (
               <Image
-                src={`/blogthumblin/${data.blogThumblin.url}`}
+                src={imageUrl}
                 width={500}
                 height={500}
+                alt={data?.blogThumblin?.altText || "LitVerseHub blog image"}
                 className={styles.card_thumblin}
               />
             ) : (

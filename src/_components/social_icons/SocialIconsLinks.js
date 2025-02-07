@@ -11,6 +11,7 @@ import {
 import Link from "next/link";
 export default function SocialIconsLinks(props) {
   const { showicon, iconlink } = props;
+
   const getSocialMediaIcon = (title) => {
     switch (title.toLowerCase()) {
       case "twitter":
@@ -31,8 +32,12 @@ export default function SocialIconsLinks(props) {
   };
 
   return (
-    <Link href={`${iconlink}`} className={styles.social_iconBox}>
-      {getSocialMediaIcon(showicon)}
-    </Link>
+    <>
+      {iconlink && (
+        <Link href={`${iconlink}`} className={styles.social_iconBox}>
+          {getSocialMediaIcon(showicon)}
+        </Link>
+      )}
+    </>
   );
 }

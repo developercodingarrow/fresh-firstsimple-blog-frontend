@@ -2,21 +2,11 @@
 import React, { useContext } from "react";
 import styles from "./css/UserTextDetail.module.css";
 import { MdKeyboardArrowRight } from "../../ApplicationIcons";
-import {
-  TiSocialFacebook,
-  TiSocialLinkedin,
-  TiSocialYoutube,
-  TiSocialInstagram,
-  RiTwitterXLine,
-  TbWorldWww,
-} from "../../ApplicationIcons";
 import SocialIcon from "./SocialIcon";
-import { InputModelsContext } from "@/src/_contextApi/InputModelContextApi";
 
 export default function SocialMediaDetail(props) {
   const {
     lableText,
-    valueText,
     icon,
     openModal,
     modelHeading,

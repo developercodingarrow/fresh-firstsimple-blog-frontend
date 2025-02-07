@@ -9,8 +9,8 @@ export async function generateMetadata({ params }) {
   const res = await fetch(`${API_BASE_URL}/blog/public-tag-blogs/${slug}`);
   // Dynamic metadata
   const metadata = {
-    title: `Simple Blogs - ${slug}}}`,
-    description: `Discover insightful blogs about ${slug}}.`,
+    title: `LitVerseHub - ${slug}`,
+    description: `Write and explore digital blogs on ${slug} with LitVerseHub.`,
     keywords: [`blogs`, `articles`, `${slug}`],
   };
   // Generate Schema.org structured data
@@ -21,18 +21,14 @@ export async function generateMetadata({ params }) {
     description: metadata.description,
     publisher: {
       "@type": "Organization",
-      name: "Simple Blogs",
-      url: "https://example.com",
+      name: "LitVerseHub Blogs",
+      url: "https://litversehub.com",
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://example.com/tag/${slug}`,
+      "@id": `https://litversehub.com/tag/${slug}`,
     },
     keywords: metadata.keywords.join(", "),
-    author: {
-      "@type": "Person",
-      name: "Admin", // Replace with the blog author's name dynamically
-    },
   };
 
   return {
@@ -53,6 +49,7 @@ export async function generateMetadata({ params }) {
 
 export default async function TagBlogspage(pathname) {
   const slug = pathname.params?.slug;
+
   const formatSlug = (slug) => {
     if (!slug) return "";
     return slug
@@ -63,7 +60,6 @@ export default async function TagBlogspage(pathname) {
   let data;
   try {
     // Fetch the web stats using the auth token
-
     const res = await fetch(`${API_BASE_URL}/blog/public-tag-blogs/${slug}`, {
       method: "GET", // GET request to fetch the blog
       credentials: "include", // Include cookies in the request
@@ -86,22 +82,18 @@ export default async function TagBlogspage(pathname) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: `Simple Blogs - ${slug}}}`,
-    description: "Explore a collection of insightful blogs on various topics.",
+    name: `LitVerseHub - ${slug}`,
+    description: "Write and explore digital blogs on ${slug} with LitVerseHub.",
     publisher: {
       "@type": "Organization",
-      name: "Simple Blogs",
-      url: "https://example.com",
+      name: "LitVerseHub Blogs",
+      url: "https://litversehub.com",
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://example.com/tag/${slug}`,
+      "@id": `https://litversehub.com/tag/${slug}`,
     },
     keywords: [`blogs`, `articles`, `${slug}`],
-    author: {
-      "@type": "Person",
-      name: "Admin", // Replace with the blog author's name dynamically
-    },
   };
 
   return (

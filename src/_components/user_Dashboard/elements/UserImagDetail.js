@@ -6,14 +6,9 @@ import Image from "next/image";
 import { InputModelsContext } from "@/src/_contextApi/InputModelContextApi";
 
 export default function UserImagDetail(props) {
-  const { lableText, valueText, apiData } = props;
+  const { lableText, apiData } = props;
 
-  const {
-    isUserImgModel,
-    setisUserImgModel,
-    handelOpenUserImgModel,
-    handelCloseUserImgModel,
-  } = useContext(InputModelsContext);
+  const { handelOpenUserImgModel } = useContext(InputModelsContext);
 
   const handelOpen = () => {
     handelOpenUserImgModel(apiData._id, apiData.userImg);
@@ -28,7 +23,7 @@ export default function UserImagDetail(props) {
           onClick={handelOpen}
         >
           <Image
-            src={`/usersProfileImg/${apiData.userImg.url}`}
+            src={apiData.userImg.url}
             width={50}
             height={50}
             className={styles.img_style}

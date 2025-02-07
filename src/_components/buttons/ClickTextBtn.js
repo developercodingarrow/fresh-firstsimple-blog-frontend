@@ -34,7 +34,11 @@ export default function ClickTextBtn(props) {
         disabled={disabledBtn || btnLoading} // Disable button during loading
         onClick={handelClick}
       >
-        {btnLoading ? <BtnLoading spinerSize={size} /> : <span>{btnText}</span>}
+        {btnLoading ? (
+          <BtnLoading spinerSize={size} btnpading={`${size}_pading`} />
+        ) : (
+          <span>{btnText}</span>
+        )}
       </button>
     </div>
   );

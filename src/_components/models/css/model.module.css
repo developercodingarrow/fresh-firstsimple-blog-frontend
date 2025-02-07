@@ -259,6 +259,11 @@
 
 .img_upload_btns_wrappers {
   display: flex;
+  justify-content: space-between;
+}
+
+.left_side_btns {
+  display: flex;
   column-gap: 20px;
 }
 

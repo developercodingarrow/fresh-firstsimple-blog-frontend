@@ -6,17 +6,22 @@ import Linkcard from "./elements/Linkcard";
 import SideBarStats from "./elements/SideBarStats";
 import TabBar from "../../tabs/TabBar";
 import SocialIconsLinks from "../../social_icons/SocialIconsLinks";
+import SideBarFeatureList from "../../sidebards/SideBarFeatureList";
 
-export default function UserProfileLayout({ children, userProfile }) {
+export default function UserProfileLayout({
+  children,
+  userProfile,
+  featuredBlogs = [],
+}) {
   const userpageLinks = [
     {
       text: "Home",
-      hrflink: `/user-profile/${userProfile.userName}`,
+      hrflink: `/user-profile/${userProfile?.userName}`,
     },
 
     {
       text: "About",
-      hrflink: `/user-profile/${userProfile.userName}/about`,
+      hrflink: `/user-profile/${userProfile?.userName}/about`,
     },
   ];
 
@@ -75,6 +80,13 @@ export default function UserProfileLayout({ children, userProfile }) {
               data={userProfile}
               filedName="businessWebsite"
               cardTitle="Business Website"
+              iconlink={userProfile?.businessWebsite}
+            />
+          </div>
+          <div className={`${styles.listcard_wrapper} mg_botom_sm`}>
+            <SideBarFeatureList
+              sectionTitle="featured blogs"
+              listData={featuredBlogs}
             />
           </div>
         </div>

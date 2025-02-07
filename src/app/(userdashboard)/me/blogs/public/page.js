@@ -3,6 +3,12 @@ import { userPublisedBlogsAction } from "@/src/app/utils/blogsAction";
 import { cookies } from "next/headers"; // Import cookies here
 import PublishedBlogCard from "@/src/_components/cards/PublishedBlogCard";
 import styles from "../../../page.module.css";
+
+export const metadata = {
+  title: "LitVerseHub | published Content",
+  description: "LitVerseHub – Your digital hub for writers and readers.",
+};
+
 export default async function PublicBlogpage() {
   const cookieStore = cookies();
   const authToken = cookieStore.get("jwt")?.value; // Access cookies directly here

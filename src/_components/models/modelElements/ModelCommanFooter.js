@@ -9,8 +9,7 @@ import { AppContext } from "@/src/_contextApi/AppContext";
 
 export default function ModelCommanFooter(props) {
   const { actionType, btnText, clickBtnHandel } = props;
-  const { isBtnLoadin, setisBtnLoadin } = useContext(AppContext);
-  const { actionHandler } = useContext(ModelsContext);
+  const { isBtnLoadin } = useContext(AppContext);
 
   return (
     <div className={styles.model_footer}>

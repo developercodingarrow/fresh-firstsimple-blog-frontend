@@ -1,5 +1,4 @@
 "use client"; // Client-side rendering for this component
-
 import React from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";

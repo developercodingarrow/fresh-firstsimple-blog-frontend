@@ -43,7 +43,9 @@ export default function InputDataModel(props) {
         updateUserDetail(res.data.result);
         setauthUser(res.data.result);
         toast.success(res.data.message);
-        console.log(res);
+        setTimeout(() => {
+          handelcloseInputModal();
+        }, 1500);
       }
     } catch (error) {
       setisBtnLoadin(false);
@@ -57,7 +59,11 @@ export default function InputDataModel(props) {
         isOpenInputModel ? styles.visible : ""
       }`}
     >
-      <Toaster />{" "}
+      <Toaster
+        toastOptions={{
+          className: "medium__text ",
+        }}
+      />
       <div
         className={`${styles.model_container} ${styles.inputData_model_container}`}
       >

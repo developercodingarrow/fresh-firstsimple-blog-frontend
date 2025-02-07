@@ -26,9 +26,15 @@ export async function updateUser(formData) {
     }
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data.message || "Unknown error" };
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
-    return { error: error.message || "Request failed" };
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }
 
@@ -49,9 +55,15 @@ export async function userDetailsPublic(slug) {
     }
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data.message || "Unknown error" };
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
-    return { error: error.message || "Request failed" };
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }
 
@@ -80,10 +92,47 @@ export async function updateUserProfilePic(formData) {
     }
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data.message || "Unknown error" };
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
-    return { error: error.message || "Request failed" };
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }
 
+export async function userImgRemove() {
+  const cookieStore = cookies();
+  const authToken = cookieStore.get("jwt")?.value;
+  const url = `${API_BASE_URL}/user/remove-user-profile-pic`;
+  const method = "post";
+  try {
+    const res = await axios({
+      method,
+      url,
+      headers: {
+        Authorization: `Bearer ${authToken}`, // Add Authorization header
+      },
+      withCredentials: true,
+    });
 
+    if (res.data.status === "success") {
+      console.log(res.data);
+      return { data: res.data };
+    }
+  } catch (error) {
+    if (error.response) {
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
+    }
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
+  }
+}

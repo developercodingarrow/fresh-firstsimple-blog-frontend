@@ -41,11 +41,12 @@ export default function SignInSignUpUI(props) {
       if ((res.data.status = "success")) {
         if (res.data.apiFor === "register") {
           toast.success(res.data.message);
-          router.push(`/auth/opt-verification/${res.data.UrlToken}`);
+          router.push(`/auth/otpverification/${res.data.UrlToken}`);
           setisBtnLoadin(false);
         } else if (res.data.apiFor === "Login") {
           toast.success(res.data.message);
           router.push("/");
+          router.refresh();
           setisBtnLoadin(false);
         }
       }
@@ -63,8 +64,11 @@ export default function SignInSignUpUI(props) {
       <div className={styles.inner_container}>
         <div className={styles.Intro_Column}>
           <div>
-            <h2>Go Finance</h2>
-            <div>The most popular website for content writing</div>
+            <h2>Elevate Your Digital Presence</h2>
+            <div className="medium__text">
+              The ultimate platform for creating high-quality digital content
+              that engages and converts.
+            </div>
             <div></div>
           </div>
         </div>

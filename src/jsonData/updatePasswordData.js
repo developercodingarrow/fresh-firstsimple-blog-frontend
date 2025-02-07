@@ -2,7 +2,7 @@ export const updatePasswordInputs = [
   {
     id: 1,
     name: "currentpassword",
-    placeholder: "enter your name !",
+    placeholder: "enter Current Password !",
     type: "text",
     lable: "Curent password ",
     inputType: "text",

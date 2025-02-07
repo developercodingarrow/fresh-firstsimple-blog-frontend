@@ -1,20 +1,22 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import styles from "./css/chipselector.module.css";
 import SuggestList from "../search_elements/SuggestList";
 import ClickTextBtn from "../buttons/ClickTextBtn";
 import { upadteBlogTags } from "@/src/app/utils/blogsAction";
+import { AppContext } from "@/src/_contextApi/AppContext";
 
 export default function ChipSelector(props) {
   const {
-    allList,
+    allList = [],
     filedName,
     placeholder,
     size = "medium",
     apiTags,
     slug,
   } = props;
+  const { setpageLoading } = useContext(AppContext);
   const [newValue, setnewValue] = useState("");
   const [fillterList, setfillterList] = useState([]);
   const [list, setlist] = useState("");
@@ -67,20 +69,27 @@ export default function ChipSelector(props) {
 
   const handleSubmit = async () => {
     try {
+      setpageLoading(true);
       const formData = { tagName: tags };
       const res = await upadteBlogTags(formData, slug);
-      console.log(res);
-      if (res.status === "success") {
-        toast.success(res.message);
+      if (res.data.status === "success") {
+        toast.success(res.data.message);
+        setpageLoading(false);
       }
     } catch (err) {
-      setError(err.message);
       setSuccess(null);
+      toast.error("somthing went wrong");
+      setpageLoading(false);
     }
   };
 
   return (
     <div className={styles.main_conatiner}>
+      <Toaster
+        toastOptions={{
+          className: "medium__text ",
+        }}
+      />
       <div className={`${styles.container} ${styles[size]} `}>
         <div className={styles.tagContainer}>
           {tags.map((tag, index) => (

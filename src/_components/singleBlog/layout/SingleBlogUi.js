@@ -9,7 +9,6 @@ import MobileCommentModel from "../../models/MobileCommentModel";
 
 export default function SingleBlogUi(props) {
   const { data } = props;
-  console.log("Server-side dateText:", data.createdAt);
 
   return (
     <div className={styles.main_container}>
@@ -23,7 +22,8 @@ export default function SingleBlogUi(props) {
             <>
               <div className={styles.blog_thumblin_wrapper}>
                 <Image
-                  src={`/blogthumblin/${data.blogThumblin.url}`}
+                  src={data.blogThumblin.url}
+                  alt={data?.blogThumblin?.altText || "LitVerseHub blog image"}
                   width={900}
                   height={900}
                   className={styles.img_style}

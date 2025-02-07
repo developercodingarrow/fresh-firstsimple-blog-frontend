@@ -1,10 +1,16 @@
 import React from "react";
 import OTPVerificationwrapper from "../wrapper";
 
-export default function OtpVerificationpage() {
+export const metadata = {
+  title: "LitVerseHub | OTP Verification",
+  description: "Verify your OTP to complete registration.",
+};
+
+export default function OtpVerificationpage({ params }) {
+  const { slug } = params;
   return (
     <div>
-      <OTPVerificationwrapper />
+      <OTPVerificationwrapper slug={slug} />
     </div>
   );
 }

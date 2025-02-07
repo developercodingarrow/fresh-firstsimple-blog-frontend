@@ -36,3 +36,29 @@
 .link:hover {
   color: #1d4ed8;
 }
+
+.exit_btn_wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.exit_btn {
+  margin-top: 1rem;
+  display: flex;
+  column-gap: 5px;
+  justify-content: center;
+  font-family: var(--th-font-family);
+  font-size: 1.6rem;
+  color: var(--th-primary-color);
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--th-primary-color);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.exit_btn:hover {
+  background-color: var(--th-primary-color);
+  color: #fff;
+  transform: scale(1.05);
+}

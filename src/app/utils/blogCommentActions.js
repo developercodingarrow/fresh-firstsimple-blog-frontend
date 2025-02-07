@@ -22,9 +22,15 @@ export async function getBlogcomments(formData) {
     }
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data.message || "Unknown error" };
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
-    return { error: error.message || "Request failed" };
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }
 
@@ -50,9 +56,15 @@ export async function createCommentAction(formData) {
     }
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data.message || "Unknown error" };
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
-    return { error: error.message || "Request failed" };
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }
 
@@ -77,9 +89,15 @@ export async function createReplyAction(formData) {
     }
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data.message || "Unknown error" };
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
-    return { error: error.message || "Request failed" };
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }
 
@@ -104,9 +122,15 @@ export async function deleteCommentReplyAction(formData) {
     }
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data.message || "Unknown error" };
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
-    return { error: error.message || "Request failed" };
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }
 
@@ -131,8 +155,14 @@ export async function deleteCommentAction(formData) {
     }
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data.message || "Unknown error" };
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
-    return { error: error.message || "Request failed" };
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }

@@ -13,7 +13,7 @@ export default function ImgUplodBox(props) {
   return (
     <div className={styles.image_upod_box} onClick={handleBoxClick}>
       <p>{boxtext}</p>
-      
+
       <input
         type="file"
         accept="image/*"

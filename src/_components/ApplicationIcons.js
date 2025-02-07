@@ -29,6 +29,8 @@ import { GoHomeFill } from "react-icons/go";
 import { BiSolidPurchaseTagAlt } from "react-icons/bi";
 import { IoMdInformationCircle } from "react-icons/io";
 import { CiCirclePlus } from "react-icons/ci";
+import { BiLock } from "react-icons/bi";
+import { RxExit } from "react-icons/rx";
 
 export {
   MdDashboard,
@@ -62,4 +64,6 @@ export {
   BiSolidPurchaseTagAlt,
   IoMdInformationCircle,
   CiCirclePlus,
+  BiLock,
+  RxExit,
 };

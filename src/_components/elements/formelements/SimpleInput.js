@@ -4,12 +4,14 @@ import styles from "./css/inputsStyles.module.css";
 
 export default function SimpleInput(props) {
   const {
+    data,
     inputPlaceholder,
     inputValue,
     inputName,
     inputChnageHandler,
     inputSize = "medium",
   } = props;
+
   return (
     <input
       type="text"

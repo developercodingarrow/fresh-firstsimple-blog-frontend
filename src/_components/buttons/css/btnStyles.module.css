@@ -13,8 +13,18 @@
   letter-spacing: 0.05rem;
 }
 
+.tiny {
+  font-size: 1.2rem;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 5px;
+  line-height: 1.4;
+  letter-spacing: 0.05rem;
+}
+
 .medium {
-  font-size: 1.6rem;
+  font-size: var(--th-medium-font-size);
   font-family: var(--font-inter);
   font-weight: 500;
   padding: 7px 14px;
@@ -125,6 +135,15 @@
     padding: 8px 10px;
     border-radius: 5px;
   }
+
+  .extra_large:disabled {
+    font-size: 14px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    background-color: var(--th-btn-disable-color);
+    cursor: not-allowed;
+  }
+
   .large {
     font-size: 16px;
     line-height: 1.3;

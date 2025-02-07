@@ -27,6 +27,7 @@
   border-bottom: 1px solid var(--th-thin-border-color);
   padding: 10px 20px;
   cursor: pointer;
+  display: block;
 }
 
 .drop_header:hover {

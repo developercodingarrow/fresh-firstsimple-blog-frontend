@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import styles from "./page.module.css";
 import axios from "axios"; // Import axios
 import MainCard from "@/src/_components/home/card/MainCard";
@@ -16,13 +16,9 @@ async function getData(page = 1, limit = 1, tag) {
         `Failed to fetch data: ${response.status} ${response.statusText}`
       );
     }
-
     const data = await response.json(); // Parse JSON data
-    console.log("Fetched data:", data);
-
     return data; // Assuming the API returns { result, totalPages }
   } catch (error) {
-    console.error("Error fetching data:", error.message);
     return { result: [] }; // Default fallback if the request fails
   }
 }
@@ -34,11 +30,13 @@ export async function generateMetadata({ searchParams }) {
 
   // Dynamic metadata
   const metadata = {
-    title: `Simple Blogs - Page ${page}${tag ? ` | ${tag}` : ""}`,
+    title: `LitVerseHub | Write & Explore Digital Blogs  ${
+      tag ? ` |  ${tag}` : ""
+    }`,
     description: tag
-      ? `Discover insightful blogs about ${tag}.`
-      : "Explore a collection of insightful blogs on various topics.",
-    keywords: tag ? [`blogs`, `${tag}`, `articles`] : ["blogs", "articles"],
+      ? `Write and explore digital blogs on ${tag} with LitVerseHub.`
+      : "Write and explore a diverse collection of digital blogs with LitVerseHub.",
+    keywords: tag ? ["blogs", `${tag}`, "articles"] : ["blogs", "articles"],
   };
 
   // Generate Schema.org structured data
@@ -49,18 +47,16 @@ export async function generateMetadata({ searchParams }) {
     description: metadata.description,
     publisher: {
       "@type": "Organization",
-      name: "Simple Blogs",
-      url: "https://example.com",
+      name: "LitVerseHub Blogs",
+      url: "https://litversehub.com",
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://example.com${tag ? `/blogs/${tag}` : ""}?page=${page}`,
+      "@id": `https://litversehub.com${
+        tag ? `/blogs/${tag}` : ""
+      }?page=${page}`,
     },
     keywords: metadata.keywords.join(", "),
-    author: {
-      "@type": "Person",
-      name: "Admin", // Replace with the blog author's name dynamically
-    },
   };
 
   return {
@@ -89,37 +85,33 @@ export default async function Homepage(pathname) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: `Simple Blogs - Page ${page}${tagquery ? ` | ${tagquery}` : ""}`,
+    name: `LitVerseHub - Page ${page}${tagquery ? ` | ${tagquery}` : ""}`,
     description: tagquery
-      ? `Discover insightful blogs about ${tagquery}.`
-      : "Explore a collection of insightful blogs on various topics.",
+      ? `Write and explore digital blogs on ${tagquery}. with LitVerseHub.`
+      : "Write and explore a diverse collection of digital blogs with LitVerseHub.",
     publisher: {
       "@type": "Organization",
-      name: "Simple Blogs",
-      url: "https://example.com",
+      name: "LitVerseHub",
+      url: "https://litversehub.com",
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://example.com${
+      "@id": `https://litversehub.com"${
         tagquery ? `/blogs/${tagquery}` : ""
       }?page=${page}`,
     },
     keywords: tagquery ? `blogs, ${tagquery}, articles` : "blogs, articles",
-    author: {
-      "@type": "Person",
-      name: "Admin", // Replace dynamically if possible
-    },
   };
 
   return (
-    <div className={`${styles.page_container} mg_botom_lg`}>
+    <div className={`mg_botom_lg`}>
       {/* Inject Schema.org JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Render MainCard components */}
-      <div className={`${styles.card_wrapper} mg_botom_lg`}>
+      <div className={`mg_botom_lg`}>
         {blogs.length === 0 ? (
           <NotDataFound msg="No blogs found." />
         ) : (

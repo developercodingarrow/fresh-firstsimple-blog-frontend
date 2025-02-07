@@ -37,7 +37,7 @@
 }
 
 .inputHook_container {
-  /* margin-bottom: 1px; */
+  margin-bottom: 1px;
 }
 
 .passInput_hook_container {
@@ -70,9 +70,13 @@
   color: var(--th-blod-gray-text);
 }
 
+/* Tablets */
+@media only screen and (max-width: 1024px) {
+}
+
 @media only screen and (max-width: 600px) {
   .inputHook_container {
-    margin-bottom: 0px;
+    margin-bottom: 5px;
   }
 
   .input_style {

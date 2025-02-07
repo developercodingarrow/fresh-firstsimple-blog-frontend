@@ -135,7 +135,12 @@ export const ReportContentradioOptions = [
     name: "reportcontent",
     inputType: "radio",
     label: "Select one of these to Report Content ",
-    options: ["Spam", "Harassment", "Rules Violation"],
+    options: ["spam", "harassment", "rules_violation"],
+    optionlable: {
+      spam: "spam",
+      harassment: "Harassment",
+      rules_violation: "Rules Violation",
+    },
     validation: {
       required: "Please select a report option.",
     },

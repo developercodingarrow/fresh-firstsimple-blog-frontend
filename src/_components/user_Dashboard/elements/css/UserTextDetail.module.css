@@ -16,6 +16,7 @@
   align-items: center;
   column-gap: 3px;
   color: var(--th-blod-gray-text);
+  cursor: pointer;
 }
 
 .socilaMedia_wrapper {

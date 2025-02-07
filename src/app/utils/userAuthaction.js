@@ -19,9 +19,15 @@ export async function userRegisterAction(formData) {
     return { data: res.data };
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data.message || "Unknown error" };
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
-    return { error: error.message || "Request failed" };
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }
 
@@ -37,12 +43,36 @@ export async function userotpVerfication(formData, slug) {
       withCredentials: true,
     });
 
-    return { status: "success", data: res.data };
+    const token = res.data.token;
+    const userDetail = res.data.user;
+    if (token) {
+      cookies().set("jwt", token); // Store the token in cookies
+
+      // Encrypt the user details using AES encryption
+      const userData = JSON.stringify(userDetail);
+      const encryptedData = CryptoJS.AES.encrypt(
+        userData,
+        encryptionKey
+      ).toString();
+
+      // Store the encrypted data in cookies
+      cookies().set("user", encryptedData, {
+        httpOnly: false,
+      });
+    }
+
+    return { data: res.data };
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data.message || "Unknown error" };
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
-    return { error: error.message || "Request failed" };
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }
 
@@ -78,10 +108,16 @@ export async function userLoginAction(formData) {
     return { data: res.data };
   } catch (error) {
     if (error.response && error.response.data) {
-      return { error: error.response.data.message };
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
 
-    return { error: "An unexpected error occurred" };
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }
 
@@ -119,7 +155,17 @@ export async function userGoogleLoginAction(googleCredential) {
 
     return res.data; // Return response data
   } catch (error) {
-    return { error: error.message }; // Return the error message
+    if (error.response && error.response.data) {
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
+    }
+
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }
 
@@ -155,7 +201,17 @@ export async function LogOutAction() {
 
     return { status: "success", data: res.data };
   } catch (error) {
-    return { error: error.message };
+    if (error.response && error.response.data) {
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
+    }
+
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }
 
@@ -180,9 +236,70 @@ export async function updatePassword(formData) {
       return { data: res.data };
     }
   } catch (error) {
-    if (error.response) {
-      return { error: error.response.data.message || "Unknown error" };
+    if (error.response && error.response.data) {
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
-    return { error: error.message || "Request failed" };
+
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
+  }
+}
+
+export async function userfogotePasswordAction(formData) {
+  const url = `${API_BASE_URL}/user-auth/forgot-password`;
+  const method = "post";
+  try {
+    const res = await axios({
+      method,
+      url,
+      data: formData,
+      withCredentials: true,
+    });
+
+    return { data: res.data };
+  } catch (error) {
+    if (error.response && error.response.data) {
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
+    }
+
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
+  }
+}
+
+export async function userResetPasswordAction(formData, slug) {
+  const url = `${API_BASE_URL}/user-auth/reset-password/${slug}`;
+  const method = "post";
+  try {
+    const res = await axios({
+      method,
+      url,
+      data: formData,
+      withCredentials: true,
+    });
+
+    return { data: res.data };
+  } catch (error) {
+    if (error.response && error.response.data) {
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
+    }
+
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }

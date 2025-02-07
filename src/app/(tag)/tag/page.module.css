@@ -18,3 +18,21 @@
 .card_wrapper {
   min-height: 200px;
 }
+
+.pagination_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .pagination_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    top: 120px;
+    right: 0px;
+    padding-right: 10px;
+  }
+}

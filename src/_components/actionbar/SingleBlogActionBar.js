@@ -3,12 +3,7 @@ import React, { useContext, useEffect } from "react";
 
 import styles from "./css/singleblogactionbar.module.css";
 import UserDetailsAvatar from "../userAvatars/UserDetailsAvatar";
-import {
-  BsThreeDotsVertical,
-  FaHeart,
-  IoEyeOutline,
-  FaComment,
-} from "../ApplicationIcons";
+import { FaComment } from "../ApplicationIcons";
 import MainCardActionDotWrapper from "../actiondote/MainCardActionDotWrapper";
 import LikeAction from "../like_actions/LikeAction";
 import { ModelsContext } from "@/src/_contextApi/ModelContextApi";
@@ -17,11 +12,7 @@ import ViewCount from "./ViewCount";
 
 export default function SingleBlogActionBar(props) {
   const { data } = props;
-  const {
-    isMobileCommentModel,
-    handelOpenMobileCommentModel,
-    handelClosenMobileCommentModel,
-  } = useContext(ModelsContext);
+  const { handelOpenMobileCommentModel } = useContext(ModelsContext);
 
   return (
     <div className={styles.action_bar}>
@@ -36,7 +27,7 @@ export default function SingleBlogActionBar(props) {
         <LikeAction postLikes={data?.likes} elementID={data?._id} />
         <ViewCount data={data} />
         <div
-          className={styles.card_icon_details}
+          className={styles.mobile_onlycard_icon_details}
           onClick={handelOpenMobileCommentModel}
         >
           <div className={styles.icon_box}>
@@ -44,9 +35,16 @@ export default function SingleBlogActionBar(props) {
           </div>
           <div className={styles.icon_details}>{data.comments.length}</div>
         </div>
+        <div className={styles.dekstop_onlycard_icon_details}>
+          <div className={styles.icon_box}>
+            <FaComment />
+          </div>
+          <div className={styles.icon_details}>{data.comments.length}</div>
+        </div>
+
         <div className={styles.card_icon_details}>
           <div className={styles.icon_box}>
-            <MainCardActionDotWrapper />
+            <MainCardActionDotWrapper elementID={data?._id} />
           </div>
         </div>
       </div>

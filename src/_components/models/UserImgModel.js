@@ -13,12 +13,13 @@ import { InputModelsContext } from "@/src/_contextApi/InputModelContextApi";
 import { AppContext } from "@/src/_contextApi/AppContext";
 import { updateUserDetail } from "@/src/app/utils/userAuthaction";
 import { AuthContext } from "@/src/_contextApi/authContext";
+import { userImgRemove } from "@/src/app/utils/userActions";
 
 export default function UserImgModel(props) {
   const { actionId, imgUrl } = props;
   const { handelCloseUserImgModel, isUserImgModel } =
     useContext(InputModelsContext);
-  const { setisBtnLoadin } = useContext(AppContext);
+  const { isBtnLoadin, setisBtnLoadin } = useContext(AppContext);
   const { setauthUser } = useContext(AuthContext);
   const fileInputRef = useRef(null);
 
@@ -31,8 +32,24 @@ export default function UserImgModel(props) {
 
   const handelSubmit = async () => {
     try {
+      setisBtnLoadin(true);
       const res = await handeluplodUserPic(image, "userImg", actionId);
+      if (res.data.status === "success") {
+        setisBtnLoadin(false);
+        updateUserDetail(res.data.result);
+        setauthUser(res.data.result);
+        toast.success(res.data.message);
+        console.log(res);
+      }
+    } catch (error) {
+      console.log("error---", error);
+      setisBtnLoadin(false);
+    }
+  };
 
+  const handelDeleteImg = async () => {
+    try {
+      const res = await userImgRemove();
       if (res.data.status === "success") {
         setisBtnLoadin(false);
         updateUserDetail(res.data.result);
@@ -51,12 +68,16 @@ export default function UserImgModel(props) {
         isUserImgModel ? styles.visible : ""
       }`}
     >
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          className: "medium__text ",
+        }}
+      />
       <div
         className={`${styles.model_container} ${styles.user_image_model_container}`}
       >
         <ModelHeader
-          modelTitle="Update Your Profile Pic"
+          modelTitle="update profile pic"
           modelCloseHandler={handelCloseUserImgModel}
         />
         <div className={styles.user_img_body}>
@@ -85,41 +106,51 @@ export default function UserImgModel(props) {
               side.
             </div>
             <div className={styles.img_upload_btns_wrappers}>
-              <div>
-                <ClickTextBtn
-                  btnText="Uplod"
-                  btnType="link_typeBtn"
-                  size="small_link"
-                  clickHandel={handleClickUpload}
-                />
-              </div>
-              <div>
-                {" "}
-                <input
-                  type="file"
-                  accept="image/*"
-                  ref={fileInputRef}
-                  onChange={handleImageUpload}
-                  style={{ display: "none" }}
-                />
-              </div>
-              <div>
-                <ClickTextBtn
-                  btnText="Remove"
-                  btnType="link_typeBtn"
-                  size="small_link"
-                  clickHandel={removeImg}
-                />
+              <div className={styles.left_side_btns}>
+                <div>
+                  <ClickTextBtn
+                    btnText="Uplod"
+                    btnType="link_typeBtn"
+                    size="small_link"
+                    clickHandel={handleClickUpload}
+                  />
+                </div>
+                <div>
+                  {" "}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    ref={fileInputRef}
+                    onChange={handleImageUpload}
+                    style={{ display: "none" }}
+                  />
+                </div>
+                <div>
+                  <ClickTextBtn
+                    btnText="Remove"
+                    btnType="link_typeBtn"
+                    size="small_link"
+                    clickHandel={removeImg}
+                  />
+                </div>
+
+                <div>
+                  <ClickTextBtn
+                    btnText="Delete"
+                    btnType="link_typeBtn"
+                    size="small_link"
+                    clickHandel={handelDeleteImg}
+                  />
+                </div>
               </div>
               <div>
                 <ClickTextBtn
                   btnText="Update"
-                  btnType="link_typeBtn"
-                  size="small_link"
+                  size="tiny"
+                  btnLoading={isBtnLoadin}
                   clickHandel={handelSubmit}
                 />
               </div>
-              <div>Delete</div>
             </div>
           </div>
         </div>

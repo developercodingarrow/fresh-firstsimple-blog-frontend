@@ -4,9 +4,11 @@ import styles from "./likeaction.module.css";
 import { FaHeart, FaRegHeart } from "../ApplicationIcons";
 import { AuthContext } from "@/src/_contextApi/authContext";
 import { blogLikeAction } from "@/src/app/utils/blogLikeActions";
+import { ModelsContext } from "@/src/_contextApi/ModelContextApi";
 
 export default function LikeAction(props) {
   const { authUser } = useContext(AuthContext);
+  const { handelOpenAuthModel } = useContext(ModelsContext);
   const userId = authUser?._id;
   const { postLikes = [], elementID } = props;
   const [likeCount, setLikeCount] = useState(postLikes.length); // Initialize with the length of likes array
@@ -58,7 +60,7 @@ export default function LikeAction(props) {
           <div className={styles.icon_details}>{likeCount}</div>
         </div>
       ) : (
-        <div className={styles.container}>
+        <div className={styles.container} onClick={handelOpenAuthModel}>
           <div className={styles.icon_box}>
             <FaHeart />
           </div>

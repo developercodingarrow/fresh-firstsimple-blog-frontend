@@ -7,21 +7,28 @@ const encryptionKey = process.env.NEXT_PUBLIC_ENCRYPTION_KEY;
 
 export async function getSession() {
   try {
-    const cookieStore = cookies(); // Access the cookies on the server
-    const encryptedUserData = cookieStore.get("user")?.value; // Retrieve encrypted user data
+    const cookieStore = cookies();
+    const encryptedUserData = cookieStore.get("user")?.value;
+
+    console.log("Encrypted User Data:"); // Debugging
 
     if (!encryptedUserData) {
-      return null; // No user cookie found
+      console.error("No user cookie found.");
+      return null;
     }
 
     // Decrypt the encrypted data
     const bytes = CryptoJS.AES.decrypt(encryptedUserData, encryptionKey);
     const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+
+    console.log("Decrypted User Data:"); // Debugging
+
     if (!decryptedData) {
-      console.error("Decryption returned null or empty string.");
+      console.error("Decryption failed. Output is empty.");
       return null;
     }
-    const userData = JSON.parse(decryptedData); // Parse the decrypted JSON data
+
+    const userData = JSON.parse(decryptedData);
     return userData;
   } catch (error) {
     console.error("Error in getSession:", error);

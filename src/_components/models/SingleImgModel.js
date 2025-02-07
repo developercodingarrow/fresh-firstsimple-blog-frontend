@@ -13,14 +13,18 @@ import SimpleTextArea from "../elements/formelements/SimpleTextArea";
 import ClickTextBtn from "../buttons/ClickTextBtn";
 import { ModelsContext } from "@/src/_contextApi/ModelContextApi";
 import useImageUpload from "@/src/_custome-hooks/useImageUpload";
+import { AppContext } from "@/src/_contextApi/AppContext";
+import { deleteBlogThumblinImages } from "@/src/app/utils/blogsAction";
 
 export default function SingleImgModel(props) {
-  const { updateHandler, id } = props;
+  const { updateHandler, id, apiData } = props;
   const {
     isSingleImgModel,
     handleOpenSingleImgModel,
     handleCloseSingleImgModel,
   } = useContext(ModelsContext);
+  const { setpageLoading, isBtnLoadin, setisBtnLoadin } =
+    useContext(AppContext);
   const {
     previewImage,
     image,
@@ -31,19 +35,41 @@ export default function SingleImgModel(props) {
     handleSave,
     isValid,
     errors,
-  } = useImageUpload();
+  } = useImageUpload(apiData, "blogThumblin");
 
   const handelSubmitImg = async () => {
     try {
-      console.log("click");
+      setisBtnLoadin(true);
+      setpageLoading(true);
       const res = await updateHandler(image, imgData, "blogThumblin", id);
-      console.log(res.data);
-      if (res.status === "success") {
-        toast.success(res.message);
+      console.log("uplod res--", res);
+
+      if (res.error) {
+        toast.error(res.error);
+        setisBtnLoadin(false);
+        setpageLoading(false);
       }
-    } catch (error) {}
+
+      if (res.data.status === "success") {
+        toast.success(res.data.message);
+        setisBtnLoadin(false);
+        setpageLoading(false);
+      }
+    } catch (error) {
+      toast.error("somthing went wrong");
+      setisBtnLoadin(false);
+      setpageLoading(false);
+    }
   };
 
+  const handelDeleteApiImg = async () => {
+    try {
+      const res = await deleteBlogThumblinImages(apiData._id);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div
@@ -51,7 +77,11 @@ export default function SingleImgModel(props) {
           isSingleImgModel ? styles.visible : ""
         }`}
       >
-        <Toaster />
+        <Toaster
+          toastOptions={{
+            className: "medium__text ",
+          }}
+        />
         <div className={styles.inner_container}>
           <div className={styles.img_model_container}>
             <ModelHeader
@@ -62,6 +92,7 @@ export default function SingleImgModel(props) {
               <div className={styles.body_inner_container}>
                 <div className={styles.model_img_part}>
                   {previewImage ? (
+                    // Show preview image if user uploads a new one
                     <div className={styles.img_previou_box}>
                       <Image
                         src={previewImage}
@@ -71,14 +102,25 @@ export default function SingleImgModel(props) {
                         className={styles.img_style}
                       />
                     </div>
+                  ) : apiData?.blogThumblin?.url ? (
+                    // Show API image if previewImage is not available
+                    <div className={styles.img_previou_box}>
+                      <Image
+                        src={apiData.blogThumblin.url}
+                        width={500}
+                        height={500}
+                        alt="Blog Thumbnail"
+                        className={styles.img_style}
+                      />
+                    </div>
                   ) : (
+                    // Show upload box if no image is available
                     <div className={styles.model_img_uplodbox_wrapper}>
-                      {" "}
                       <ImgUplodBox
-                        boxtext="click to select Blog Thumblin here"
+                        boxtext="Click to select Blog Thumbnail here"
                         handelClick={handleImageUpload}
                         boximgInputaction={true}
-                      />{" "}
+                      />
                     </div>
                   )}
                 </div>
@@ -94,6 +136,7 @@ export default function SingleImgModel(props) {
                           inputName="title"
                           inputChnageHandler={handelChange}
                           inputSize="small"
+                          inputValue={imgData.title}
                         />
                       </div>
                       <span className={styles.error_msg}>{errors.title}</span>
@@ -108,6 +151,7 @@ export default function SingleImgModel(props) {
                           inputName="altText"
                           inputChnageHandler={handelChange}
                           inputSize="small"
+                          inputValue={imgData.altText}
                         />
                       </div>
                       <span className={styles.error_msg}>{errors.altText}</span>
@@ -123,6 +167,7 @@ export default function SingleImgModel(props) {
                           inputName="caption"
                           inputChnageHandler={handelChange}
                           inputSize="small"
+                          inputValue={imgData.caption}
                         />
                       </div>
                       <span className={styles.error_msg}>{errors.caption}</span>
@@ -137,6 +182,7 @@ export default function SingleImgModel(props) {
                           inputPlaceholder="Enter Image caption"
                           inputName="description"
                           inputChnageHandler={handelChange}
+                          inputValue={imgData.description}
                         />
                       </div>
                       <span className={styles.error_msg}>
@@ -155,6 +201,15 @@ export default function SingleImgModel(props) {
                       <MdDelete />{" "}
                     </div>
                   )}
+
+                  {apiData?.blogThumblin?.url && (
+                    <div
+                      className={`single_icon_wrapper`}
+                      onClick={handelDeleteApiImg}
+                    >
+                      <IoCloseSharp />{" "}
+                    </div>
+                  )}
                 </div>
                 {/* model_footer_right */}
                 <div className={styles.model_footer_right}>
@@ -162,8 +217,8 @@ export default function SingleImgModel(props) {
                     <ClickTextBtn
                       btnText="Update"
                       size="medium"
-                      btnLoading={false}
-                      disabledBtn={false}
+                      btnLoading={isBtnLoadin}
+                      disabledBtn={isValid}
                       clickHandel={handelSubmitImg}
                     />
                   </div>

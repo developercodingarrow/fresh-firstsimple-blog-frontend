@@ -12,7 +12,7 @@ export default function GoogleAuthClient(props) {
   return (
     <div>
       {userAuthData ? (
-        <p> Usewr Logined</p>
+        <p> User Logined</p>
       ) : (
         <>
           <GoogleLogin
@@ -22,9 +22,9 @@ export default function GoogleAuthClient(props) {
                   const res = await userGoogleLoginAction(
                     credentialResponse.credential
                   );
-
                   if (res.status === "success") {
                     router.push("/");
+                    router.refresh();
                   }
                 } catch (error) {}
               }

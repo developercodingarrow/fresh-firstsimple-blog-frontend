@@ -6,7 +6,7 @@ import React from "react";
 // Function to generate metadata dynamically
 export async function generateMetadata() {
   let metadata = {
-    title: "Blog Topics",
+    title: "LitVerseHub | Blog Topics",
     description: "Explore various blog topics",
   };
 
@@ -22,7 +22,7 @@ export async function generateMetadata() {
       const initalData = await res.json();
       const data = initalData.results;
       if (data && data.length > 0) {
-        metadata.title = `Blog Topics - ${data[0].name}`;
+        metadata.title = `LitVerseHub | Blog Topics`;
         metadata.description = `Explore topics related to ${data[0].name}`;
       }
     }

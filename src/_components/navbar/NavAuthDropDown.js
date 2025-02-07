@@ -38,10 +38,13 @@ export default function NavAuthDropDown(props) {
       className={styles.auth_dropdown_container}
       onClick={(e) => e.stopPropagation()}
     >
-      <div className={styles.drop_header}>
+      <Link
+        href={`/user-profile/${data?.userName}`}
+        className={styles.drop_header}
+      >
         <div className="medium__text">{data?.name}</div>
         <div className="tiny_text text_color_gray">{data?.userName}</div>
-      </div>
+      </Link>
       <div className={styles.drop_option_wrapper}>
         {dropOptions.map((el, index) => {
           return (

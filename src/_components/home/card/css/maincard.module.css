@@ -1,26 +1,26 @@
 .card_main_container {
   width: 100%;
-  margin-bottom: 20px;
-  padding: 10px;
+  margin-bottom: var(--th-20px);
+  padding: var(--th-10px);
 }
 
 .card_header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: var(--th-10px);
 }
 .body_inner_container {
   display: flex;
   justify-content: space-between;
-  column-gap: 2rem;
+  column-gap: var(--th-20px);
 }
 
 .card_title {
-  margin-bottom: 10px;
+  margin-bottom: var(var(--th-10px));
 }
 
 .card_meta_details {
-  margin-bottom: 10px;
+  margin-bottom: var(var(--th-10px));
 }
 
 .deatils_box {
@@ -81,12 +81,12 @@
 
 @media only screen and (max-width: 600px) {
   .card_title_box {
-    margin-bottom: 5px;
+    margin-bottom: var(--th-5px);
   }
   .card_title {
     font-size: 14px;
     font-weight: 600;
-    margin-bottom: 5px;
+    margin-bottom: var(--th-5px);
   }
   .card_meta_details {
     margin-bottom: 5px;
@@ -129,7 +129,7 @@
 
   .card_icon_details {
     display: flex;
-    column-gap: 5px;
+    column-gap: var(--th-5px);
     align-items: center;
   }
 
@@ -142,7 +142,7 @@
 
   .icon_details {
     color: var(--th-text-gray);
-    font-size: 12px;
+    font-size: var(--th-tiny-font-size);
     font-weight: 300;
     font-family: var(--th-font-family);
   }
@@ -150,6 +150,6 @@
   .card_img_not_avilable {
     width: 70px;
     height: 50px;
-    font-size: 12px;
+    font-size: var(--th-tiny-font-size);
   }
 }

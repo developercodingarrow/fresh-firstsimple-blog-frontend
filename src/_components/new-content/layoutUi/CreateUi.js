@@ -17,11 +17,15 @@ import {
 import { handelUploadThumblin } from "@/src/app/imghandlers/imageHandlers";
 import { TagContext } from "@/src/_contextApi/TagContextApi";
 import { IoArrowBackSharp } from "../../ApplicationIcons";
+import { tagList } from "@/src/jsonData/staticData";
+import { AppContext } from "@/src/_contextApi/AppContext";
 
 export default function CreateUi(props) {
   const router = useRouter();
   const { apiData, slug } = props;
   const { trustedTags } = useContext(TagContext);
+  const { setpageLoading, isBtnLoadin, setisBtnLoadin } =
+    useContext(AppContext);
 
   const [blogData, setBlogData] = useState({
     blogTitle: apiData?.blogTitle || "",
@@ -120,14 +124,19 @@ export default function CreateUi(props) {
 
   const handelUpdateContent = async () => {
     try {
+      setisBtnLoadin(true);
+      setpageLoading(true);
       const res = await updateBlogContent(blogData, slug);
-      console.log(res);
-
       if (res.data.status === "success") {
         toast.success(res.data.message);
+        setisBtnLoadin(false);
+        setpageLoading(false);
       }
     } catch (error) {
+      setisBtnLoadin(false);
       console.log(error);
+      toast.error("somthing went wrog");
+      setpageLoading(false);
     }
   };
 
@@ -140,8 +149,16 @@ export default function CreateUi(props) {
   };
   return (
     <div className={styles.main_container}>
-      <Toaster />
-      <SingleImgModel updateHandler={handelUploadThumblin} id={slug} />
+      <Toaster
+        toastOptions={{
+          className: "medium__text ",
+        }}
+      />
+      <SingleImgModel
+        updateHandler={handelUploadThumblin}
+        id={slug}
+        apiData={apiData}
+      />
       <div className={styles.section_header}>
         <div onClick={handleBack} className={styles.backBtn_box}>
           <IoArrowBackSharp />
@@ -150,8 +167,8 @@ export default function CreateUi(props) {
           <ClickTextBtn
             btnText="Publish"
             size="medium"
-            disabledBtn={false}
-            btnLoading={false}
+            disabledBtn={formIsValid}
+            btnLoading={isBtnLoadin}
             clickHandel={handelUpdateContent}
           />
         </div>
@@ -222,7 +239,7 @@ export default function CreateUi(props) {
 
               <div className={styles.section_component_wrapper}>
                 <ChipSelector
-                  allList={trustedTags}
+                  allList={trustedTags.length > 0 ? trustedTags : tagList}
                   filedName="tagName"
                   placeholder="Enter your tag"
                   apiTags={apiData?.blogTags}

@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../css/model.module.css";
 import { IoCloseSharp, MdDelete } from "../../ApplicationIcons";
+import { AppContext } from "@/src/_contextApi/AppContext";
 
 export default function ModelHeader(props) {
   const { modelTitle, modelCloseHandler } = props;
+  const { setisBtnLoadin } = useContext(AppContext);
+  const handelColse = () => {
+    modelCloseHandler();
+    setisBtnLoadin(false);
+  };
+
   return (
     <div className={styles.model_header}>
       <div className={"section_medium_heading"}>{modelTitle}</div>
       <div
         className={`icon_box text_color_gray semi_bold_text medium__text`}
-        onClick={modelCloseHandler}
+        onClick={handelColse}
       >
         <IoCloseSharp />{" "}
       </div>

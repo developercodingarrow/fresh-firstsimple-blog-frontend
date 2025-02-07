@@ -1,7 +1,5 @@
 "use server";
 import axios from "axios";
-import { cookies } from "next/headers"; // Import the cookies function
-import CryptoJS from "crypto-js";
 import { API_BASE_URL } from "@/config";
 
 export async function featuredTagsListAction() {
@@ -21,9 +19,15 @@ export async function featuredTagsListAction() {
     }
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data.message || "Unknown error" };
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
-    return { error: error.message || "Request failed" };
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }
 
@@ -44,8 +48,14 @@ export async function verifiedTagsListAction() {
     }
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data.message || "Unknown error" };
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
-    return { error: error.message || "Request failed" };
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }

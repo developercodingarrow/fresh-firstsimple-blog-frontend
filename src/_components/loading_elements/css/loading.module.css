@@ -12,9 +12,22 @@
   margin-right: 8px; /* Space between the spinner and the text */
 }
 
+.tiny {
+  width: 15px;
+  height: 15px;
+}
+
+.tiny_pading {
+  padding: 1px 10px;
+}
+
 .medium {
   width: 20px;
   height: 20px;
+}
+
+.medium_pading {
+  padding: 1px 14px;
 }
 
 .extra_large {
@@ -28,5 +41,12 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .extra_large {
+    width: 21px;
+    height: 21px;
   }
 }

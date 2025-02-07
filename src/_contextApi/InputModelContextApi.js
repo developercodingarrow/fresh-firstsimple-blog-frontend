@@ -13,7 +13,6 @@ export default function InputModelContextProvider({ children }) {
   const [isUserImgModel, setisUserImgModel] = useState(false);
 
   const handelOpenInputModel = (heading, data, id, fields, handler) => {
-    console.log(data);
     setmodelHeading(heading);
     setmodelApiData(data);
     setelementId(id);
@@ -31,7 +30,6 @@ export default function InputModelContextProvider({ children }) {
     setisUserImgModel(true);
     setelementId(id);
     setmodelApiData(imgUrl);
-    console.log(isUserImgModel);
   };
 
   const handelCloseUserImgModel = () => {

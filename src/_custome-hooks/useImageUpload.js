@@ -2,18 +2,17 @@
 
 import React, { useContext, useEffect, useState } from "react";
 
-export default function useImageUpload() {
+export default function useImageUpload(apiData, dataFor) {
   const [previewImage, setPreviewImage] = useState(null);
   const [image, setImage] = useState(null);
   const [imageName, setImageName] = useState(null);
-  const [imgData, setimgData] = useState({
-    title: "",
-    altText: "",
-    caption: "",
-    description: "",
-  });
-
   const [isValid, setIsValid] = useState(true);
+  const [imgData, setimgData] = useState({
+    title: apiData?.[dataFor]?.title || "",
+    altText: apiData?.[dataFor]?.altText || "",
+    caption: apiData?.[dataFor]?.caption || "",
+    description: apiData?.[dataFor]?.description || "",
+  });
 
   const [errors, setErrors] = useState({
     title: "",
@@ -40,15 +39,26 @@ export default function useImageUpload() {
 
     setErrors(newErrors);
     setIsValid(
-      Object.keys(newErrors).length > 0 || !previewImage // Consider previewImage
+      Object.keys(newErrors).length > 0 ||
+        (!previewImage && !apiData[dataFor].url) // Allow existing image
     );
   };
-
-  console.log("isValid--", isValid);
 
   useEffect(() => {
     validateInputs();
   }, [imgData, previewImage]);
+
+  // Handle apiData updates safely
+  useEffect(() => {
+    if (apiData && apiData[dataFor]) {
+      setimgData({
+        title: apiData[dataFor]?.title || "",
+        altText: apiData[dataFor]?.altText || "",
+        caption: apiData[dataFor]?.caption || "",
+        description: apiData[dataFor]?.description || "",
+      });
+    }
+  }, [apiData, dataFor]);
 
   // Upload Image
   const handleImageUpload = (event) => {

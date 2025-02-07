@@ -2,66 +2,9 @@ import React from "react";
 import styles from "./css/homepagelayout.module.css";
 import TabBar from "../../tabs/TabBar";
 import SidbarPagesComponent from "../../sidebards/SidbarPagesComponent";
+import { tagList, guidlin } from "@/src/jsonData/staticData";
+
 export default function HomePageLayout({ children, featuredTags }) {
-  const tagList = [
-    {
-      text: "Real Estate",
-      hrflink: "/real-estate",
-    },
-    {
-      text: "Technology",
-      hrflink: "/technology",
-    },
-    {
-      text: "Health",
-      hrflink: "/health-wellness",
-    },
-    {
-      text: "Education",
-      hrflink: "/education",
-    },
-    {
-      text: "Finance",
-      hrflink: "/finance",
-    },
-    {
-      text: "Travel",
-      hrflink: "/travel",
-    },
-    {
-      text: "Food & beverage",
-      hrflink: "/food-beverage",
-    },
-    {
-      text: "Entertainment",
-      hrflink: "/entertainment",
-    },
-    {
-      text: "Fashion",
-      hrflink: "/fashion",
-    },
-    {
-      text: "Automobiles",
-      hrflink: "/automobiles",
-    },
-  ];
-
-  const guidlin = [
-    {
-      text: "Website Traffic",
-      hrflink: "website-traffic",
-    },
-
-    {
-      text: "Content Write Tips",
-      hrflink: "content-write-tips",
-    },
-    {
-      text: "top website",
-      hrflink: "top-website",
-    },
-  ];
-
   return (
     <div className={styles.main_container}>
       <div className={styles.inner_container}>
@@ -69,7 +12,9 @@ export default function HomePageLayout({ children, featuredTags }) {
           <div className="mg_botom_lg ">
             <SidbarPagesComponent
               sectionTitle="blog Topics"
-              listData={featuredTags}
+              listData={
+                featuredTags && featuredTags.length > 0 ? featuredTags : tagList
+              }
               linkTextName="tagName"
               hrflinkName="tagSlug"
               path="tag"
@@ -89,7 +34,9 @@ export default function HomePageLayout({ children, featuredTags }) {
         <div className={styles.content_container}>
           <div>
             <TabBar
-              data={featuredTags}
+              data={
+                featuredTags && featuredTags.length > 0 ? featuredTags : tagList
+              }
               linkTextName="tagName"
               hrflinkName="tagSlug"
               stickypos={50}

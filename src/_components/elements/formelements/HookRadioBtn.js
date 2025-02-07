@@ -2,7 +2,8 @@ import React, { forwardRef } from "react";
 import styles from "./css/radiobtn.module.css";
 
 const HookRadioBtn = forwardRef((props, ref) => {
-  const { selectedOption, onChange, radioOptions, inputLabel } = props;
+  const { selectedOption, onChange, radioOptions, inputLabel, optionlable } =
+    props;
 
   const handleRadioChange = (option) => {
     onChange(option); // This updates React Hook Form
@@ -26,7 +27,7 @@ const HookRadioBtn = forwardRef((props, ref) => {
               )}
             </div>
             <div className={styles.radio_btn_textGap}>
-              <label className="small_text">{option}</label>
+              <label className="small_text">{optionlable[option]}</label>
             </div>
           </div>
         ))}

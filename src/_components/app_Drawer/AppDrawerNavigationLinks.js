@@ -19,12 +19,12 @@ export default function AppDrawerNavigationLinks() {
     {
       text: "Tags",
       icon: <BiSolidPurchaseTagAlt />,
-      hrfLink: "/dashboard/blogs",
+      hrfLink: "/blog-topics",
     },
     {
       text: "About",
       icon: <IoMdInformationCircle />,
-      hrfLink: "/dashboard/blogs",
+      hrfLink: "/about-us",
     },
   ];
   return (

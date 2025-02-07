@@ -9,8 +9,16 @@ import { AppContext } from "@/src/_contextApi/AppContext";
 
 export default function VerificationUi(props) {
   const params = useParams();
-  const { slug } = params;
-  const { formInputs, formType, formHeading, formHandel, formSubText } = props;
+  const router = useRouter();
+  const {
+    formInputs,
+    formType,
+    formHeading,
+    formHandel,
+    formSubText,
+    btnText,
+    pageslug,
+  } = props;
   const { isBtnLoadin, setisBtnLoadin } = useContext(AppContext);
   const { renderInput, handleSubmit, updatedInputs, isValid, errors } =
     useCustomeAuthForm(formInputs, formType);
@@ -18,16 +26,28 @@ export default function VerificationUi(props) {
   const handleForm = async (data) => {
     try {
       setisBtnLoadin(true);
-      const res = await formHandel(data, slug);
-
+      const res = await formHandel(data, pageslug);
       if (res.error) {
         toast.error(res.error);
         setisBtnLoadin(false);
         return;
       }
-      if (res.data.status === "success") {
+      if (res.data.apiFor === "forgatePassword") {
         toast.success(res.data.message);
         setisBtnLoadin(false);
+      }
+
+      if (res.data.apiFor === "resetPassword") {
+        toast.success(res.data.message);
+        setisBtnLoadin(false);
+        router.push("/auth/login");
+      }
+
+      if (res.data.apiFor === "Login") {
+        toast.success(res.data.message);
+        setisBtnLoadin(false);
+        router.refresh();
+        router.push("/");
       }
     } catch (error) {
       setisBtnLoadin(false);
@@ -35,7 +55,11 @@ export default function VerificationUi(props) {
   };
   return (
     <div className={styles.main_container}>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          className: "medium__text ",
+        }}
+      />
       <div className={styles.inner_container}>
         <div className={styles.form_wrapper_container}>
           <div className={styles.container_header}>
@@ -63,9 +87,9 @@ export default function VerificationUi(props) {
               </div>
               <div className={styles.submit_btn_wrapper}>
                 <SubmitBtn
-                  btnText="OTP VERIFICATION"
+                  btnText={btnText}
                   fullWidth={true}
-                  size="large"
+                  size="extra_large"
                   btnLoading={isBtnLoadin}
                 />
               </div>

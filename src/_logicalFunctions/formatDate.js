@@ -1,19 +1,11 @@
-// export const formatDate = (dateString) => {
-//   const options = { year: "numeric", month: "short", day: "numeric" };
-//   const formattedDate = new Date(dateString).toLocaleDateString(
-//     "en-US",
-//     options
-//   );
-//   return formattedDate;
-// };
-
 import { format } from "date-fns";
 
 export const formatDate = (dateString) => {
+  if (!dateString) return ""; // Prevents passing undefined or null to format
   try {
-    return format(new Date(dateString), "dd MMM, yyyy"); // Example: Dec 17, 2024
+    return format(new Date(dateString), "dd MMM, yyyy");
   } catch (error) {
     console.error("Invalid date string:", dateString);
-    return ""; // Fallback for invalid dates
+    return "";
   }
 };

@@ -3,7 +3,8 @@ import VerificationUi from "@/src/_components/auth_components/VerificationUi";
 import { otpInputFiled } from "@/src/jsonData/formInputsData";
 import { userotpVerfication } from "@/src/app/utils/userAuthaction";
 
-export default function OTPVerificationwrapper() {
+export default function OTPVerificationwrapper(props) {
+  const { slug } = props;
   return (
     <div>
       <VerificationUi
@@ -12,6 +13,8 @@ export default function OTPVerificationwrapper() {
         formType="OTP"
         formHeading="OTP Verification"
         formSubText="please Enter you otp which is sent to your E-mail Address"
+        btnText="Submit"
+        pageslug={slug}
       />
     </div>
   );

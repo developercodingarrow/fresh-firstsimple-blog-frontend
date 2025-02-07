@@ -1,69 +1,61 @@
 import { NextResponse } from "next/server";
 import { getSession } from "./app/lib/authentication";
 import { cookies } from "next/headers"; // Import cookies function
-import { v4 as uuidv4 } from "uuid";
 
-function generateSessionId() {
-  return `${uuidv4()}-${Date.now()}`; // Combines UUID and timestamp
-}
 export async function middleware(request) {
-  const cookieStore = cookies();
-  const sessionId = cookieStore.get("sessionId")?.value;
-
-  if (!sessionId) {
-    const newSessionId = generateSessionId();
-
-    // Create response object and set the sessionId cookie
-    const response = NextResponse.next();
-    response.cookies.set("sessionId", newSessionId, {
-      httpOnly: true, // To prevent client-side access to the cookie
-      maxAge: 60 * 60 * 24 * 30, // Set cookie expiry (30 days)
-      path: "/",
-      secure: process.env.NODE_ENV === "production", // Secure cookies in production
-    });
-
-    // Return the modified response with the new cookie
-    return response;
-  }
-
-  const isAuthToken = request.cookies.get("jwt")?.value;
-
-  const userData = await getSession(); // Get decrypted user data
-  const userRole = userData?.role; // Ensure user data is valid before accessing the role
+  const response = NextResponse.next();
   const url = request.nextUrl.pathname;
+  const jwtToken = request.cookies.get("jwt")?.value;
+  const userData = await getSession();
+  const userRole = userData?.role;
 
-  // If user is logged in, prevent access to login or registration pages
-  if (isAuthToken) {
-    if (url.startsWith("/auth/login") || url.startsWith("/auth/signup")) {
-      return NextResponse.redirect(new URL("/", request.url)); // Redirect to the home page
-    }
-  }
+  console.log("userData---", userData);
 
-  // If the user is not logged in, restrict access to protected routes
-  if (!isAuthToken || !userData) {
-    if (url.startsWith("/me") || url.startsWith("/new-blog")) {
-      return NextResponse.redirect(new URL("/auth/login", request.url)); // Redirect to login
-    }
-
-    // Allow access to authentication pages
+  // ✅ Allow static files and Next.js assets to be loaded
+  if (
+    url.startsWith("/_next/") ||
+    url.startsWith("/static/") ||
+    /\.(.*)$/.test(url)
+  ) {
     return NextResponse.next();
   }
 
-  // Role-based access control for logged-in users
-  if (userRole === "user") {
-    // Allow access to `/me` and `/new-blog` paths for users
-    if (url.startsWith("/me") || url.startsWith("/new-blog")) {
-      return NextResponse.next();
-    } else {
-      // Restrict access to any other area for regular users
+  // 🚨 If not logged in, prevent access to `/suspend`
+  if (!jwtToken && url.startsWith("/suspend")) {
+    return NextResponse.redirect(new URL("/auth/login", request.url));
+  }
+
+  // 🚨 If logged in and suspended, redirect to `/suspend`
+  if (jwtToken && userData?.suspend && !url.startsWith("/suspend")) {
+    console.log("User is suspended. Redirecting...");
+    return NextResponse.redirect(new URL("/suspend", request.url));
+  }
+
+  // 🚨 If the user’s role is not "user", remove cookies and redirect
+  if (jwtToken && userRole !== "user") {
+    console.log("Invalid role. Removing cookies and redirecting...");
+    response.cookies.delete("jwt");
+    response.cookies.delete("user");
+    return NextResponse.redirect(new URL("/auth/login", request.url));
+  }
+
+  // 🚨 Allow only authenticated users with role "user" to access protected routes
+  if (url.startsWith("/me") || url.startsWith("/content")) {
+    if (!jwtToken || userRole !== "user") {
       return NextResponse.redirect(new URL("/auth/login", request.url));
     }
   }
 
-  // Default fallback for other roles or conditions
-  return NextResponse.redirect(new URL("/auth/login", request.url));
+  // 🚨 Prevent authenticated users from accessing login/signup pages
+  if (jwtToken && userRole === "user") {
+    if (url.startsWith("/auth/login") || url.startsWith("/auth/signup")) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+  }
+
+  return response;
 }
 
 export const config = {
-  matcher: ["/me/:path*", "/auth/:path*", "/new-blog/:slug*"],
+  matcher: "/:path*", // Runs on all routes
 };

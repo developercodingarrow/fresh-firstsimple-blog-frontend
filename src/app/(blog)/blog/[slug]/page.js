@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { API_BASE_URL } from "@/config";
 import SingleBlogUi from "@/src/_components/singleBlog/layout/SingleBlogUi";
 import AlternativeNotFound from "@/src/_components/CustomErrors/AlternativeNotFound";
@@ -8,23 +8,12 @@ export async function generateMetadata({ params }) {
     const res = await fetch(
       `${API_BASE_URL}/blog/public-single-blog/${params.slug}`
     );
+
     if (res.status !== 200) {
-      // Return default metadata in case of failure
       return {
         title: "Default Title",
         description: "Default description",
         canonical: `https://pinbuzzers.com/blog/${params.slug}`,
-        openGraph: {
-          title: "Default Title",
-          description: "Default description",
-          images: [{ url: "/default-image.jpg", alt: "Blog Thumbnail" }],
-        },
-        twitter: {
-          cardType: "summary_large_image",
-          title: "Default Title",
-          description: "Default description",
-          image: "/default-image.jpg",
-        },
         schema: {
           "@context": "https://schema.org",
           "@type": "BlogPosting",
@@ -41,6 +30,30 @@ export async function generateMetadata({ params }) {
               url: "https://pinbuzzers.com/web-static-img/dummy-logo.png",
             },
           },
+          breadcrumb: {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://pinbuzzers.com/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Blog",
+                item: "https://pinbuzzers.com/blog",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: "Default Title",
+                item: `https://pinbuzzers.com/blog/${params.slug}`,
+              },
+            ],
+          },
         },
       };
     }
@@ -48,39 +61,11 @@ export async function generateMetadata({ params }) {
     const data = await res.json();
 
     return {
-      title: data.result.blogTitle || "Default Title",
-      description: data.result.metaDescription || "Default description",
-      canonical: `https://pinbuzzers.com/blog/${params.slug}`,
-      openGraph: {
-        title: data.result.blogTitle || "Default Title",
-        description: data.result.metaDescription || "Default description",
-        images: [
-          {
-            url:
-              `https://pinbuzzers.com/blogthumblin/${data.result.blogThumblin?.url}` ||
-              "/default-image.jpg",
-            alt: data.result.blogThumblin?.altText || "Blog Thumbnail",
-          },
-        ],
-        article: {
-          publishedTime: data.result.publishedAt,
-          authors: [data.result.author?.name || "Default Author"],
-        },
-      },
-      twitter: {
-        cardType: "summary_large_image",
-        title: data.result.blogTitle || "Default Title",
-        description: data.result.metaDescription || "Default description",
-        image:
-          `https://pinbuzzers.com/blogthumblin/${data.result.blogThumblin?.url}` ||
-          "/default-image.jpg",
-      },
-      additionalMetaTags: [
-        {
-          name: "keywords",
-          content: data.result.tags?.join(", ") || "default, keywords",
-        },
-      ],
+      title: `LitVerseHub | ${data.result.blogTitle}` || "LitVerseHub",
+      description:
+        data.result.metaDescription ||
+        "Explore a collection of insightful blogs on various topics.",
+      canonical: `https://litversehub.com/blog/${params.slug}`,
       schema: {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
@@ -100,6 +85,30 @@ export async function generateMetadata({ params }) {
             url: "https://pinbuzzers.com/web-static-img/dummy-logo.png",
           },
         },
+        breadcrumb: {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://litversehub.com/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Blog",
+              item: "https://litversehub.com/blog",
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: data.result.blogTitle || "Default Title",
+              item: `https://litversehub.com/blog/${params.slug}`,
+            },
+          ],
+        },
       },
     };
   } catch (error) {
@@ -108,17 +117,6 @@ export async function generateMetadata({ params }) {
       title: "Default Title",
       description: "Default description",
       canonical: "https://pinbuzzers.com/blog/404",
-      openGraph: {
-        title: "Default Title",
-        description: "Default description",
-        images: [{ url: "/default-image.jpg", alt: "Blog Thumbnail" }],
-      },
-      twitter: {
-        cardType: "summary_large_image",
-        title: "Default Title",
-        description: "Default description",
-        image: "/default-image.jpg",
-      },
       schema: {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
@@ -135,6 +133,30 @@ export async function generateMetadata({ params }) {
             url: "https://pinbuzzers.com/web-static-img/dummy-logo.png",
           },
         },
+        breadcrumb: {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://pinbuzzers.com/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Blog",
+              item: "https://pinbuzzers.com/blog",
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: "Default Title",
+              item: `https://pinbuzzers.com/blog/${params.slug}`,
+            },
+          ],
+        },
       },
     };
   }
@@ -144,13 +166,17 @@ export default async function SingleBlogpage({ params }) {
   const { slug } = params;
   let data;
   try {
-    const res = await fetch(`${API_BASE_URL}/blog/public-single-blog/${slug}`, {
-      method: "GET", // GET request to fetch the blog
-      credentials: "include", // Include cookies in the request
-      headers: {
-        "Content-Type": "application/json", // Ensure this is set to JSON
+    const res = await fetch(
+      `${API_BASE_URL}/blog/public-single-blog/${slug}`,
+      {
+        method: "GET", // GET request to fetch the blog
+        credentials: "include", // Include cookies in the request
+        headers: {
+          "Content-Type": "application/json", // Ensure this is set to JSON
+        },
       },
-    });
+      { cache: "no-store" }
+    );
     if (res.status === 404) {
       return <AlternativeNotFound />;
     }
@@ -163,11 +189,57 @@ export default async function SingleBlogpage({ params }) {
     data = null;
     throw new Error(`Failed to fetch data: ${error}`);
   }
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: data?.blogTitle || "LitVerseHub",
+    description:
+      data?.metaDescription ||
+      "Write and explore a diverse collection of digital blogs with LitVerseHub.",
+    image: data?.blogThumblin?.url || "/default-image.jpg",
+    author: {
+      "@type": "Person",
+      name: data?.author?.name || "LitVerseHub",
+    },
+    datePublished: data?.createdAt || new Date().toISOString(),
+    publisher: {
+      "@type": "Organization",
+      name: "LitVerseHub",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://litversehub.com/web-static-img/dummy-logo.png",
+      },
+    },
+    breadcrumb: {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://litversehub.com/",
+        },
+
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: data?.blogTitle || "LitVerseHub",
+          item: `https://litversehub.com/blog/${slug}`,
+        },
+      ],
+    },
+  };
+
   return (
     <div>
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <SingleBlogUi data={data} />
-      </Suspense>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <SingleBlogUi data={data} />
     </div>
   );
 }

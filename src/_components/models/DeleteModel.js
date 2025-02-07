@@ -38,7 +38,11 @@ export default function DeleteModel(props) {
           isDeleteModel ? styles.visible : ""
         }`}
       >
-        <Toaster />{" "}
+        <Toaster
+          toastOptions={{
+            className: "medium__text ",
+          }}
+        />
         <div
           className={`${styles.model_container} ${styles.inputData_model_container}`}
         >

@@ -9,7 +9,7 @@ export default function DekstopFooter() {
     },
     {
       text: "About us",
-      hrfLink: "/",
+      hrfLink: "about-us",
     },
     {
       text: "Faqs",
@@ -21,7 +21,7 @@ export default function DekstopFooter() {
     },
     {
       text: "Privacy policy",
-      hrfLink: "/",
+      hrfLink: "privacy-policy",
     },
     {
       text: "Terms",

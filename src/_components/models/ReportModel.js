@@ -1,23 +1,43 @@
 "use client";
 import React, { useContext } from "react";
 import styles from "./css/model.module.css";
+import toast, { Toaster } from "react-hot-toast";
 import { ModelsContext } from "@/src/_contextApi/ModelContextApi";
 import ModelHeader from "./modelElements/ModelHeader";
 import ModelCommanFooter from "./modelElements/ModelCommanFooter";
 import { ReportContentradioOptions } from "@/src/jsonData/formInputsData";
 import useCustomForm from "@/src/_custome-hooks/useCustomForm";
+import { reportBlogAction } from "@/src/app/utils/blogsAction";
+import { AppContext } from "@/src/_contextApi/AppContext";
 
 export default function ReportModel() {
   const {
-    isReportModel = true,
-    setisReportModel,
-    handelOpenReportModel,
+    isReportModel = false,
+    actionID,
     handelCloseReportModel,
   } = useContext(ModelsContext);
+  const { setisBtnLoadin } = useContext(AppContext);
   const { handleSubmit, renderInput, isValid } = useCustomForm();
 
-  const handelReportSubmit = () => {
-    alert("report content");
+  const handelReportSubmit = async (data) => {
+    setisBtnLoadin(true);
+    try {
+      const formData = {
+        id: actionID,
+        filedContent: data.reportcontent,
+      };
+      const res = await reportBlogAction(formData);
+      if (res.data.status === "success") {
+        toast.success(res.data.message);
+        setisBtnLoadin(false);
+        setTimeout(() => {
+          handelCloseReportModel();
+        }, 1500); // Adjust delay based on toast duration
+      }
+    } catch (error) {
+      console.log(error);
+      setisBtnLoadin(false);
+    }
   };
   return (
     <>
@@ -26,6 +46,11 @@ export default function ReportModel() {
           isReportModel ? styles.visible : ""
         }`}
       >
+        <Toaster
+          toastOptions={{
+            className: "medium__text ",
+          }}
+        />
         <div
           className={`${styles.model_container} ${styles.repor_model_container}`}
         >

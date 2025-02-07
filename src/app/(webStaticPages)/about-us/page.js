@@ -1,6 +1,11 @@
 import React from "react";
 import styles from "../page.module.css";
 import { MdKeyboardArrowRight } from "../../../_components/ApplicationIcons";
+
+export const metadata = {
+  title: "LitVerseHub | About Us",
+  description: "LitVerseHub – Your digital hub for writers and readers. Learn about our mission to inspire creativity, foster collaboration, and build a thriving literary community.",
+};
 export default function AboutUsPage() {
   return (
     <div className={styles.main_container}>
@@ -19,49 +24,45 @@ export default function AboutUsPage() {
       </div>
       <section className={`${styles.page_metaDescreption} mg_botom_lg`}>
         <h2>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-          sodales pulvinar ante, sit amet bibendum sem sollicitudin ut. In sit
-          amet dictum nunc,
+          Empower your ideas, grow your content, and amplify your digital reach
+          with LitVerseHub. Create blogs, boost your website’s SEO, and share
+          your stories with a global audience. Join us today!
         </h2>
       </section>
       <section className={`${styles.page_content} medium__text mg_botom_lg`}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sodales
-        pulvinar ante, sit amet bibendum sem sollicitudin ut. In sit amet dictum
-        nunc, id porta eros. Morbi ullamcorper erat quis lectus eleifend
-        porttitor. Vestibulum non ornare lorem, sed lobortis leo. Sed lacus
-        libero, ultrices ut elementum a, vulputate quis tellus. Integer ac
-        tellus luctus est convallis facilisis et eget quam. Phasellus dui dui,
-        consequat eleifend viverra a, aliquet ut dui. Maecenas fringilla
-        consequat felis, eu accumsan felis laoreet elementum. Vestibulum ante
-        ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
-        Aliquam consectetur diam quis sapien tincidunt, in tempor ligula
-        ultricies. Curabitur vehicula sed enim ac tempor. Suspendisse ut
-        efficitur massa. Sed posuere aliquam mattis. Duis nec magna sollicitudin
-        ante mollis congue eu nec odio. Quisque dui dolor, varius quis efficitur
-        in, laoreet et nisl. Maecenas vel egestas ex. Sed eleifend tincidunt
-        mauris, vitae accumsan nisi fermentum nec. Sed sit amet eros nunc.
-        Praesent finibus lorem vel dolor mollis, ac rhoncus risus finibus.
-        Curabitur ultricies massa a ipsum rhoncus, vel feugiat lorem egestas.
-        Nunc tincidunt, ipsum sed vehicula interdum, leo purus euismod erat, ac
-        tempor justo quam vel ex. Mauris vulputate molestie orci, eget cursus
-        ipsum efficitur vitae. Aliquam eu semper magna, quis rhoncus elit. Nulla
-        ultricies at lectus non pretium. Fusce eleifend scelerisque sapien, in
-        ornare est dapibus et. Integer in molestie dolor. Suspendisse suscipit
-        congue pharetra. Fusce tristique dui massa, vitae porttitor felis
-        accumsan quis. Phasellus vitae eleifend nibh, sit amet feugiat ante.
-        Vestibulum nec convallis magna. Aenean mollis pellentesque vulputate.
-        Aliquam condimentum, nulla sed scelerisque mollis, magna leo euismod ex,
-        id pharetra libero mi et turpis. Integer consequat scelerisque massa sit
-        amet consectetur. Donec quis urna nisi. Aenean porttitor nisi neque, in
-        lobortis urna consequat condimentum. Sed vel arcu eget massa lacinia
-        fringilla in eu tellus. Suspendisse pulvinar risus pretium tellus
-        fringilla venenatis. Quisque sed dui sed nisl tristique venenatis at
-        gravida est. Nullam nec eros felis. Etiam vestibulum ullamcorper nisi,
-        ac pharetra velit pharetra non. Curabitur maximus diam ultricies orci
-        mollis, sit amet faucibus est fringilla. Sed interdum lacus accumsan,
-        luctus eros et, vehicula purus. Duis ac ligula commodo, volutpat neque
-        vitae, varius tortor. Pellentesque fringilla eget ligula ac eleifend.
-        Sed feugiat nisi eget orci mattis, consectetur dignissim nisi pulvinar.
+        <p className="mg_botom_sm">
+          At LitVerseHub, we believe in the power of your ideas. Our platform is
+          designed to help you transform those ideas into impactful content that
+          resonates with audiences worldwide. Whether you’re a blogger,
+          entrepreneur, or storyteller, LitVerseHub provides the tools and space
+          you need to share your unique thoughts, business insights, and
+          personal stories with the world.
+        </p>
+
+        <p className="mg_botom_sm">
+          When you create blogs on LitVerseHub, you’re not just expressing
+          yourself – you’re also taking a significant step toward boosting your
+          website’s SEO. Every blog you publish acts as a powerful backlink,
+          driving more traffic to your site and increasing your online
+          visibility. This means your ideas don’t just stay within our platform;
+          they reach far and wide, helping you grow your digital presence.
+        </p>
+
+        <p className="mg_botom_sm">
+          But LitVerseHub is more than just a blogging platform. We’re your
+          partner in digital growth. Our mission is to create a space where
+          creativity meets opportunity, empowering you to build a stronger
+          online presence and connect with a global audience. Whether you’re an
+          experienced content creator or just starting your journey, LitVerseHub
+          is here to support you every step of the way.
+        </p>
+
+        <p className="mg_botom_sm">
+          Join us today and become part of a community that values creativity,
+          growth, and connection. Start creating blogs that inspire, inform, and
+          amplify your digital reach. At LitVerseHub, your ideas matter, and
+          we’re here to help them shine.
+        </p>
       </section>
     </div>
   );

@@ -4,8 +4,10 @@ import { useParams, useRouter } from "next/navigation";
 import styles from "./css/appnavbar.module.css";
 import { HiMagnifyingGlass } from "../../ApplicationIcons";
 import Link from "next/link";
+import { tagList } from "@/src/jsonData/staticData";
+
 export default function NavSearchBar(props) {
-  const { searchSuggest } = props;
+  const { searchSuggest = tagList } = props;
   const router = useRouter();
   const [searchText, setSearchText] = useState(""); // To manage search input
   const [filteredTags, setFilteredTags] = useState([]); // To store filtered suggestions

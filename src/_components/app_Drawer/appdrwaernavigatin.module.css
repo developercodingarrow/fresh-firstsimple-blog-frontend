@@ -8,12 +8,12 @@
 }
 
 .aside_nav_item:hover {
-  background-color: #6759ff;
+  background-color: var(--th-primary-color);
   color: #fff;
 }
 
 .active_link {
-  background-color: #6759ff;
+  background-color: var(--th-primary-color);
   color: #fff;
 }
 

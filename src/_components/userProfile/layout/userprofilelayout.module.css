@@ -29,6 +29,10 @@
   display: none;
 }
 
+.listcard_wrapper {
+  padding: 2rem;
+}
+
 @media only screen and (max-width: 600px) {
   .left_side_container {
     width: 100%;

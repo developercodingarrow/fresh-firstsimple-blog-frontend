@@ -37,7 +37,7 @@ export default function UserProfileWrapper() {
           lableText="Name"
           valueText={authUser?.name}
           openModal={handelOpenInputModel}
-          modelHeading="Update Facbook Profile page"
+          modelHeading="update your name"
           apiData={authUser}
           modelInputs={nameinput}
           modelActionHandler={updatehsndler}
@@ -48,18 +48,14 @@ export default function UserProfileWrapper() {
           lableText="User Name"
           valueText={authUser?.userName}
           openModal={handelOpenInputModel}
-          modelHeading="Update Facbook Profile page"
+          modelHeading="Update username"
           apiData={authUser}
           modelInputs={userNameinput}
           modelActionHandler={updatehsndler}
         />
       </div>
       <div className="mg_botom_lg">
-        <UserImagDetail
-          lableText="User Image"
-          valueText="@Sanjay"
-          apiData={authUser}
-        />
+        <UserImagDetail lableText="User Image" apiData={authUser} />
       </div>
     </div>
   );

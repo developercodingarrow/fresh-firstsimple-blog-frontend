@@ -6,11 +6,10 @@ import TabBar from "../../tabs/TabBar";
 import SidbarPagesComponent from "../../sidebards/SidbarPagesComponent";
 import SideBarFeatureList from "../../sidebards/SideBarFeatureList";
 import { AuthContext } from "@/src/_contextApi/authContext";
-import { featuresideBlogs } from "@/src/app/utils/blogsAction";
 
-export default function UserdashboardUi({ children }) {
+export default function UserdashboardUi({ children, featuredBlogs = [] }) {
   const { authUser } = useContext(AuthContext);
-  const [sidebarBlogs, setsidebarBlogs] = useState([]);
+
   const userpageLinks = [
     {
       text: "Home",
@@ -57,19 +56,6 @@ export default function UserdashboardUi({ children }) {
     },
   ];
 
-  const handelgetSidebarBlogs = async () => {
-    try {
-      const res = await featuresideBlogs();
-      setsidebarBlogs(res);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    handelgetSidebarBlogs();
-  }, []);
-
   return (
     <div className={styles.main_container}>
       <div className={styles.inner_container}>
@@ -82,6 +68,7 @@ export default function UserdashboardUi({ children }) {
               avtar_wrapper="userHeader_avtar"
               userImage={authUser?.userImg}
               imgDirectoryPath="/usersProfileImg"
+              pageLink={authUser?.userName}
             />
           </section>
           <div className={styles.tab_wrapper}>
@@ -108,7 +95,7 @@ export default function UserdashboardUi({ children }) {
           <div className={styles.sidebar_component_wrapper}>
             <SideBarFeatureList
               sectionTitle="featured blogs"
-              listData={sidebarBlogs}
+              listData={featuredBlogs}
             />
           </div>
         </div>

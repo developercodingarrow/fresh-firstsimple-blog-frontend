@@ -33,6 +33,7 @@ export default function useCustomForm() {
           radioOptions: input.options || [],
           onChange: (selectedOption) => setValue(input.name, selectedOption),
           selectedOption: watch(input.name),
+          optionlable: input.optionlable,
           inputLabel: input.label,
         };
         break;

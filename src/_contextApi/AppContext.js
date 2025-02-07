@@ -10,7 +10,7 @@ export default function AppContextProvider({ children }) {
   const [authDropDown, setauthDropDown] = useState(false);
   const [isfooterAuthPopUp, setisfooterAuthPopUp] = useState(false);
   const [isMobileSearchModel, setisMobileSearchModel] = useState(false);
-  const [isAppDrawer, setisAppDrawer] = useState(true);
+  const [isAppDrawer, setisAppDrawer] = useState(false);
   const [pageLoading, setpageLoading] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);

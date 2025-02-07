@@ -44,7 +44,7 @@ export default function OnlinePresenceWrapper() {
           valueText="Sanjay"
           icon="facebook"
           openModal={handelOpenInputModel}
-          modelHeading="Update Facbook Profile page"
+          modelHeading="update facbook profile"
           apiData={authUser}
           modelInputs={facbookinput}
           modelActionHandler={updatehsndler}
@@ -56,7 +56,7 @@ export default function OnlinePresenceWrapper() {
           valueText="@Sanjay"
           icon="twitter"
           openModal={handelOpenInputModel}
-          modelHeading="Update Twitter Profile page"
+          modelHeading="update x Profile"
           apiData={authUser}
           modelInputs={twitterinput}
           modelActionHandler={updatehsndler}
@@ -68,7 +68,7 @@ export default function OnlinePresenceWrapper() {
           valueText="@Sanjay"
           icon="instagram"
           openModal={handelOpenInputModel}
-          modelHeading="Update Instgram Profile page"
+          modelHeading="update instgram Profile"
           apiData={authUser}
           modelInputs={instagraminput}
           modelActionHandler={updatehsndler}
@@ -77,10 +77,9 @@ export default function OnlinePresenceWrapper() {
       <div className="mg_botom_lg">
         <SocialMediaDetail
           lableText="website"
-          valueText="@Sanjay"
           icon="website"
           openModal={handelOpenInputModel}
-          modelHeading="Update Webste Domain"
+          modelHeading="update Webste"
           apiData={authUser}
           modelInputs={webisteinput}
           modelActionHandler={updatehsndler}

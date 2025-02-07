@@ -14,8 +14,6 @@ export default function FooterAutn(props) {
   const { authData } = props;
   const footerRef = useRef();
 
-  console.log(authData);
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (footerRef.current && !footerRef.current.contains(event.target)) {

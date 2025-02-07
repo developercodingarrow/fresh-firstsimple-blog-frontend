@@ -21,7 +21,6 @@ export default function UserBioWrapper() {
   };
 
   const handelSubmitBio = async () => {
-    console.log("handelSubmitBio");
     try {
       const obj = {
         bio: bioContent,
@@ -31,11 +30,12 @@ export default function UserBioWrapper() {
       if (res.data.status === "success") {
         updateUserDetail(res.data.result);
         toast.success(res.data.message);
-        console.log(res);
-        setbtnToggle(false);
+        setTimeout(() => {
+          setbtnToggle(false);
+        }, 1000);
       }
     } catch (error) {
-      console.log(error);
+      toast.error("somthing went wrong");
     }
   };
 

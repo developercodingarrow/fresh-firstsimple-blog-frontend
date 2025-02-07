@@ -1,13 +1,20 @@
 "use client";
-import React, { useContext } from "react";
-import { useRouter } from "next/navigation";
+import React, { useContext, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import styles from "./css/appnavbar.module.css";
 import { createBlogFirstAction } from "@/src/app/utils/blogsAction";
 import { AppContext } from "@/src/_contextApi/AppContext";
 
 export default function ActionNavigation() {
-  const { pageLoading, setpageLoading } = useContext(AppContext);
+  const { setpageLoading } = useContext(AppContext);
   const router = useRouter();
+  const pathname = usePathname(); // Track current pathname
+
+  useEffect(() => {
+    // When pathname changes, stop loading
+    setpageLoading(false);
+  }, [pathname]);
+
   const handelCreateBlogAction = async () => {
     try {
       setpageLoading(true);
@@ -16,7 +23,6 @@ export default function ActionNavigation() {
       if (res.data.status === "success") {
         console.log(res.data.result._id);
         router.push(`/content/${res.data.result._id}`);
-        setpageLoading(false);
       }
     } catch (error) {
       console.log(error);

@@ -15,10 +15,12 @@ import {
   deleteCommentReplyAction,
   getBlogcomments,
 } from "@/src/app/utils/blogCommentActions";
+import { ModelsContext } from "@/src/_contextApi/ModelContextApi";
 export default function BlogComment(props) {
   const router = useRouter();
   const { blogComments, blogId, blogBy } = props;
   const { authUser } = useContext(AuthContext);
+  const { handelOpenAuthModel } = useContext(ModelsContext);
   const userId = authUser?._id;
   // State to manage comments
   const [comments, setComments] = useState([]);
@@ -175,7 +177,9 @@ export default function BlogComment(props) {
         </form>
       ) : (
         <div className={styles.not_logined_Bar}>
-          <div className="small_text">Tell us what you think... </div>
+          <div className="small_text" onClick={handelOpenAuthModel}>
+            Tell us what you think...{" "}
+          </div>
         </div>
       )}
 

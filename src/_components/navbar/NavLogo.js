@@ -8,6 +8,7 @@ export default function NavLogo() {
     <Link href={"/"} className={styles.logo_container}>
       <Image
         src={weblogo}
+        alt="LitVerseHub-logo"
         width={500}
         height={500}
         className={styles.logo_style}

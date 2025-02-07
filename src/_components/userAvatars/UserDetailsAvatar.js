@@ -17,7 +17,6 @@ export default function UserDetailsAvatar(props) {
   } = props;
 
   const date = formatDate(dateText);
-  console.log("Client-side dateText:", dateText);
 
   return (
     <Link

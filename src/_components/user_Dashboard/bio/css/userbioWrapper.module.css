@@ -22,6 +22,12 @@
   color: var(--th-text-black);
 }
 
+.content_text img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 @media only screen and (max-width: 600px) {
   .content_text {
     line-height: 1.2;

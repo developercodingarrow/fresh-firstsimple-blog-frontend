@@ -19,6 +19,16 @@
   align-items: center;
 }
 
+.mobile_onlycard_icon_details {
+  display: none;
+}
+
+.dekstop_onlycard_icon_details {
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+}
+
 .icon_details {
   color: var(--th-text-gray);
   font-size: 14px;
@@ -34,4 +44,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .mobile_onlycard_icon_details {
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+  }
+
+  .dekstop_onlycard_icon_details {
+    display: none;
+  }
 }

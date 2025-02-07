@@ -21,14 +21,19 @@ export async function blogLikeAction(formData) {
     });
 
     if (res.data.status === "success") {
-      console.log(res.data);
       return { data: res.data };
     }
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data.message || "Unknown error" };
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
-    return { error: error.message || "Request failed" };
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }
 
@@ -43,13 +48,18 @@ export async function blogViewCountAction(slug) {
     });
 
     if (res.data.status === "success") {
-      console.log(res.data);
       return { data: res.data };
     }
   } catch (error) {
     if (error.response) {
-      return { error: error.response.data.message || "Unknown error" };
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
     }
-    return { error: error.message || "Request failed" };
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
   }
 }

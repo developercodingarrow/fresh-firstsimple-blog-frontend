@@ -53,8 +53,9 @@ export default function MobileAppDrawer() {
                 <CircleImg avtar_wrapperStyle="maincard_avtar_wrapper" />
                 <BtnLinks
                   linkText="Login/Register"
+                  btnType="link_style"
                   hrflink="/auth/login"
-                  size="medium"
+                  size="small"
                 />{" "}
               </div>
             )}
@@ -95,11 +96,7 @@ export default function MobileAppDrawer() {
                 disabledBtn={false}
               />
             ) : (
-              <BtnLinks
-                linkText="login"
-                hrflink="/auth/login"
-                size="medium_fill"
-              />
+              <BtnLinks linkText="login" hrflink="/auth/login" size="medium" />
             )}
           </div>
         </div>

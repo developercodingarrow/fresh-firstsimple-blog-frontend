@@ -41,12 +41,16 @@ export default function UserAuthWrapper(props) {
           <CircleImg
             imgSrc={userData?.userImg}
             avtar_wrapperStyle={"navbar_avtar_wrapper"}
-            imgDirectoryPath="/usersProfileImg"
           />
           {authDropDown && <NavAuthDropDown data={userData} />}
         </div>
       ) : (
-        <BtnLinks linkText="login" hrflink="/auth/login" size="small" />
+        <BtnLinks
+          btnType="link_style"
+          linkText="login/Register"
+          hrflink="/auth/login"
+          size="medium_tag_links"
+        />
       )}
     </div>
   );
