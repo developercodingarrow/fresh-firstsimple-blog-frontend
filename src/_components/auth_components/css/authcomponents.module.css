@@ -1,6 +1,6 @@
 .main_container {
   width: 100%;
-  margin-top: 20px;
+  margin-top: var(--th-20px);
 }
 
 .inner_container {
@@ -25,12 +25,12 @@
   border-radius: 10px;
   box-shadow: var(--th-model-box-shadow);
   border: 1px solid var(--th-thin-border-color);
-  color: #fff;
+  color: var(--th-white-color);
 }
 
 .AuthColumn {
   width: 45%;
-  background-color: #fff;
+  background-color: var(--th-white-color);
   border-radius: 0 10px 10px 0;
   border: 1px solid var(--th-thin-border-color);
 }
@@ -44,18 +44,15 @@
 }
 
 .auth_form_wrapper {
-  margin-bottom: 20px;
+  margin-bottom: var(--th-20px);
 }
 
 .form_input_wrapper {
-  margin-bottom: 20px;
+  margin-bottom: var(--th-20px);
 }
 
 .form_input_filedBox {
   height: 80px;
-}
-
-.submit_btn_wrapper {
 }
 
 .auth_seprate {
@@ -90,6 +87,14 @@
 
 /* Tablets */
 @media only screen and (max-width: 1024px) {
+  .Intro_Column {
+    width: 35%;
+    padding: 20px;
+  }
+
+  .AuthColumn {
+    width: 65%;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -111,7 +116,7 @@
     font-size: 12px;
   }
   .form_input_wrapper {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
   .auth_seprate {
     display: flex;

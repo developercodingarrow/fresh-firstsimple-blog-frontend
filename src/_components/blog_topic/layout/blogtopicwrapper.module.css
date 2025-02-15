@@ -44,7 +44,13 @@
   color: var(--th-primary-hover-color);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1024px) {
+  .search_box {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
   .flex_header {
     flex-direction: column;
     justify-content: flex-start;

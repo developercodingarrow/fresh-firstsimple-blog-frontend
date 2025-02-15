@@ -1,3 +1,4 @@
+// (1 User Regestraion form filed
 export const userRegistraionInputs = [
   {
     id: 1,
@@ -9,6 +10,10 @@ export const userRegistraionInputs = [
     inputSize: "extra_large",
     validation: {
       required: "Name is required.",
+      minLength: {
+        value: 3, // Minimum length required
+        message: "Name must be at least 3 characters long.", // Error message
+      },
     },
   },
 
@@ -39,18 +44,22 @@ export const userRegistraionInputs = [
     inputSize: "extra_large",
     validation: {
       required: "Password is required.",
+      minLength: {
+        value: 8, // Minimum length required
+        message: "Password must be at least 8 characters long.", // Error message
+      },
     },
   },
 ];
 
+// (2 User Login form filed
 export const userLoginInputs = [
   {
     id: 1,
     name: "email",
     placeholder: "enter your Valid Email address !",
-    type: "text",
+    type: "email",
     lable: "Email",
-
     inputType: "text",
     inputSize: "extra_large",
     validation: {
@@ -76,25 +85,39 @@ export const userLoginInputs = [
     },
     validation: {
       required: "Password is required.",
+      minLength: {
+        value: 8, // Minimum length required
+        message: "Password must be at least 8 characters long.", // Error message
+      },
     },
   },
 ];
 
+// (3 User OTP form filed
 export const otpInputFiled = [
   {
     id: 1,
     name: "otp",
-    placeholder: "Enter Sent OTP !",
+    placeholder: "Enter Sent OTP!",
     type: "text",
-    lable: "OTP",
+    label: "OTP",
     inputType: "text",
     inputSize: "extra_large",
     validation: {
       required: "OTP is required.",
+      minLength: {
+        value: 6,
+        message: "OTP must be exactly 6 digits.",
+      },
+      maxLength: {
+        value: 6,
+        message: "OTP must be exactly 6 digits.",
+      },
     },
   },
 ];
 
+// (4 User Forgot password form filed
 export const forgotPasswordInputFileds = [
   {
     id: 1,
@@ -114,6 +137,7 @@ export const forgotPasswordInputFileds = [
   },
 ];
 
+// (5 User Reset password form filed
 export const resetPasswordInputFileds = [
   {
     id: 3,

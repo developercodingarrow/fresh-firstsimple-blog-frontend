@@ -50,6 +50,7 @@ export default function VerificationUi(props) {
         router.push("/");
       }
     } catch (error) {
+      toast.error("Oops! Something went wrong.");
       setisBtnLoadin(false);
     }
   };

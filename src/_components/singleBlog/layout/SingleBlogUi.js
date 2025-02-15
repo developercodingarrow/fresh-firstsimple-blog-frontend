@@ -1,18 +1,24 @@
 import React from "react";
 import styles from "./css/singleblogui.module.css";
+import dynamic from "next/dynamic";
 import dummyImg from "../../../../public/web-static-img/single-blog-thumblin.png";
 import Image from "next/image";
 import BlogComment from "../blogcomment/BlogComment";
 import Blogbreadcrumb from "../../breadcrumbs/Blog/Blogbreadcrumb";
 import SingleBlogActionBar from "../../actionbar/SingleBlogActionBar";
-import MobileCommentModel from "../../models/MobileCommentModel";
+const ClientMobileCommentModel = dynamic(
+  () => import("../../models/MobileCommentModel"),
+  {
+    ssr: false,
+  }
+);
 
 export default function SingleBlogUi(props) {
   const { data } = props;
 
   return (
     <div className={styles.main_container}>
-      <MobileCommentModel data={data} />
+      <ClientMobileCommentModel data={data} />
       <div className={styles.breadcrumb_wrapper}>
         <Blogbreadcrumb pageTitle={data?.blogTitle} />
       </div>

@@ -1,26 +1,51 @@
-import { Inter, Noto_Serif, Poppins } from "next/font/google";
-import MainAppNavbar from "@/src/_components/navbar/appnavbar/MainAppNavbar";
-
 import "../globals.css";
+import { Inter, Noto_Serif, Poppins } from "next/font/google";
+import dynamic from "next/dynamic";
+import MainAppNavbar from "@/src/_components/navbar/appnavbar/MainAppNavbar";
 import HomePageLayout from "@/src/_components/home/layout/HomePageLayout";
 import MainFooter from "@/src/_components/footer/MainFooter";
 import AuthContextProvider from "@/src/_contextApi/authContext";
 import ModelContextProvider from "@/src/_contextApi/ModelContextApi";
-import AuthModel from "@/src/_components/models/AuthModel";
-import ReportModel from "@/src/_components/models/ReportModel";
 import { getSession } from "../lib/authentication";
 import AppContextProvider from "@/src/_contextApi/AppContext";
-import {
-  featuredTagsListAction,
-  verifiedTagsListAction,
-} from "../utils/tagActions";
-import TagContextProvider from "@/src/_contextApi/TagContextApi";
+import { featuredTagsListAction } from "../utils/tagActions";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GOOGLE_AUTH_CLIENT_ID } from "@/config";
-import MobileSearchModel from "@/src/_components/models/MobileSearchModel";
 import GoogleOneTap from "@/src/_components/googleAuth/GoogleOneTap";
-import MobileAppDrawer from "@/src/_components/app_Drawer/MobileAppDrawer";
-import CustomePageLoading from "@/src/_components/loading/CustomePageLoading";
+
+const ClientCustomePageLoading = dynamic(
+  () => import("../../_components/loading/CustomePageLoading"),
+  {
+    ssr: false,
+  }
+);
+const ClientReportModel = dynamic(
+  () => import("../../_components/models/ReportModel"),
+  {
+    ssr: false,
+  }
+);
+
+const ClientAuthModel = dynamic(
+  () => import("../../_components/models/AuthModel"),
+  {
+    ssr: false,
+  }
+);
+
+const ClientMobileAppDrawer = dynamic(
+  () => import("../../_components/app_Drawer/MobileAppDrawer"),
+  {
+    ssr: false,
+  }
+);
+
+const ClientMobileSearchModel = dynamic(
+  () => import("../../_components/models/MobileSearchModel"),
+  {
+    ssr: false,
+  }
+);
 
 const inter = Inter({
   subsets: ["latin"],
@@ -50,7 +75,6 @@ export const metadata = {
 export default async function homeLayout({ children }) {
   const userDetails = await getSession();
   const featuredTags = await featuredTagsListAction();
-  const verifiedTags = await verifiedTagsListAction();
 
   return (
     <html lang="en">
@@ -59,34 +83,32 @@ export default async function homeLayout({ children }) {
       >
         <AuthContextProvider authData={userDetails}>
           <GoogleOAuthProvider clientId={GOOGLE_AUTH_CLIENT_ID}>
-            <TagContextProvider verifiedTags={verifiedTags}>
-              <AppContextProvider>
-                <ModelContextProvider>
-                  <CustomePageLoading />
-                  <MobileAppDrawer />
-                  <AuthModel />
-                  <ReportModel />
-                  <MobileSearchModel suggestList={featuredTags} />
-                  <div>
-                    <MainAppNavbar
-                      authData={userDetails}
-                      suggestList={featuredTags}
-                    />
-                    {typeof userDetails !== "undefined" && !userDetails && (
-                      <GoogleOneTap />
-                    )}
-                  </div>
-                  <div className="layout_children_wrapper">
-                    <HomePageLayout featuredTags={featuredTags}>
-                      {children}
-                    </HomePageLayout>
-                  </div>
-                  <div>
-                    <MainFooter authData={userDetails} />
-                  </div>
-                </ModelContextProvider>
-              </AppContextProvider>
-            </TagContextProvider>
+            <AppContextProvider>
+              <ModelContextProvider>
+                <ClientCustomePageLoading />
+                <ClientMobileAppDrawer />
+                <ClientAuthModel />
+                <ClientReportModel />
+                <ClientMobileSearchModel suggestList={featuredTags} />
+                <div>
+                  <MainAppNavbar
+                    authData={userDetails}
+                    suggestList={featuredTags}
+                  />
+                  {typeof userDetails !== "undefined" && !userDetails && (
+                    <GoogleOneTap />
+                  )}
+                </div>
+                <div className="layout_children_wrapper">
+                  <HomePageLayout featuredTags={featuredTags}>
+                    {children}
+                  </HomePageLayout>
+                </div>
+                <div>
+                  <MainFooter authData={userDetails} />
+                </div>
+              </ModelContextProvider>
+            </AppContextProvider>
           </GoogleOAuthProvider>
         </AuthContextProvider>
       </body>

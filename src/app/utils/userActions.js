@@ -4,6 +4,9 @@ import { cookies } from "next/headers"; // Import the cookies function
 import CryptoJS from "crypto-js";
 import { API_BASE_URL } from "@/config";
 
+const encryptionKey = process.env.NEXT_PUBLIC_ENCRYPTION_KEY;
+
+// 9) Update USER PROFILE API
 export async function updateUser(formData) {
   const cookieStore = cookies();
   const authToken = cookieStore.get("jwt")?.value;
@@ -38,35 +41,7 @@ export async function updateUser(formData) {
   }
 }
 
-export async function userDetailsPublic(slug) {
-  const url = `${API_BASE_URL}/user/user-details/${slug}`;
-  const method = "get";
-  try {
-    const res = await axios({
-      method,
-      url,
-      withCredentials: true,
-    });
-
-    if (res.data.status === "success") {
-      return res.data.results; // Return the 'results' array
-    } else {
-      return {}; // Return an empty Object if not successful
-    }
-  } catch (error) {
-    if (error.response) {
-      return {
-        error: error.response.data.message || "Unknown error",
-        statusCode: error.response.status || 500,
-      };
-    }
-    return {
-      error: error.message || "Request failed",
-      statusCode: 500,
-    };
-  }
-}
-
+// 10) Update USER PROFILE PIC API
 export async function updateUserProfilePic(formData) {
   const cookieStore = cookies();
   const authToken = cookieStore.get("jwt")?.value;
@@ -103,7 +78,7 @@ export async function updateUserProfilePic(formData) {
     };
   }
 }
-
+// 11) Remove USER PROFILE PIC API
 export async function userImgRemove() {
   const cookieStore = cookies();
   const authToken = cookieStore.get("jwt")?.value;
@@ -135,4 +110,17 @@ export async function userImgRemove() {
       statusCode: 500,
     };
   }
+}
+
+export async function updateUserDetail(data) {
+  const userData = JSON.stringify(data);
+  const encryptedData = CryptoJS.AES.encrypt(
+    userData,
+    encryptionKey
+  ).toString();
+
+  // Store the encrypted data in cookies
+  cookies().set("user", encryptedData, {
+    httpOnly: false,
+  });
 }

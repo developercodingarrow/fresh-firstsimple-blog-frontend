@@ -25,7 +25,16 @@
   position: relative;
 }
 
+@media only screen and (max-width: 1024px) {
+  .page_tag {
+    font-size: 1.4rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .page_tag {
+    font-size: 1.4rem;
+  }
   .pagination_wrapper {
     width: 100%;
     display: flex;

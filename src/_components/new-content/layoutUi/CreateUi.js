@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import styles from "./css/createui.module.css";
 import ClickTextBtn from "../../buttons/ClickTextBtn";
@@ -127,6 +127,12 @@ export default function CreateUi(props) {
       setisBtnLoadin(true);
       setpageLoading(true);
       const res = await updateBlogContent(blogData, slug);
+      if (res.error) {
+        toast.error(res.error);
+        setisBtnLoadin(false);
+        setpageLoading(false);
+        return;
+      }
       if (res.data.status === "success") {
         toast.success(res.data.message);
         setisBtnLoadin(false);
@@ -135,7 +141,7 @@ export default function CreateUi(props) {
     } catch (error) {
       setisBtnLoadin(false);
       console.log(error);
-      toast.error("somthing went wrog");
+      toast.error("Oops! Something went wrong.");
       setpageLoading(false);
     }
   };

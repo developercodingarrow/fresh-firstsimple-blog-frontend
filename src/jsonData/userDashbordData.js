@@ -1,3 +1,4 @@
+// (1 user name input filed
 export const nameinput = [
   {
     id: 1,
@@ -8,10 +9,14 @@ export const nameinput = [
     inputType: "text",
     validation: {
       required: "Name is required.",
+      minLength: {
+        value: 3, // Minimum length required
+        message: "Name must be at least 3 characters long.", // Error message
+      },
     },
   },
 ];
-
+// (2 username input filed
 export const userNameinput = [
   {
     id: 2,
@@ -21,7 +26,49 @@ export const userNameinput = [
     inputSize: "large",
     inputType: "text",
     validation: {
-      required: "Name is required.",
+      required: "username is required.",
+    },
+  },
+];
+// (3 facbook input filed
+export const facbookinput = [
+  {
+    id: 4,
+    name: "facebook",
+    placeholder: "facebook !",
+    type: "text",
+    inputSize: "large",
+    inputType: "text",
+    validation: {
+      required: "Facebook profile link is required.",
+    },
+  },
+];
+// (4 twiiter input filed
+export const twitterinput = [
+  {
+    id: 5,
+    name: "twitter",
+    placeholder: "twitter !",
+    type: "text",
+    inputSize: "large",
+    inputType: "text",
+    validation: {
+      required: "X (Twitter) profile link is required.",
+    },
+  },
+];
+// (4 Website input filed
+export const webisteinput = [
+  {
+    id: 3,
+    name: "businessWebsite",
+    placeholder: "Website !",
+    type: "text",
+    inputSize: "large",
+    inputType: "text",
+    validation: {
+      required: "Website URL is required.",
     },
   },
 ];
@@ -49,48 +96,6 @@ export const bioinput = [
     inputType: "textarea",
     validation: {
       required: "About Content is required.",
-    },
-  },
-];
-
-export const webisteinput = [
-  {
-    id: 3,
-    name: "businessWebsite",
-    placeholder: "Website !",
-    type: "text",
-    inputSize: "large",
-    inputType: "text",
-    validation: {
-      required: "Website is required.",
-    },
-  },
-];
-
-export const facbookinput = [
-  {
-    id: 4,
-    name: "facebook",
-    placeholder: "facebook !",
-    type: "text",
-    inputSize: "large",
-    inputType: "text",
-    validation: {
-      required: "facebook profile link is required.",
-    },
-  },
-];
-
-export const twitterinput = [
-  {
-    id: 5,
-    name: "twitter",
-    placeholder: "twitter !",
-    type: "text",
-    inputSize: "large",
-    inputType: "text",
-    validation: {
-      required: "twitter profile link is required.",
     },
   },
 ];

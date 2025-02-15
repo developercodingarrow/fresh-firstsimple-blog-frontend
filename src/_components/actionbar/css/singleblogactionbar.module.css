@@ -51,6 +51,7 @@
     display: flex;
     column-gap: 5px;
     align-items: center;
+    cursor: pointer;
   }
 
   .dekstop_onlycard_icon_details {

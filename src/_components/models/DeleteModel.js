@@ -17,7 +17,11 @@ export default function DeleteModel(props) {
     setisBtnLoadin(true);
     try {
       const res = await actionHandler({ _id: actionID });
-      console.log(res);
+      if (res.error) {
+        setisBtnLoadin(false);
+        toast.error(res.error);
+        return;
+      }
 
       if (res.data.status === "success") {
         toast.success(res.data.message);
@@ -26,7 +30,7 @@ export default function DeleteModel(props) {
         handelCloseDeleteModel();
       }
     } catch (error) {
-      console.log(error);
+      toast.error("Oops! Something went wrong.");
       setisBtnLoadin(false);
     }
   };

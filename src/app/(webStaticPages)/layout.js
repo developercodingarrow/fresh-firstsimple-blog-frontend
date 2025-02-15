@@ -1,7 +1,8 @@
+import "../globals.css";
 import { Inter, Noto_Serif, Poppins } from "next/font/google";
+import dynamic from "next/dynamic";
 import MainFooter from "@/src/_components/footer/MainFooter";
 import MainAppNavbar from "@/src/_components/navbar/appnavbar/MainAppNavbar";
-import UserdashboardUi from "@/src/_components/user_Dashboard/layout/UserdashboardUi";
 import AppContextProvider from "@/src/_contextApi/AppContext";
 import AuthContextProvider from "@/src/_contextApi/authContext";
 import ImgModelContextProvider from "@/src/_contextApi/ImgModelContextApi";
@@ -9,10 +10,44 @@ import ModelContextProvider from "@/src/_contextApi/ModelContextApi";
 import { getSession } from "../lib/authentication";
 import InputModelContextProvider from "@/src/_contextApi/InputModelContextApi";
 import { featuredTagsListAction } from "../utils/tagActions";
-import DeleteModel from "@/src/_components/models/DeleteModel";
+
 import WebStaticPageLayout from "@/src/_components/web_static/WebStaticPageLayout";
-import MobileAppDrawer from "@/src/_components/app_Drawer/MobileAppDrawer";
-import MobileSearchModel from "@/src/_components/models/MobileSearchModel";
+import { GOOGLE_AUTH_CLIENT_ID } from "@/config";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
+const ClientCustomePageLoading = dynamic(
+  () => import("../../_components/loading/CustomePageLoading"),
+  {
+    ssr: false,
+  }
+);
+const ClientReportModel = dynamic(
+  () => import("../../_components/models/ReportModel"),
+  {
+    ssr: false,
+  }
+);
+
+const ClientAuthModel = dynamic(
+  () => import("../../_components/models/AuthModel"),
+  {
+    ssr: false,
+  }
+);
+
+const ClientMobileAppDrawer = dynamic(
+  () => import("../../_components/app_Drawer/MobileAppDrawer"),
+  {
+    ssr: false,
+  }
+);
+
+const ClientMobileSearchModel = dynamic(
+  () => import("../../_components/models/MobileSearchModel"),
+  {
+    ssr: false,
+  }
+);
 
 const inter = Inter({
   subsets: ["latin"],
@@ -49,29 +84,33 @@ export default async function StaticLayout({ children }) {
       <head />
       <body>
         <AuthContextProvider authData={userDetails}>
-          <AppContextProvider>
-            <InputModelContextProvider>
-              <ModelContextProvider>
-                <ImgModelContextProvider>
-                  <DeleteModel />
-                  <MobileAppDrawer />
-                  <MobileSearchModel suggestList={featuredTags} />
-                  <div>
-                    <MainAppNavbar
-                      authData={userDetails}
-                      suggestList={featuredTags}
-                    />
-                  </div>
-                  <div className="static_layout_children_wrapper">
-                    <WebStaticPageLayout>{children}</WebStaticPageLayout>
-                  </div>
-                  <div>
-                    <MainFooter authData={userDetails} />
-                  </div>
-                </ImgModelContextProvider>
-              </ModelContextProvider>
-            </InputModelContextProvider>
-          </AppContextProvider>
+          <GoogleOAuthProvider clientId={GOOGLE_AUTH_CLIENT_ID}>
+            <AppContextProvider>
+              <InputModelContextProvider>
+                <ModelContextProvider>
+                  <ImgModelContextProvider>
+                    <ClientCustomePageLoading />
+                    <ClientMobileAppDrawer />
+                    <ClientAuthModel />
+                    <ClientReportModel />
+                    <ClientMobileSearchModel suggestList={featuredTags} />
+                    <div>
+                      <MainAppNavbar
+                        authData={userDetails}
+                        suggestList={featuredTags}
+                      />
+                    </div>
+                    <div className="static_layout_children_wrapper">
+                      <WebStaticPageLayout>{children}</WebStaticPageLayout>
+                    </div>
+                    <div>
+                      <MainFooter authData={userDetails} />
+                    </div>
+                  </ImgModelContextProvider>
+                </ModelContextProvider>
+              </InputModelContextProvider>
+            </AppContextProvider>
+          </GoogleOAuthProvider>
         </AuthContextProvider>
       </body>
     </html>

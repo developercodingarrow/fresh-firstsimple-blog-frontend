@@ -81,6 +81,7 @@ export default function useCustomeAuthForm(customeInputs, formType) {
         specificProps = {
           inputplaceholder: input.placeholder,
           filed_container: "filedContainer",
+          inputSize: input.inputSize,
           inputType: input.type,
         };
 

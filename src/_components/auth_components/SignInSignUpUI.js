@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import styles from "./css/authcomponents.module.css";
 import useCustomeAuthForm from "@/src/_custome-hooks/useCustomeAuthForm";
-import ClickTextBtn from "../buttons/ClickTextBtn";
 import Link from "next/link";
 import SubmitBtn from "../buttons/SubmitBtn";
 import { AppContext } from "@/src/_contextApi/AppContext";
@@ -51,6 +50,7 @@ export default function SignInSignUpUI(props) {
         }
       }
     } catch (error) {
+      toast.error("Oops! Something went wrong.");
       setisBtnLoadin(false);
     }
   };
@@ -66,8 +66,7 @@ export default function SignInSignUpUI(props) {
           <div>
             <h2>Elevate Your Digital Presence</h2>
             <div className="medium__text">
-              The ultimate platform for creating high-quality digital content
-              that engages and converts.
+              Join LitVerseHub – Where Writers & Readers Connect.
             </div>
             <div></div>
           </div>

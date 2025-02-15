@@ -125,7 +125,28 @@
   cursor: not-allowed;
 }
 
+@media only screen and (max-width: 1024px) {
+  .medium_tag_links {
+    font-size: 1.4rem;
+  }
+
+  .medium {
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 0.5rem;
+    line-height: 1.4;
+    letter-spacing: 0.05rem;
+  }
+}
+
 @media only screen and (max-width: 600px) {
+  /* final refactor start */
+  .medium_tag_links {
+    font-size: 1.4rem;
+  }
+
+  /* final refactor end */
   .extra_large {
     font-size: 14px;
     font-family: var(--font-inter);

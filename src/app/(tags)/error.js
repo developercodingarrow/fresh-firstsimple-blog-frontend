@@ -2,12 +2,16 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Error({ error, reset }) {
-  useEffect(() => {
-    // Log the error to an error reporting service
-    console.error("error-", error);
-  }, [error]);
+  const router = useRouter();
+  useEffect(() => {}, [error]);
+
+  const handelrefreshpage = () => {
+    router.refresh();
+    router.push("/");
+  };
 
   return (
     <div className={"errorContainer"}>
@@ -16,7 +20,7 @@ export default function Error({ error, reset }) {
         An unexpected error occurred. Please try again or contact support if the
         problem persists.
       </p>
-      <button onClick={reset} className={"retryButton"}>
+      <button onClick={handelrefreshpage} className={"retryButton"}>
         Retry
       </button>
       <div>

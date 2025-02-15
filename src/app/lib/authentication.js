@@ -10,8 +10,6 @@ export async function getSession() {
     const cookieStore = cookies();
     const encryptedUserData = cookieStore.get("user")?.value;
 
-    console.log("Encrypted User Data:"); // Debugging
-
     if (!encryptedUserData) {
       console.error("No user cookie found.");
       return null;
@@ -20,8 +18,6 @@ export async function getSession() {
     // Decrypt the encrypted data
     const bytes = CryptoJS.AES.decrypt(encryptedUserData, encryptionKey);
     const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
-
-    console.log("Decrypted User Data:"); // Debugging
 
     if (!decryptedData) {
       console.error("Decryption failed. Output is empty.");

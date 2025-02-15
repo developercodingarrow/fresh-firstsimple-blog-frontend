@@ -63,7 +63,6 @@ export default function ChipSelector(props) {
   };
 
   const removeTag = (tagToRemove) => {
-    console.log(tagToRemove);
     setTags(tags.filter((tag) => tag !== tagToRemove));
   };
 
@@ -72,13 +71,17 @@ export default function ChipSelector(props) {
       setpageLoading(true);
       const formData = { tagName: tags };
       const res = await upadteBlogTags(formData, slug);
+      if (res.error) {
+        toast.error(res.error);
+        setpageLoading(false);
+        return;
+      }
       if (res.data.status === "success") {
         toast.success(res.data.message);
         setpageLoading(false);
       }
-    } catch (err) {
-      setSuccess(null);
-      toast.error("somthing went wrong");
+    } catch (error) {
+      toast.error("Oops! Something went wrong.");
       setpageLoading(false);
     }
   };

@@ -88,6 +88,13 @@
   border-radius: 5px;
 }
 
+@media only screen and (max-width: 1024px) {
+  .input_style {
+    font-size: 1.4rem;
+    border-radius: 5px;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .main_container {
     border: 1px solid var(--th-thin-border-color);

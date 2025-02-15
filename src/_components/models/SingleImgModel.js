@@ -42,32 +42,43 @@ export default function SingleImgModel(props) {
       setisBtnLoadin(true);
       setpageLoading(true);
       const res = await updateHandler(image, imgData, "blogThumblin", id);
-      console.log("uplod res--", res);
 
       if (res.error) {
         toast.error(res.error);
         setisBtnLoadin(false);
         setpageLoading(false);
+        router.refresh();
+        return;
       }
 
       if (res.data.status === "success") {
         toast.success(res.data.message);
         setisBtnLoadin(false);
         setpageLoading(false);
+        router.refresh();
       }
     } catch (error) {
-      toast.error("somthing went wrong");
+      toast.error("Oops! Something went wrong.");
       setisBtnLoadin(false);
       setpageLoading(false);
+      router.refresh();
     }
   };
 
   const handelDeleteApiImg = async () => {
     try {
       const res = await deleteBlogThumblinImages(apiData._id);
-      console.log(res);
+    
+      if (res.error) {
+        toast.error(res.error);
+        return;
+      }
+      if (res.data.status === "success") {
+        toast.success(res.data.message);
+        router.refresh();
+      }
     } catch (error) {
-      console.log(error);
+      toast.error("Oops! Something went wrong.");
     }
   };
   return (

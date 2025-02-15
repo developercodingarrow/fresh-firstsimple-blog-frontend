@@ -19,13 +19,10 @@ export function useCustomApiForm(apiData = {}, inputFields = []) {
     defaultValues: filteredData,
   });
 
+  // ✅ Ensure form values are only updated when apiData actually changes
   useEffect(() => {
-    if (filteredData) {
-      Object.entries(filteredData).forEach(([name, value]) => {
-        setValue(name, value);
-      });
-    }
-  }, [filteredData, setValue]);
+    reset(filteredData); // Instead of setValue, reset ensures all values update properly
+  }, [apiData]); // ✅ Depend only on `apiData`, not `filteredData`
 
   const renderInput = (input, dynamicData) => {
     let InputComponent, specificProps;
@@ -64,5 +61,7 @@ export function useCustomApiForm(apiData = {}, inputFields = []) {
     setValue,
     renderInput,
     reset,
+    isValid: formState.isValid, // Access isValid from formState
+    errors: formState.errors,
   };
 }

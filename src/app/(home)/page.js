@@ -8,7 +8,7 @@ import Pagination from "./Pagination";
 import NotDataFound from "@/src/_components/CustomErrors/NotDataFound";
 
 async function getData(page = 1, limit = 1, tag) {
-  const url = `${API_BASE_URL}/blog/all-public-blogs?limit=${limit}&page=${page}&tag=${tag}`;
+  const url = `${API_BASE_URL}/public-blog/all-public-blogs?limit=${limit}&page=${page}&tag=${tag}`;
   try {
     const response = await fetch(url, { cache: "no-store" }); // Disable caching for dynamic content
     if (!response.ok) {
@@ -19,7 +19,7 @@ async function getData(page = 1, limit = 1, tag) {
     const data = await response.json(); // Parse JSON data
     return data; // Assuming the API returns { result, totalPages }
   } catch (error) {
-    return { result: [] }; // Default fallback if the request fails
+    throw new Error(`Failed to fetch data: ${error}`);
   }
 }
 

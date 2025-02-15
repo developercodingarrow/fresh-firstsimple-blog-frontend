@@ -73,6 +73,38 @@ export const tagBlogsAction = async (slug) => {
   }
 };
 
+// 22) Featured Side Blog  Api
+export const featuresideBlogs = async () => {
+  let url = `${API_BASE_URL}/public-blog/featured-side-blogs`;
+  const method = "get";
+
+  try {
+    const res = await axios({
+      method,
+      url,
+      withCredentials: true,
+    });
+
+    if (res.data.status === "success") {
+      return res.data.result;
+    } else {
+      return []; // Return an empty array if not successful
+    }
+  } catch (error) {
+    if (error.response) {
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
+    }
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
+  }
+};
+
+// 24) Create Blog First Action Api
 export async function createBlogFirstAction() {
   const cookieStore = cookies();
   const authToken = cookieStore.get("jwt")?.value;
@@ -106,6 +138,41 @@ export async function createBlogFirstAction() {
   }
 }
 
+// 25) Update Blog Content Api
+export async function updateBlogContent(formData, slug) {
+  const cookieStore = cookies();
+  const authToken = cookieStore.get("jwt")?.value;
+  const url = `${API_BASE_URL}/blog/update-blog-content/${slug}`;
+  const method = "post";
+  try {
+    const res = await axios({
+      method,
+      url,
+      data: formData,
+      headers: {
+        Authorization: `Bearer ${authToken}`, // Add Authorization header
+      },
+      withCredentials: true,
+    });
+
+    if (res.data.status === "success") {
+      console.log(res.data);
+      return { data: res.data };
+    }
+  } catch (error) {
+    if (error.response) {
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
+    }
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
+  }
+}
+// 26) user Published Blog Api
 export async function userPublisedBlogsAction(authToken) {
   const url = `${API_BASE_URL}/blog/user-published-blogs`;
   const method = "get";
@@ -137,7 +204,7 @@ export async function userPublisedBlogsAction(authToken) {
     };
   }
 }
-
+// 27) user Draft Blog Api
 export async function userDraftBlogsAction(authToken) {
   const url = `${API_BASE_URL}/blog/user-draft-blogs`;
   const method = "get";
@@ -169,7 +236,7 @@ export async function userDraftBlogsAction(authToken) {
     };
   }
 }
-
+// 28) Blog Update to Draft Api
 export async function updateToDraft(formData) {
   const cookieStore = cookies();
   const authToken = cookieStore.get("jwt")?.value;
@@ -204,6 +271,7 @@ export async function updateToDraft(formData) {
   }
 }
 
+// 29) Blog Delete Api
 export async function deleteBlogAction(formData) {
   const cookieStore = cookies();
   const authToken = cookieStore.get("jwt")?.value;
@@ -238,40 +306,7 @@ export async function deleteBlogAction(formData) {
   }
 }
 
-export async function updateBlogContent(formData, slug) {
-  const cookieStore = cookies();
-  const authToken = cookieStore.get("jwt")?.value;
-  const url = `${API_BASE_URL}/blog/update-blog-content/${slug}`;
-  const method = "post";
-  try {
-    const res = await axios({
-      method,
-      url,
-      data: formData,
-      headers: {
-        Authorization: `Bearer ${authToken}`, // Add Authorization header
-      },
-      withCredentials: true,
-    });
-
-    if (res.data.status === "success") {
-      console.log(res.data);
-      return { data: res.data };
-    }
-  } catch (error) {
-    if (error.response) {
-      return {
-        error: error.response.data.message || "Unknown error",
-        statusCode: error.response.status || 500,
-      };
-    }
-    return {
-      error: error.message || "Request failed",
-      statusCode: 500,
-    };
-  }
-}
-
+// 30) Get Single Blog For Update Api
 export async function getSingleAuthBlog(slug) {
   const cookieStore = cookies();
   const authToken = cookieStore.get("jwt")?.value;
@@ -305,7 +340,7 @@ export async function getSingleAuthBlog(slug) {
     };
   }
 }
-
+// 31) Update Blog Thumblin Api
 export async function UpdateBlogThumblin(formData, projectId) {
   const cookieStore = cookies();
   const authToken = cookieStore.get("jwt")?.value;
@@ -342,6 +377,41 @@ export async function UpdateBlogThumblin(formData, projectId) {
   }
 }
 
+// 32) Delete Blog Thumblin Api
+export async function deleteBlogThumblinImages(projectId) {
+  const cookieStore = cookies();
+  const authToken = cookieStore.get("jwt")?.value;
+  const url = `${API_BASE_URL}/blog/delete-blog-thumblin/${projectId}`;
+  const method = "delete";
+  try {
+    const res = await axios({
+      method,
+      url,
+      headers: {
+        Authorization: `Bearer ${authToken}`, // Add Authorization header
+      },
+      withCredentials: true,
+    });
+
+    if (res.data.status === "success") {
+      console.log(res.data);
+      return { data: res.data };
+    }
+  } catch (error) {
+    if (error.response) {
+      return {
+        error: error.response.data.message || "Unknown error",
+        statusCode: error.response.status || 500,
+      };
+    }
+    return {
+      error: error.message || "Request failed",
+      statusCode: 500,
+    };
+  }
+}
+
+// 33) Update Blog Tags Api
 export async function upadteBlogTags(formData, slug) {
   const cookieStore = cookies();
   const authToken = cookieStore.get("jwt")?.value;
@@ -376,69 +446,7 @@ export async function upadteBlogTags(formData, slug) {
   }
 }
 
-export const featuresideBlogs = async () => {
-  let url = `${API_BASE_URL}/blog/featured-side-blogs`;
-  const method = "get";
-
-  try {
-    const res = await axios({
-      method,
-      url,
-      withCredentials: true,
-    });
-
-    if (res.data.status === "success") {
-      return res.data.result;
-    } else {
-      return []; // Return an empty array if not successful
-    }
-  } catch (error) {
-    if (error.response) {
-      return {
-        error: error.response.data.message || "Unknown error",
-        statusCode: error.response.status || 500,
-      };
-    }
-    return {
-      error: error.message || "Request failed",
-      statusCode: 500,
-    };
-  }
-};
-
-export async function deleteBlogThumblinImages(projectId) {
-  const cookieStore = cookies();
-  const authToken = cookieStore.get("jwt")?.value;
-  const url = `${API_BASE_URL}/blog/delete-blog-thumblin/${projectId}`;
-  const method = "delete";
-  try {
-    const res = await axios({
-      method,
-      url,
-      headers: {
-        Authorization: `Bearer ${authToken}`, // Add Authorization header
-      },
-      withCredentials: true,
-    });
-
-    if (res.data.status === "success") {
-      console.log(res.data);
-      return { data: res.data };
-    }
-  } catch (error) {
-    if (error.response) {
-      return {
-        error: error.response.data.message || "Unknown error",
-        statusCode: error.response.status || 500,
-      };
-    }
-    return {
-      error: error.message || "Request failed",
-      statusCode: 500,
-    };
-  }
-}
-
+// 34) Report Blog  Api
 export async function reportBlogAction(formData) {
   const cookieStore = cookies();
   const authToken = cookieStore.get("jwt")?.value;

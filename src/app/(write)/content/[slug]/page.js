@@ -11,13 +11,13 @@ export const metadata = {
 async function getData(slug) {
   try {
     const res = await getSingleAuthBlog(slug);
-
-    // Handle blog fetch failure
-    if (res?.error) {
-      throw new Error(res.error); // Properly throw the error
+    if (res.error) {
+      throw new Error(`${res.error}`);
     }
-
-    return await res.result;
+    if (res.status === "success") {
+      return res.result;
+    }
+    // Handle blog fetch failure
   } catch (error) {
     throw new Error(`${error}`);
   }

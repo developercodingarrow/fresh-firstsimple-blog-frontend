@@ -63,7 +63,18 @@
   cursor: pointer;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1024px) {
+  .dekstop_footer_wrapper {
+    display: flex;
+    border: 1px solid var(--th-thin-border-color);
+    padding-top: 50px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 50px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
   .dekstop_footer_wrapper {
     display: none;
   }

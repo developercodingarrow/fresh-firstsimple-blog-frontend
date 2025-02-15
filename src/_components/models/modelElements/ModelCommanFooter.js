@@ -8,13 +8,18 @@ import SubmitBtn from "../../buttons/SubmitBtn";
 import { AppContext } from "@/src/_contextApi/AppContext";
 
 export default function ModelCommanFooter(props) {
-  const { actionType, btnText, clickBtnHandel } = props;
+  const { actionType, btnText, clickBtnHandel, btnValid } = props;
   const { isBtnLoadin } = useContext(AppContext);
 
   return (
     <div className={styles.model_footer}>
       {actionType === "submit" && (
-        <SubmitBtn btnText="Update" btnLoading={isBtnLoadin} size="medium" />
+        <SubmitBtn
+          btnText="Update"
+          btnLoading={isBtnLoadin}
+          size="medium"
+          disabledBtn={btnValid}
+        />
       )}
       {actionType === "click" && (
         <ClickTextBtn

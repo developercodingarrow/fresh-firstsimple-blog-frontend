@@ -13,12 +13,12 @@ export default function SingUpWrapper() {
         formInputs={userRegistraionInputs}
         formType="SINGUP"
         formHandel={userRegisterAction}
-        btnText="Register"
+        btnText="Join Now"
         userAuthData={authUser}
         formheading="Create an account"
-        suHeading="Already have an Account?"
+        suHeading="Already have an account ?"
         footerLink="auth/login"
-        footerText="Login"
+        footerText="Log in"
       />
     </div>
   );

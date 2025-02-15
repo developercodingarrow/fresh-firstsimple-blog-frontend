@@ -66,6 +66,17 @@
   color: var(--th-primary-color);
 }
 
+@media only screen and (max-width: 1024px) {
+  .tab_container {
+    height: 40px;
+  }
+
+  .arrow_box {
+    width: 25px;
+    font-size: 2rem;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .tab_container {
     height: 40px;
@@ -73,7 +84,7 @@
 
   .arrow_box {
     width: 25px;
-    font-size: 20px;
+    font-size: 2rem;
   }
   .sticky {
     width: 100%;

@@ -36,7 +36,7 @@
 
 .card_thumblin {
   width: 140px;
-  height: 140px;
+  height: 100px;
   object-fit: contain;
   border-radius: 8px;
 }
@@ -77,6 +77,13 @@
 .icon_details {
   font-weight: 300;
   font-family: var(--th-font-family);
+}
+
+@media only screen and (max-width: 1024px) {
+  .card_thumblin {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 @media only screen and (max-width: 600px) {

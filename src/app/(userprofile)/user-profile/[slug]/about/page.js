@@ -1,6 +1,7 @@
-import React, { Suspense } from "react";
+import React from "react";
 import styles from "../../../page.module.css";
 import { API_BASE_URL } from "@/config";
+import CustomeMsg from "@/src/_components/CustomErrors/CustomeMsg";
 import NotDataFound from "@/src/_components/CustomErrors/NotDataFound";
 
 export default async function UserAboutpage(pathname) {
@@ -9,43 +10,34 @@ export default async function UserAboutpage(pathname) {
   let data;
   try {
     // Fetch the web stats using the auth token
-    const res = await fetch(`${API_BASE_URL}/user/user-bio/${slug}`, {
-      method: "GET", // GET request to fetch the blog
-      credentials: "include", // Include cookies in the request
-      headers: {
-        "Content-Type": "application/json", // Ensure this is set to JSON
-      },
+    const res = await fetch(`${API_BASE_URL}/user-profile/user-bio/${slug}`, {
+      method: "GET",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store", // 🚀 Ensure fresh data
     });
+    const initialdata = await res.json();
+    if (initialdata.status === "Fails") {
+      return <CustomeMsg msg={initialdata.message} />;
+    }
 
-    console.log("user profile-aout us---", res);
-
-    const initalData = await res.json();
-    if (initalData.status === "success") {
-      if (initalData.result.bio.trim().length <= 3) {
-        data = {
-          bio: "<p>User has not updated their bio yet.</p>",
-        };
-      } else {
-        data = initalData.result;
-      }
+    if (initialdata.status === "success") {
+      data = initialdata.result.bio;
     }
   } catch (error) {
-    console.error("Error fetching data:", error);
-    data = {
-      bio: "<p>User has not updated their bio yet.</p>",
-    };
+    throw new Error(`Failed to fetch data: ${error}`);
   }
-
-  console.log("about-user---", data);
 
   return (
     <div>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: data.bio, // Ensure this HTML is safe
-        }}
-        className={styles.content_text}
-      ></div>
+      {data && (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: data, // Ensure this HTML is safe
+          }}
+          className={styles.content_text}
+        ></div>
+      )}
     </div>
   );
 }

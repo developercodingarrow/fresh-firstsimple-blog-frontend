@@ -7,8 +7,8 @@ import { InputModelsContext } from "@/src/_contextApi/InputModelContextApi";
 import ModelCommanFooter from "./modelElements/ModelCommanFooter";
 import { useCustomApiForm } from "@/src/_custome-hooks/useCutomeApiform";
 import { AuthContext } from "@/src/_contextApi/authContext";
-import { updateUserDetail } from "@/src/app/utils/userAuthaction";
 import { AppContext } from "@/src/_contextApi/AppContext";
+import { updateUserDetail } from "@/src/app/utils/userActions";
 
 export default function InputDataModel(props) {
   const { modelTitle, modelInputfileds, actionID, apiData } = props;
@@ -26,6 +26,7 @@ export default function InputDataModel(props) {
     setValue,
     renderInput,
     isValid,
+    errors,
     reset,
   } = useCustomApiForm(apiData, modelInputfileds);
 
@@ -38,6 +39,12 @@ export default function InputDataModel(props) {
     try {
       const res = await handelUpdateUserProfile(obj);
 
+      if (res.error) {
+        toast.error(res.error);
+        setisBtnLoadin(false);
+        return;
+      }
+
       if (res.data.status === "success") {
         setisBtnLoadin(false);
         updateUserDetail(res.data.result);
@@ -49,7 +56,6 @@ export default function InputDataModel(props) {
       }
     } catch (error) {
       setisBtnLoadin(false);
-      console.log(error);
     }
   };
 
@@ -76,10 +82,20 @@ export default function InputDataModel(props) {
           <form onSubmit={handleSubmit(modelformsubmit)}>
             {modelInputfileds.map((input) => {
               return (
-                <div key={input.id}>{renderInput(input, dynimicData)}</div>
+                <div key={input.id}>
+                  {renderInput(input, dynimicData)}
+                  <div>
+                    {errors[input?.name] && (
+                      <span className={"input_errors tiny_text"}>
+                        {errors[input.name].message}
+                      </span>
+                    )}
+                  </div>
+                </div>
               );
             })}
-            <ModelCommanFooter actionType="submit" />
+
+            <ModelCommanFooter actionType="submit" btnValid={!isValid} />
           </form>
         </div>
       </div>

@@ -63,7 +63,7 @@
 
 .user_image_model_container {
   width: 50%;
-  height: 150px;
+  height: 170px;
 }
 
 .mobile_coment_model {
@@ -287,7 +287,27 @@
   color: var(--th-primary-color);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1024px) {
+  .auth_model_container {
+    width: 90%;
+    height: 300px;
+  }
+  .repor_model_container {
+    width: 90%;
+    height: 250px;
+  }
+  .inputData_model_container {
+    width: 90%;
+    height: 200px;
+  }
+
+  .user_image_model_container {
+    width: 90%;
+    height: 170px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
   .model_full_container {
     padding: 0px 0px 0px 0px;
     left: 0px;
@@ -309,7 +329,7 @@
   }
 
   .auth_model_container {
-    width: 100%;
+    width: 95%;
     height: 350px;
   }
 
@@ -325,7 +345,7 @@
   }
 
   .repor_model_container {
-    width: 100%;
+    width: 95%;
     height: 250px;
     padding: 10px;
   }
@@ -383,7 +403,7 @@
   }
 
   .inputData_model_container {
-    width: 100%;
+    width: 95%;
     height: 170px;
     padding: 10px;
   }
@@ -405,11 +425,11 @@
     align-items: flex-start;
     column-gap: 10px;
     row-gap: 10px;
-    padding: 10px 0px;
+    padding: 10px 10px;
   }
 
   .user_image_model_container {
-    width: 100%;
+    width: 95%;
     height: 200px;
   }
   .img_upload_btns_wrappers {

@@ -13,8 +13,8 @@ export default function ResetPasswordwrapper(props) {
         formInputs={resetPasswordInputFileds}
         formHandel={userResetPasswordAction}
         formType="resetPassword"
-        formHeading="Reset Your password"
-        formSubText="Please enter your email address or mobile number to search for your account."
+        formHeading="Reset your password"
+        formSubText="Set a strong password for better security."
         btnText="Reset Password"
         pageslug={slug}
       />

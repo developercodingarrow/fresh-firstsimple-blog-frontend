@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSession } from "./app/lib/authentication";
 import { cookies } from "next/headers"; // Import cookies function
+import { storecookies } from "./app/utils/tagActions";
 
 export async function middleware(request) {
   const response = NextResponse.next();
@@ -8,8 +9,6 @@ export async function middleware(request) {
   const jwtToken = request.cookies.get("jwt")?.value;
   const userData = await getSession();
   const userRole = userData?.role;
-
-  console.log("userData---", userData);
 
   // ✅ Allow static files and Next.js assets to be loaded
   if (

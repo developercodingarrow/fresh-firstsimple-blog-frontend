@@ -21,6 +21,15 @@
   padding: 1px 10px;
 }
 
+.small {
+  width: 15px;
+  height: 15px;
+}
+
+.small_pading {
+  padding: 1px 10px;
+}
+
 .medium {
   width: 20px;
   height: 20px;

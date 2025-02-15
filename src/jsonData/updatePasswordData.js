@@ -1,3 +1,4 @@
+// 1) update password inputs
 export const updatePasswordInputs = [
   {
     id: 1,
@@ -21,7 +22,11 @@ export const updatePasswordInputs = [
     inputType: "password",
     inputSize: "small",
     validation: {
-      required: "Password is required.",
+      required: "New password is required.",
+      minLength: {
+        value: 8, // Minimum length required
+        message: "Password must be at least 8 characters long.", // Error message
+      },
     },
   },
 ];

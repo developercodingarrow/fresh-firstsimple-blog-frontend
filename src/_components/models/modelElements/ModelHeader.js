@@ -15,7 +15,7 @@ export default function ModelHeader(props) {
     <div className={styles.model_header}>
       <div className={"section_medium_heading"}>{modelTitle}</div>
       <div
-        className={`icon_box text_color_gray semi_bold_text medium__text`}
+        className={`icon_box text_color_gray  medium__text`}
         onClick={handelColse}
       >
         <IoCloseSharp />{" "}

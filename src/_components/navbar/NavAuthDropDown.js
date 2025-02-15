@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import styles from "./navlogo.module.css";
+import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 import { LogOutAction } from "@/src/app/utils/userAuthaction";
 import { useRouter } from "next/navigation";
@@ -26,11 +27,18 @@ export default function NavAuthDropDown(props) {
   const handellogOut = async () => {
     try {
       const res = await LogOutAction();
-      console.log(res);
+      if (res.error) {
+        toast.error(res.error);
+        return;
+      }
+
       if (res.data.status === "success") {
         router.refresh();
+        toast.success("You’ve been successfully logged out");
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error("Oops! Something went wrong.");
+    }
   };
 
   return (
@@ -38,6 +46,11 @@ export default function NavAuthDropDown(props) {
       className={styles.auth_dropdown_container}
       onClick={(e) => e.stopPropagation()}
     >
+      <Toaster
+        toastOptions={{
+          className: "medium__text ",
+        }}
+      />
       <Link
         href={`/user-profile/${data?.userName}`}
         className={styles.drop_header}

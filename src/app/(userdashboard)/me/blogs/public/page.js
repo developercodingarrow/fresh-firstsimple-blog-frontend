@@ -3,6 +3,7 @@ import { userPublisedBlogsAction } from "@/src/app/utils/blogsAction";
 import { cookies } from "next/headers"; // Import cookies here
 import PublishedBlogCard from "@/src/_components/cards/PublishedBlogCard";
 import styles from "../../../page.module.css";
+import CustomeMsg from "@/src/_components/CustomErrors/CustomeMsg";
 
 export const metadata = {
   title: "LitVerseHub | published Content",
@@ -16,10 +17,11 @@ export default async function PublicBlogpage() {
   let initialData;
   try {
     const res = await userPublisedBlogsAction(authToken);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     if (res.error) {
-      initialData = [];
-    } else if (res.status === "success") {
+      return <CustomeMsg msg={res.error} />;
+    }
+    if (res.status === "success") {
       initialData = res.result;
     } else {
       initialData = [];

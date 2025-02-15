@@ -11,8 +11,8 @@ export default function OTPVerificationwrapper(props) {
         formInputs={otpInputFiled}
         formHandel={userotpVerfication}
         formType="OTP"
-        formHeading="OTP Verification"
-        formSubText="please Enter you otp which is sent to your E-mail Address"
+        formHeading="Enter your OTP"
+        formSubText="Check your email and enter the OTP to continue."
         btnText="Submit"
         pageslug={slug}
       />

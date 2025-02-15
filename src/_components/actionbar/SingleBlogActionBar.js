@@ -1,13 +1,12 @@
 "use client";
 import React, { useContext, useEffect } from "react";
-
+import dynamic from "next/dynamic";
 import styles from "./css/singleblogactionbar.module.css";
 import UserDetailsAvatar from "../userAvatars/UserDetailsAvatar";
 import { FaComment } from "../ApplicationIcons";
 import MainCardActionDotWrapper from "../actiondote/MainCardActionDotWrapper";
 import LikeAction from "../like_actions/LikeAction";
 import { ModelsContext } from "@/src/_contextApi/ModelContextApi";
-import { blogViewCountAction } from "@/src/app/utils/blogLikeActions";
 import ViewCount from "./ViewCount";
 
 export default function SingleBlogActionBar(props) {
@@ -18,8 +17,9 @@ export default function SingleBlogActionBar(props) {
     <div className={styles.action_bar}>
       <div>
         <UserDetailsAvatar
-          boldText="sanjay"
+          boldText={data?.user.name}
           dateText={data?.createdAt}
+          userImage={data?.user.userImg}
           avtar_wrapper="maincard_avtar_wrapper"
         />
       </div>

@@ -33,6 +33,9 @@
   border-radius: 40px;
 }
 
+@media only screen and (max-width: 1024px) {
+}
+
 @media only screen and (max-width: 600px) {
   .search_container {
   }
@@ -42,6 +45,6 @@
     padding: 5px;
   }
   .search_input {
-    font-size: 16px;
+    font-size: 1.4rem;
   }
 }

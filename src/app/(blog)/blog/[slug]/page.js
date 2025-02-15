@@ -6,7 +6,7 @@ import AlternativeNotFound from "@/src/_components/CustomErrors/AlternativeNotFo
 export async function generateMetadata({ params }) {
   try {
     const res = await fetch(
-      `${API_BASE_URL}/blog/public-single-blog/${params.slug}`
+      `${API_BASE_URL}/public-blog/public-single-blog/${params.slug}`
     );
 
     if (res.status !== 200) {
@@ -82,7 +82,7 @@ export async function generateMetadata({ params }) {
           name: "pinbuzzers",
           logo: {
             "@type": "ImageObject",
-            url: "https://pinbuzzers.com/web-static-img/dummy-logo.png",
+            url: "https://litversehub.com/web-static-img/dummy-logo.png",
           },
         },
         breadcrumb: {
@@ -116,7 +116,7 @@ export async function generateMetadata({ params }) {
     return {
       title: "Default Title",
       description: "Default description",
-      canonical: "https://pinbuzzers.com/blog/404",
+      canonical: "https://litversehub.com/blog/404",
       schema: {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
@@ -130,7 +130,7 @@ export async function generateMetadata({ params }) {
           name: "pinbuzzers",
           logo: {
             "@type": "ImageObject",
-            url: "https://pinbuzzers.com/web-static-img/dummy-logo.png",
+            url: "https://litversehub.com/web-static-img/dummy-logo.png",
           },
         },
         breadcrumb: {
@@ -147,13 +147,13 @@ export async function generateMetadata({ params }) {
               "@type": "ListItem",
               position: 2,
               name: "Blog",
-              item: "https://pinbuzzers.com/blog",
+              item: "https://litversehub.com/blog",
             },
             {
               "@type": "ListItem",
               position: 3,
               name: "Default Title",
-              item: `https://pinbuzzers.com/blog/${params.slug}`,
+              item: `https://litversehub.com/blog/${params.slug}`,
             },
           ],
         },
@@ -167,19 +167,20 @@ export default async function SingleBlogpage({ params }) {
   let data;
   try {
     const res = await fetch(
-      `${API_BASE_URL}/blog/public-single-blog/${slug}`,
+      `${API_BASE_URL}/public-blog/public-single-blog/${slug}`,
       {
         method: "GET", // GET request to fetch the blog
         credentials: "include", // Include cookies in the request
         headers: {
           "Content-Type": "application/json", // Ensure this is set to JSON
         },
-      },
-      { cache: "no-store" }
+      }
+      // { cache: "no-store" }
     );
     if (res.status === 404) {
       return <AlternativeNotFound />;
     }
+
     if (res.status === 200) {
       const initalData = await res.json();
       data = initalData.result;

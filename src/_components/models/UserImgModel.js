@@ -11,9 +11,8 @@ import { handeluplodUserPic } from "@/src/app/imghandlers/imageHandlers";
 import ClickTextBtn from "../buttons/ClickTextBtn";
 import { InputModelsContext } from "@/src/_contextApi/InputModelContextApi";
 import { AppContext } from "@/src/_contextApi/AppContext";
-import { updateUserDetail } from "@/src/app/utils/userAuthaction";
 import { AuthContext } from "@/src/_contextApi/authContext";
-import { userImgRemove } from "@/src/app/utils/userActions";
+import { updateUserDetail, userImgRemove } from "@/src/app/utils/userActions";
 
 export default function UserImgModel(props) {
   const { actionId, imgUrl } = props;
@@ -34,15 +33,22 @@ export default function UserImgModel(props) {
     try {
       setisBtnLoadin(true);
       const res = await handeluplodUserPic(image, "userImg", actionId);
+
+      if (res.error) {
+        toast.error(res.error);
+        setisBtnLoadin(false);
+        return;
+      }
       if (res.data.status === "success") {
         setisBtnLoadin(false);
         updateUserDetail(res.data.result);
         setauthUser(res.data.result);
         toast.success(res.data.message);
-        console.log(res);
+        setTimeout(() => {
+          handelCloseUserImgModel();
+        }, 1500);
       }
     } catch (error) {
-      console.log("error---", error);
       setisBtnLoadin(false);
     }
   };
@@ -50,12 +56,19 @@ export default function UserImgModel(props) {
   const handelDeleteImg = async () => {
     try {
       const res = await userImgRemove();
+      if (res.error) {
+        toast.error(res.error);
+        setisBtnLoadin(false);
+        return;
+      }
       if (res.data.status === "success") {
         setisBtnLoadin(false);
         updateUserDetail(res.data.result);
         setauthUser(res.data.result);
         toast.success(res.data.message);
-        console.log(res);
+        setTimeout(() => {
+          handelCloseUserImgModel();
+        }, 1500);
       }
     } catch (error) {
       console.log("error---", error);
@@ -101,9 +114,9 @@ export default function UserImgModel(props) {
             )}
           </div>
           <div>
-            <div className="small_text mg_botom_sm">
-              Recommended: Square JPG, PNG, or GIF, at least 1,000 pixels per
-              side.
+            <div className="medium__text mg_botom_sm">
+              Recommended:PNG, JPG, JPEG, or WEBP image, at least 1,000 pixels
+              per side.
             </div>
             <div className={styles.img_upload_btns_wrappers}>
               <div className={styles.left_side_btns}>
@@ -119,7 +132,7 @@ export default function UserImgModel(props) {
                   {" "}
                   <input
                     type="file"
-                    accept="image/*"
+                    accept=".png, .jpg, .jpeg, .webp"
                     ref={fileInputRef}
                     onChange={handleImageUpload}
                     style={{ display: "none" }}

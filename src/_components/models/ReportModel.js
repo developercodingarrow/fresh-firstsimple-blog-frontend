@@ -27,6 +27,11 @@ export default function ReportModel() {
         filedContent: data.reportcontent,
       };
       const res = await reportBlogAction(formData);
+      if (res.error) {
+        setisBtnLoadin(false);
+        toast.error(res.error);
+        return;
+      }
       if (res.data.status === "success") {
         toast.success(res.data.message);
         setisBtnLoadin(false);
@@ -35,7 +40,7 @@ export default function ReportModel() {
         }, 1500); // Adjust delay based on toast duration
       }
     } catch (error) {
-      console.log(error);
+      toast.error("Oops! Something went wrong.");
       setisBtnLoadin(false);
     }
   };

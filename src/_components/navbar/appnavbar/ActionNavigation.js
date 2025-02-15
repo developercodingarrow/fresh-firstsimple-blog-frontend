@@ -1,5 +1,6 @@
 "use client";
 import React, { useContext, useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useRouter, usePathname } from "next/navigation";
 import styles from "./css/appnavbar.module.css";
 import { createBlogFirstAction } from "@/src/app/utils/blogsAction";
@@ -20,6 +21,12 @@ export default function ActionNavigation() {
       setpageLoading(true);
       const res = await createBlogFirstAction();
       console.log(res);
+      if (res.error) {
+        toast.error(res.error);
+        setpageLoading(false);
+        return;
+      }
+
       if (res.data.status === "success") {
         console.log(res.data.result._id);
         router.push(`/content/${res.data.result._id}`);
@@ -35,6 +42,11 @@ export default function ActionNavigation() {
       className={`${styles.navigation_linkStyle} medium__text text_color_bold_gray`}
       onClick={handelCreateBlogAction}
     >
+      <Toaster
+        toastOptions={{
+          className: "medium__text ",
+        }}
+      />
       Write
     </div>
   );

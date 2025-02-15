@@ -1,6 +1,7 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 import styles from "./replyform.module.css";
 import { useForm } from "react-hook-form";
 import SubmitBtn from "../../buttons/SubmitBtn";
@@ -19,6 +20,10 @@ export default function ReplyForm(props) {
   const handelCreateReply = async (formData) => {
     try {
       const res = await createReplyAction(formData);
+      if (res.error) {
+        toast.error("Oops! Something went wrong. Please refresh the page.");
+        return;
+      }
       if (res.data.status === "success") {
         const newTempReply = {
           comment: formData.comment,
@@ -34,11 +39,18 @@ export default function ReplyForm(props) {
         reset();
         router.refresh();
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error("Oops! Something went wrong. Please refresh the page.");
+    }
   };
 
   return (
     <div className={styles.reply_form_container}>
+      <Toaster
+        toastOptions={{
+          className: "medium__text ",
+        }}
+      />
       <form onSubmit={handleSubmit(handelCreateReply)}>
         <div className={styles.comment_input_wrapper}>
           <div className={styles.input_wrapper}>

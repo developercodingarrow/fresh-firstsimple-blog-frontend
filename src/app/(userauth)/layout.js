@@ -1,11 +1,9 @@
-import { Inter, Noto_Serif, Poppins } from "next/font/google";
-import MainAppNavbar from "@/src/_components/navbar/appnavbar/MainAppNavbar";
 import "../globals.css";
-import HomePageLayout from "@/src/_components/home/layout/HomePageLayout";
+import { Inter, Noto_Serif, Poppins } from "next/font/google";
+
 import MainFooter from "@/src/_components/footer/MainFooter";
 import AuthContextProvider from "@/src/_contextApi/authContext";
 import ModelContextProvider from "@/src/_contextApi/ModelContextApi";
-import AuthModel from "@/src/_components/models/AuthModel";
 import AuthNavbar from "@/src/_components/navbar/authnavbar/AuthNavbar";
 import AppContextProvider from "@/src/_contextApi/AppContext";
 import { getSession } from "../lib/authentication";
@@ -32,12 +30,10 @@ const poppins = Poppins({
   display: "swap",
 });
 
-
 export const metadata = {
   title: "LitVerseHub",
   description: "LitVerseHub – Your digital hub for writers and readers.",
 };
-
 
 export default async function UserAuthLayout({ children }) {
   const userDetails = await getSession();
@@ -52,7 +48,6 @@ export default async function UserAuthLayout({ children }) {
           <AuthContextProvider authData={userDetails}>
             <ModelContextProvider>
               <GoogleOAuthProvider clientId={GOOGLE_AUTH_CLIENT_ID}>
-                <AuthModel />
                 <div>
                   <AuthNavbar />
                 </div>

@@ -3,6 +3,7 @@ import { userDraftBlogsAction } from "@/src/app/utils/blogsAction";
 import { cookies } from "next/headers"; // Import cookies here
 import DraftBlogCard from "@/src/_components/cards/DraftBlogCard";
 import styles from "../../../page.module.css";
+import CustomeMsg from "@/src/_components/CustomErrors/CustomeMsg";
 
 export const metadata = {
   title: "LitVerseHub | Draft Content",
@@ -16,10 +17,12 @@ export default async function DraftBlogspage() {
   let initialData;
   try {
     const res = await userDraftBlogsAction(authToken);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     if (res.error) {
-      initialData = [];
-    } else if (res.status === "success") {
+      return <CustomeMsg msg={res.error} />;
+    }
+
+    if (res.status === "success") {
       initialData = res.result;
     } else {
       initialData = [];

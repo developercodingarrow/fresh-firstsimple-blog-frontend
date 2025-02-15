@@ -13,7 +13,7 @@ export default function ForgotPasswordwrapper() {
         formType="OTP"
         formHeading="Find Your Account"
         formSubText="Please enter your email address to search for your account."
-        btnText="SEND OTP"
+        btnText="SEND RESET LINK"
       />
     </div>
   );

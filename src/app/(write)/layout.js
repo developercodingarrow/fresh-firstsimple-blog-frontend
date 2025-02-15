@@ -1,12 +1,20 @@
-import { Inter, Noto_Serif, Poppins } from "next/font/google";
-import ImgModelContextProvider from "@/src/_contextApi/ImgModelContextApi";
 import "../globals.css";
+import { Inter, Noto_Serif, Poppins } from "next/font/google";
+import dynamic from "next/dynamic";
+import ImgModelContextProvider from "@/src/_contextApi/ImgModelContextApi";
+
 import MainFooter from "@/src/_components/footer/MainFooter";
 import ModelContextProvider from "@/src/_contextApi/ModelContextApi";
 import AppContextProvider from "@/src/_contextApi/AppContext";
 import { verifiedTagsListAction } from "../utils/tagActions";
 import TagContextProvider from "@/src/_contextApi/TagContextApi";
-import CustomePageLoading from "@/src/_components/loading/CustomePageLoading";
+
+const ClientCustomePageLoading = dynamic(
+  () => import("../../_components/loading/CustomePageLoading"),
+  {
+    ssr: false,
+  }
+);
 
 const inter = Inter({
   subsets: ["latin"],
@@ -46,7 +54,7 @@ export default async function WriteLayout({ children }) {
           <TagContextProvider verifiedTags={verifiedTags}>
             <ModelContextProvider>
               <ImgModelContextProvider>
-                <CustomePageLoading />
+                <ClientCustomePageLoading />
                 <div>{/* <MainAppNavbar /> */}</div>
                 <div>{children}</div>
                 <div>

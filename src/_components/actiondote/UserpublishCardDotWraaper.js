@@ -1,6 +1,7 @@
 "use client";
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 import ActionDot from "./ActionDot";
 import { updateToDraft, deleteBlogAction } from "@/src/app/utils/blogsAction";
 import { ModelsContext } from "@/src/_contextApi/ModelContextApi";
@@ -19,11 +20,19 @@ export default function UserpublishCardDotWraaper(props) {
       const data = {
         id: actionId,
       };
+
       const res = await updateToDraft(data);
-      console.log(res);
-      router.refresh();
+      if (res.error) {
+        toast.error(res.error);
+        return;
+      }
+
+      if (res.data.status === "success") {
+        toast.success("Blog added to drafts");
+        router.refresh();
+      }
     } catch (error) {
-      console.log(error);
+      toast.error("Oops! Something went wrong.");
     }
   };
 
@@ -38,6 +47,11 @@ export default function UserpublishCardDotWraaper(props) {
   ];
   return (
     <div>
+      <Toaster
+        toastOptions={{
+          className: "medium__text ",
+        }}
+      />
       <ActionDot
         actionList={publishBlogAction}
         actionId={elementID}

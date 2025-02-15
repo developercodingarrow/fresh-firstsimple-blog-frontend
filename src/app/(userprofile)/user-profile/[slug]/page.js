@@ -1,4 +1,6 @@
 import { API_BASE_URL } from "@/config";
+import CustomeMsg from "@/src/_components/CustomErrors/CustomeMsg";
+import NotDataFound from "@/src/_components/CustomErrors/NotDataFound";
 import MainCard from "@/src/_components/home/card/MainCard";
 import React from "react";
 
@@ -10,7 +12,7 @@ export default async function UserProfilepage(pathname) {
     // Fetch the web stats using the auth token
 
     const res = await fetch(
-      `${API_BASE_URL}/user/user-publidhed-blogs/${slug}`,
+      `${API_BASE_URL}/user-profile/user-publidhed-blogs/${slug}`,
       {
         method: "GET", // GET request to fetch the blog
         credentials: "include", // Include cookies in the request
@@ -21,10 +23,15 @@ export default async function UserProfilepage(pathname) {
     );
 
     const initalData = await res.json();
-    data = initalData.result;
+    if (initalData.status === "fail") {
+      return <CustomeMsg msg={initalData.message} />;
+    }
+
+    if (initalData.status === "success") {
+      data = initalData.result;
+    }
   } catch (error) {
-    console.error("Error fetching data:", error);
-    data = null;
+    throw new Error(`Failed to fetch data: ${error}`);
   }
   return (
     <div>

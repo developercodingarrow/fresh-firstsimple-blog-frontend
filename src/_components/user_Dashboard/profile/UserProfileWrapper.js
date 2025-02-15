@@ -12,14 +12,11 @@ import UserImgModel from "../../models/UserImgModel";
 export default function UserProfileWrapper() {
   const { authUser } = useContext(AuthContext);
   const {
-    isOpenInputModel,
     handelOpenInputModel,
     modelHeading,
     modelInputFild,
     elementId,
     modelApiData,
-    actionHandler,
-    isUserImgModel,
   } = useContext(InputModelsContext);
 
   const updatehsndler = () => {};

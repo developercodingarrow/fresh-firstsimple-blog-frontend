@@ -1,19 +1,51 @@
-import { Inter, Noto_Serif, Poppins } from "next/font/google";
-import AuthModel from "@/src/_components/models/AuthModel";
 import "../globals.css";
+import { Inter, Noto_Serif, Poppins } from "next/font/google";
+import dynamic from "next/dynamic";
 import MainFooter from "@/src/_components/footer/MainFooter";
 import MainAppNavbar from "@/src/_components/navbar/appnavbar/MainAppNavbar";
 import AuthContextProvider from "@/src/_contextApi/authContext";
 import ModelContextProvider from "@/src/_contextApi/ModelContextApi";
-import ReportModel from "@/src/_components/models/ReportModel";
+
 import { getSession } from "../lib/authentication";
 import AppContextProvider from "@/src/_contextApi/AppContext";
 import { featuredTagsListAction } from "../utils/tagActions";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GOOGLE_AUTH_CLIENT_ID } from "@/config";
 import GoogleOneTap from "@/src/_components/googleAuth/GoogleOneTap";
-import CustomePageLoading from "@/src/_components/loading/CustomePageLoading";
-import MobileAppDrawer from "@/src/_components/app_Drawer/MobileAppDrawer";
+
+const ClientCustomePageLoading = dynamic(
+  () => import("../../_components/loading/CustomePageLoading"),
+  {
+    ssr: false,
+  }
+);
+const ClientReportModel = dynamic(
+  () => import("../../_components/models/ReportModel"),
+  {
+    ssr: false,
+  }
+);
+
+const ClientAuthModel = dynamic(
+  () => import("../../_components/models/AuthModel"),
+  {
+    ssr: false,
+  }
+);
+
+const ClientMobileAppDrawer = dynamic(
+  () => import("../../_components/app_Drawer/MobileAppDrawer"),
+  {
+    ssr: false,
+  }
+);
+
+const ClientMobileSearchModel = dynamic(
+  () => import("../../_components/models/MobileSearchModel"),
+  {
+    ssr: false,
+  }
+);
 
 const inter = Inter({
   subsets: ["latin"],
@@ -51,10 +83,11 @@ export default async function SingleblogLayout({ children }) {
         <GoogleOAuthProvider clientId={GOOGLE_AUTH_CLIENT_ID}>
           <AppContextProvider>
             <ModelContextProvider>
-              <AuthModel />
-              <ReportModel />
-              <CustomePageLoading />
-              <MobileAppDrawer />
+              <ClientAuthModel />
+              <ClientReportModel />
+              <ClientCustomePageLoading />
+              <ClientMobileAppDrawer />
+              <ClientMobileSearchModel suggestList={featuredTags} />
               <div>
                 <MainAppNavbar
                   authData={userDetails}

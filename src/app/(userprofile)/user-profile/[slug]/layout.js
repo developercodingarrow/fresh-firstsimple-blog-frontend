@@ -1,12 +1,13 @@
-import { Inter, Noto_Serif, Poppins } from "next/font/google";
-import AuthModel from "@/src/_components/models/AuthModel";
 import "../../../globals.css";
+import { Inter, Noto_Serif, Poppins } from "next/font/google";
+import dynamic from "next/dynamic";
+
 import MainFooter from "@/src/_components/footer/MainFooter";
 import MainAppNavbar from "@/src/_components/navbar/appnavbar/MainAppNavbar";
 import UserProfileLayout from "@/src/_components/userProfile/layout/UserProfileLayout";
 import AuthContextProvider from "@/src/_contextApi/authContext";
 import ModelContextProvider from "@/src/_contextApi/ModelContextApi";
-import ReportModel from "@/src/_components/models/ReportModel";
+
 import { getSession } from "../../../lib/authentication";
 import { API_BASE_URL, GOOGLE_AUTH_CLIENT_ID } from "@/config";
 import { featuredTagsListAction } from "@/src/app/utils/tagActions";
@@ -14,9 +15,41 @@ import GoogleOneTap from "@/src/_components/googleAuth/GoogleOneTap";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import AppContextProvider from "@/src/_contextApi/AppContext";
 import { featuresideBlogs } from "@/src/app/utils/blogsAction";
-import MobileAppDrawer from "@/src/_components/app_Drawer/MobileAppDrawer";
-import MobileSearchModel from "@/src/_components/models/MobileSearchModel";
 import AlternativeNotFound from "@/src/_components/CustomErrors/AlternativeNotFound";
+
+const ClientCustomePageLoading = dynamic(
+  () => import("../../../../_components/loading/CustomePageLoading"),
+  {
+    ssr: false,
+  }
+);
+const ClientReportModel = dynamic(
+  () => import("../../../../_components/models/ReportModel"),
+  {
+    ssr: false,
+  }
+);
+
+const ClientAuthModel = dynamic(
+  () => import("../../../../_components/models/AuthModel"),
+  {
+    ssr: false,
+  }
+);
+
+const ClientMobileAppDrawer = dynamic(
+  () => import("../../../../_components/app_Drawer/MobileAppDrawer"),
+  {
+    ssr: false,
+  }
+);
+
+const ClientMobileSearchModel = dynamic(
+  () => import("../../../../_components/models/MobileSearchModel"),
+  {
+    ssr: false,
+  }
+);
 
 const inter = Inter({
   subsets: ["latin"],
@@ -97,13 +130,16 @@ export default async function ProfileLayout({ children, params }) {
   let userProfiledata;
   try {
     // Fetch the web stats using the auth token
-    const res = await fetch(`${API_BASE_URL}/user/user-details/${slug}`, {
-      method: "GET", // GET request to fetch the blog
-      credentials: "include", // Include cookies in the request
-      headers: {
-        "Content-Type": "application/json", // Ensure this is set to JSON
-      },
-    });
+    const res = await fetch(
+      `${API_BASE_URL}/user-profile/user-details/${slug}`,
+      {
+        method: "GET", // GET request to fetch the blog
+        credentials: "include", // Include cookies in the request
+        headers: {
+          "Content-Type": "application/json", // Ensure this is set to JSON
+        },
+      }
+    );
 
     const initalData = await res.json();
 
@@ -130,10 +166,11 @@ export default async function ProfileLayout({ children, params }) {
           <GoogleOAuthProvider clientId={GOOGLE_AUTH_CLIENT_ID}>
             <AppContextProvider>
               <ModelContextProvider>
-                <AuthModel />
-                <ReportModel />
-                <MobileAppDrawer />
-                <MobileSearchModel suggestList={featuredTags} />
+                <ClientCustomePageLoading />
+                <ClientMobileAppDrawer />
+                <ClientAuthModel />
+                <ClientReportModel />
+                <ClientMobileSearchModel suggestList={featuredTags} />
                 <div>
                   <MainAppNavbar
                     authData={userDetails}

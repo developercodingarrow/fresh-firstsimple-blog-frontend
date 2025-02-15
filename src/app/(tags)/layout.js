@@ -1,6 +1,8 @@
-import { Inter, Noto_Serif, Poppins } from "next/font/google";
-import ImgModelContextProvider from "@/src/_contextApi/ImgModelContextApi";
 import "../globals.css";
+import { Inter, Noto_Serif, Poppins } from "next/font/google";
+import dynamic from "next/dynamic";
+import ImgModelContextProvider from "@/src/_contextApi/ImgModelContextApi";
+
 import MainFooter from "@/src/_components/footer/MainFooter";
 import ModelContextProvider from "@/src/_contextApi/ModelContextApi";
 import AppContextProvider from "@/src/_contextApi/AppContext";
@@ -11,8 +13,40 @@ import { featuredTagsListAction } from "../utils/tagActions";
 import GoogleOneTap from "@/src/_components/googleAuth/GoogleOneTap";
 import { GOOGLE_AUTH_CLIENT_ID } from "@/config";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import MobileAppDrawer from "@/src/_components/app_Drawer/MobileAppDrawer";
-import MobileSearchModel from "@/src/_components/models/MobileSearchModel";
+
+const ClientCustomePageLoading = dynamic(
+  () => import("../../_components/loading/CustomePageLoading"),
+  {
+    ssr: false,
+  }
+);
+const ClientReportModel = dynamic(
+  () => import("../../_components/models/ReportModel"),
+  {
+    ssr: false,
+  }
+);
+
+const ClientAuthModel = dynamic(
+  () => import("../../_components/models/AuthModel"),
+  {
+    ssr: false,
+  }
+);
+
+const ClientMobileAppDrawer = dynamic(
+  () => import("../../_components/app_Drawer/MobileAppDrawer"),
+  {
+    ssr: false,
+  }
+);
+
+const ClientMobileSearchModel = dynamic(
+  () => import("../../_components/models/MobileSearchModel"),
+  {
+    ssr: false,
+  }
+);
 
 const inter = Inter({
   subsets: ["latin"],
@@ -54,8 +88,11 @@ export default async function TagPageLayout({ children }) {
             <AppContextProvider>
               <ModelContextProvider>
                 <ImgModelContextProvider>
-                  <MobileAppDrawer />
-                  <MobileSearchModel suggestList={featuredTags} />
+                  <ClientCustomePageLoading />
+                  <ClientMobileAppDrawer />
+                  <ClientAuthModel />
+                  <ClientReportModel />
+                  <ClientMobileSearchModel suggestList={featuredTags} />
                   <div>
                     <MainAppNavbar
                       authData={userDetails}

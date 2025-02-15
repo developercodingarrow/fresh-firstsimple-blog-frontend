@@ -1,6 +1,7 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 import styles from "./blogcomments.module.css";
 import CommentItem from "./CommentItem";
 import { AuthContext } from "@/src/_contextApi/authContext";
@@ -38,12 +39,15 @@ export default function BlogComment(props) {
   const handelgetComments = async () => {
     try {
       const res = await getBlogcomments({ blogId: blogId });
+      if (res.error) {
+        toast.error("Oops! Something went wrong. Please refresh the page.");
+        return;
+      }
       if (res.status === "success") {
-        console.log(res.result);
         setComments(res.result);
       }
     } catch (error) {
-      console.log(error);
+      toast.error("Oops! Something went wrong. Please refresh the page.");
     }
   };
 
@@ -54,7 +58,10 @@ export default function BlogComment(props) {
   const handelCreateComment = async (data) => {
     try {
       const res = await createCommentAction(data);
-
+      if (res.error) {
+        toast.error("Oops! Something went wrong. Please refresh the page.");
+        return;
+      }
       if (res.data.status === "success") {
         setComments([
           ...comments,
@@ -74,7 +81,9 @@ export default function BlogComment(props) {
         reset();
         router.refresh();
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error("Oops! Something went wrong. Please refresh the page.");
+    }
   };
 
   const handleReplyAdded = (commentId, newReply) => {
@@ -146,6 +155,11 @@ export default function BlogComment(props) {
 
   return (
     <div className={styles.main_container}>
+      <Toaster
+        toastOptions={{
+          className: "medium__text ",
+        }}
+      />
       <div
         className={`${styles.Cooment_heading}  mg_botom_lg section_medium_heading`}
       >

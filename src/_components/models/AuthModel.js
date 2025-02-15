@@ -22,18 +22,18 @@ export default function AuthModel() {
           className={`${styles.model_container} ${styles.auth_model_container}`}
         >
           <ModelHeader
-            modelTitle="Login Or Register"
+            modelTitle="Login/Register"
             modelCloseHandler={handelCloseAuthModel}
           />
           <div className={styles.auth_model_innerBody}>
             <div className={styles.heading_wrapper}>
-              <h1>Let's Start</h1>
+              <h1>Let's get started!</h1>
             </div>
             <div
               className={`large__text text_color_gray text_center ${styles.sub_heading} `}
             >
-              Register or log in with Google or our easy-to-use form and start
-              your journey with us today
+              Register or log in with Google or use our easy-to-fill form to
+              begin your journey with us today.
             </div>
             <div className={styles.auth_links_wrapper}>
               <div>
