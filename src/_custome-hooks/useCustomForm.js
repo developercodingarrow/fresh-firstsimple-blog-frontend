@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import HookInput from "../_components/elements/formelements/HookInput";
 import HookRadioBtn from "../_components/elements/formelements/HookRadioBtn";
+import HookTextarea from "../_components/elements/formelements/HookTextarea";
 
 export default function useCustomForm() {
   const {
@@ -12,6 +13,7 @@ export default function useCustomForm() {
     control,
     watch,
     setValue,
+    reset,
   } = useForm({
     mode: "all",
   });
@@ -24,6 +26,17 @@ export default function useCustomForm() {
         specificProps = {
           inputplaceholder: input.placeholder,
           filed_container: "filedContainer",
+          inputSize: input.inputSize,
+        };
+
+        break;
+
+      case "textarea":
+        InputComponent = HookTextarea;
+        specificProps = {
+          inputplaceholder: input.placeholder,
+          filed_container: "filedContainer",
+          inputSize: input.inputSize,
         };
 
         break;
@@ -62,6 +75,7 @@ export default function useCustomForm() {
     control,
     watch,
     setValue,
+    reset,
     renderInput,
     isValid: formState.isValid, // Access isValid from formState
     errors: formState.errors,

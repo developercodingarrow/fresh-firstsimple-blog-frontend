@@ -17,7 +17,7 @@ export default function SearchBar(props) {
       const filtered = allList.filter((tag) =>
         tag[filedName].toLowerCase().includes(value.toLowerCase())
       );
-      console.log(filtered);
+
       setfillterList(filtered);
     } else {
       setfillterList([]);
@@ -25,7 +25,6 @@ export default function SearchBar(props) {
   };
 
   const handleTagClick = (text, slug) => {
-    console.log("slug", slug);
     setnewValue(text); // Clear the input field
     setfillterList([]); // Clear the filtered dropdown
   };

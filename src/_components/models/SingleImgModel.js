@@ -1,10 +1,10 @@
 "use client";
 import React, { useContext, useEffect } from "react";
 import styles from "./css/model.module.css";
+import { useParams, useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import { IoCloseSharp, MdDelete } from "../ApplicationIcons";
 
-import dummyImg from "../../../public/web-static-img/cardimg.png";
 import Image from "next/image";
 import ModelHeader from "./modelElements/ModelHeader";
 import ImgUplodBox from "../imgUplod/ImgUplodBox";
@@ -17,6 +17,7 @@ import { AppContext } from "@/src/_contextApi/AppContext";
 import { deleteBlogThumblinImages } from "@/src/app/utils/blogsAction";
 
 export default function SingleImgModel(props) {
+  const router = useRouter();
   const { updateHandler, id, apiData } = props;
   const {
     isSingleImgModel,
@@ -27,6 +28,7 @@ export default function SingleImgModel(props) {
     useContext(AppContext);
   const {
     previewImage,
+    setPreviewImage,
     image,
     imgData,
     handleImageUpload,
@@ -55,6 +57,8 @@ export default function SingleImgModel(props) {
         toast.success(res.data.message);
         setisBtnLoadin(false);
         setpageLoading(false);
+        handleCloseSingleImgModel();
+        setPreviewImage(null);
         router.refresh();
       }
     } catch (error) {
@@ -68,7 +72,7 @@ export default function SingleImgModel(props) {
   const handelDeleteApiImg = async () => {
     try {
       const res = await deleteBlogThumblinImages(apiData._id);
-    
+
       if (res.error) {
         toast.error(res.error);
         return;

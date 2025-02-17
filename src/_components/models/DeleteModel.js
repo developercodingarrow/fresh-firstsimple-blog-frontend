@@ -55,7 +55,10 @@ export default function DeleteModel(props) {
             modelCloseHandler={handelCloseDeleteModel}
           />
           <div className={styles.model_body}>
-            Are You Sure to Delete Then delete Other Wise clcik on Cancel.... ?
+            <div className="medium__text">
+              Are you sure you want to delete? Click Delete to proceed or Close
+              to exit.
+            </div>
           </div>
           <ModelCommanFooter
             actionType="click"

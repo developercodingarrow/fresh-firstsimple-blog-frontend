@@ -99,6 +99,7 @@ export default function useImageUpload(apiData, dataFor) {
 
   return {
     previewImage,
+    setPreviewImage,
     image,
     imgData,
     handleImageUpload,

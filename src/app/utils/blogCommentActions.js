@@ -52,7 +52,6 @@ export async function createCommentAction(formData) {
     });
 
     if (res.data.status === "success") {
-      console.log(res.data.newComment);
       return { data: res.data };
     }
   } catch (error) {
@@ -118,7 +117,6 @@ export async function deleteCommentAction(formData) {
       },
       withCredentials: true,
     });
-    console.log("delete comment---", res.data);
     if (res.data.status === "success") {
       return { data: res.data };
     }

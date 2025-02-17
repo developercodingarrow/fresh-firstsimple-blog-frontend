@@ -31,6 +31,7 @@ export default function SignInSignUpUI(props) {
     try {
       setisBtnLoadin(true);
       const res = await formHandel(data);
+
       if (res.error) {
         toast.error(res.error);
         setisBtnLoadin(false);

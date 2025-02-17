@@ -11,11 +11,13 @@ export default function SuspendUI() {
   const handellogOut = async () => {
     try {
       const res = await LogOutAction();
-      console.log(res);
+
       if (res.data.status === "success") {
         router.refresh();
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className={styles.container}>

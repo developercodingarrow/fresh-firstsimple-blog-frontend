@@ -13,21 +13,26 @@ import { AuthContext } from "@/src/_contextApi/authContext";
 import BtnLinks from "../buttons/BtnLinks";
 import { IoCloseSharp } from "../ApplicationIcons";
 import CircleImg from "../userAvatars/CircleImg";
+import AppDrawerFooterNvagigation from "./AppDrawerFooterNvagigation";
 
 export default function MobileAppDrawer() {
   const router = useRouter();
   const { authUser } = useContext(AuthContext);
-  const { isAppDrawer, handelOpenAppDraer, handelCloseAppDraer } =
+  const { isAppDrawer, handelCloseAppDraer, isBtnLoadin, setisBtnLoadin } =
     useContext(AppContext);
 
   const handellogOut = async () => {
     try {
+      setisBtnLoadin(true);
       const res = await LogOutAction();
-      console.log(res);
+
       if (res.data.status === "success") {
         router.refresh();
+        setisBtnLoadin(false);
       }
-    } catch (error) {}
+    } catch (error) {
+      setisBtnLoadin(false);
+    }
   };
 
   return (
@@ -60,7 +65,7 @@ export default function MobileAppDrawer() {
               </div>
             )}
 
-            <div className="small_text">
+            <div className="small_text cursor_pointer">
               <IoCloseSharp />{" "}
             </div>
           </div>
@@ -76,17 +81,7 @@ export default function MobileAppDrawer() {
           </div>
         </div>
         <div className={styles.bottom_section}>
-          <div className={styles.officla_pages}>
-            <Link href={"/"} className={styles.tiny_link}>
-              Contact support
-            </Link>
-            <Link href={"/"} className={styles.tiny_link}>
-              Privacy policy
-            </Link>
-            <Link href={"/"} className={styles.tiny_link}>
-              Terms
-            </Link>
-          </div>
+          <AppDrawerFooterNvagigation />
           <div className={styles.log_outBtn_wrapper}>
             {authUser ? (
               <ClickTextBtn
@@ -94,6 +89,7 @@ export default function MobileAppDrawer() {
                 fullWidth={true}
                 clickHandel={handellogOut}
                 disabledBtn={false}
+                btnLoading={isBtnLoadin}
               />
             ) : (
               <BtnLinks linkText="login" hrflink="/auth/login" size="medium" />

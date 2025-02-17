@@ -8,6 +8,8 @@ import ModelContextProvider from "@/src/_contextApi/ModelContextApi";
 import AppContextProvider from "@/src/_contextApi/AppContext";
 import { verifiedTagsListAction } from "../utils/tagActions";
 import TagContextProvider from "@/src/_contextApi/TagContextApi";
+import { getSession } from "../lib/authentication";
+import AuthContextProvider from "@/src/_contextApi/authContext";
 
 const ClientCustomePageLoading = dynamic(
   () => import("../../_components/loading/CustomePageLoading"),
@@ -42,6 +44,7 @@ export const metadata = {
 };
 
 export default async function WriteLayout({ children }) {
+  const userDetails = await getSession();
   const verifiedTags = await verifiedTagsListAction();
   return (
     <html
@@ -50,20 +53,22 @@ export default async function WriteLayout({ children }) {
     >
       <head />
       <body>
-        <AppContextProvider>
-          <TagContextProvider verifiedTags={verifiedTags}>
-            <ModelContextProvider>
-              <ImgModelContextProvider>
-                <ClientCustomePageLoading />
-                <div>{/* <MainAppNavbar /> */}</div>
-                <div>{children}</div>
-                <div>
-                  <MainFooter />
-                </div>
-              </ImgModelContextProvider>
-            </ModelContextProvider>
-          </TagContextProvider>
-        </AppContextProvider>
+        <AuthContextProvider authData={userDetails}>
+          <AppContextProvider>
+            <TagContextProvider verifiedTags={verifiedTags}>
+              <ModelContextProvider>
+                <ImgModelContextProvider>
+                  <ClientCustomePageLoading />
+                  <div>{/* <MainAppNavbar /> */}</div>
+                  <div>{children}</div>
+                  <div>
+                    <MainFooter authData={userDetails} />
+                  </div>
+                </ImgModelContextProvider>
+              </ModelContextProvider>
+            </TagContextProvider>
+          </AppContextProvider>
+        </AuthContextProvider>
       </body>
     </html>
   );

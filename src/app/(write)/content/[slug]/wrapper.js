@@ -4,7 +4,6 @@ import React from "react";
 
 export default function CreateBlogwrapper(props) {
   const { apiData, slug } = props;
-  console.log(apiData);
   return (
     <div>
       <CreateUi apiData={apiData} slug={slug} />

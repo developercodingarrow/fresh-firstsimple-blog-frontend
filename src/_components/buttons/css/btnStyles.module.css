@@ -13,6 +13,14 @@
   letter-spacing: 0.05rem;
 }
 
+.small:disabled {
+  font-size: 1.4rem;
+  padding: 6px 14px;
+  border-radius: 0.5rem;
+  background-color: var(--th-btn-disable-color);
+  cursor: not-allowed;
+}
+
 .tiny {
   font-size: 1.2rem;
   font-family: var(--font-inter);
@@ -140,7 +148,7 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 720px) {
   /* final refactor start */
   .medium_tag_links {
     font-size: 1.4rem;
@@ -174,7 +182,7 @@
     border-radius: 5px;
   }
   .medium {
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: 400;
     padding: 6px 12px;
     line-height: 1.3;

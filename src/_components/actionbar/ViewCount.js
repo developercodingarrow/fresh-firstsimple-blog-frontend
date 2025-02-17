@@ -19,8 +19,6 @@ export default function ViewCount(props) {
           // Update the timestamp in localStorage
           localStorage.setItem(`blog_view_${data.slug}`, currentTime);
         }
-      } else {
-        console.log("View count not updated (less than 3 minute)");
       }
     } catch (error) {
       console.error("Error updating view count:", error);

@@ -166,17 +166,25 @@ export async function userLoginAction(formData) {
       return { error: "Login credentials are incorrect.", statusCode: 401 };
     }
   } catch (error) {
-    if (error.response && error.response.data) {
+    if (error.response) {
+      // Handle rate limit error differently
+      if (error.response.status === 429) {
+        return {
+          error: error.response.statusText || "Too Many Requests",
+          statusCode: 429,
+        };
+      } else {
+        return {
+          error: error.response.data.message || "Something went wrong",
+          statusCode: error.response.status || 500,
+        };
+      }
+    } else {
       return {
-        error: error.response.data.message || "Unknown error",
+        error: error.message || "Request failed",
         statusCode: error.response.status || 500,
       };
     }
-
-    return {
-      error: error.message || "Request failed",
-      statusCode: 500,
-    };
   }
 }
 
@@ -248,7 +256,6 @@ export async function updatePassword(formData) {
     });
 
     if (res.data.status === "success") {
-      console.log(res.data);
       return { data: res.data };
     }
   } catch (error) {

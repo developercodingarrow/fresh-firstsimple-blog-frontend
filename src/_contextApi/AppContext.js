@@ -20,12 +20,10 @@ export default function AppContextProvider({ children }) {
   const handelstoreFeatureTags = async () => {
     const existingTags = Cookies.get("featuredTags");
     if (existingTags) {
-      console.log("Tags already stored in cookies");
       return;
     }
     try {
       const res = await featuredTagsListAction();
-      console.log("feature tag api calli---", res);
       // Store tags in cookies for 24 hours
       Cookies.set("featuredTags", JSON.stringify(res), {
         expires: 1, // 1 day

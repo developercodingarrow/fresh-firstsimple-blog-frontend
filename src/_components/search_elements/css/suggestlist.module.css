@@ -28,3 +28,16 @@
   background-color: var(--th-thin-border-color);
   border-radius: 3px;
 }
+
+@media only screen and (max-width: 720px) {
+  .drop_container {
+    box-shadow: var(--th-box-shadow);
+    padding: 0.5rem;
+    overflow-y: auto;
+    border-radius: 5px;
+  }
+  .list_items {
+    padding: 3px 5px;
+    font-size: 1.4rem;
+  }
+}

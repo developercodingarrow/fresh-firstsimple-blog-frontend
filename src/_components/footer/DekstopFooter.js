@@ -12,12 +12,8 @@ export default function DekstopFooter() {
       hrfLink: "about-us",
     },
     {
-      text: "Faqs",
-      hrfLink: "/",
-    },
-    {
       text: "Contact support",
-      hrfLink: "/",
+      hrfLink: "contact-us",
     },
     {
       text: "Privacy policy",
@@ -25,14 +21,14 @@ export default function DekstopFooter() {
     },
     {
       text: "Terms",
-      hrfLink: "/",
+      hrfLink: "terms-and-conditions",
     },
   ];
 
   return (
     <div className={styles.dekstop_footer_container}>
       <div className={styles.footer_heding}>
-        <h2>Medium</h2>
+        <h2>LitVerseHub</h2>
       </div>
       <div className={styles.footer_bottom_bar}>
         <div className={styles.footer_page_links_wrapper}>

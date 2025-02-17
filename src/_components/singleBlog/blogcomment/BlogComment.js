@@ -5,10 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import styles from "./blogcomments.module.css";
 import CommentItem from "./CommentItem";
 import { AuthContext } from "@/src/_contextApi/authContext";
-import CommentForm from "./CommentForm";
 import { useForm } from "react-hook-form";
-import SimpleHookInput from "../../elements/formelements/SimpleHookInput";
-import ClickTextBtn from "../../buttons/ClickTextBtn";
 import SubmitBtn from "../../buttons/SubmitBtn";
 import {
   createCommentAction,
@@ -24,7 +21,7 @@ export default function BlogComment(props) {
   const { handelOpenAuthModel } = useContext(ModelsContext);
   const userId = authUser?._id;
   // State to manage comments
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState(blogComments);
   const [activeCommentId, setActiveCommentId] = useState(null);
   const [loading, setloading] = useState(true);
 
@@ -40,14 +37,13 @@ export default function BlogComment(props) {
     try {
       const res = await getBlogcomments({ blogId: blogId });
       if (res.error) {
-        toast.error("Oops! Something went wrong. Please refresh the page.");
         return;
       }
       if (res.status === "success") {
         setComments(res.result);
       }
     } catch (error) {
-      toast.error("Oops! Something went wrong. Please refresh the page.");
+      console.error(error);
     }
   };
 

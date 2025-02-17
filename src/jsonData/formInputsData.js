@@ -99,7 +99,7 @@ export const otpInputFiled = [
     id: 1,
     name: "otp",
     placeholder: "Enter Sent OTP!",
-    type: "text",
+    type: "number",
     label: "OTP",
     inputType: "text",
     inputSize: "extra_large",
@@ -167,6 +167,75 @@ export const ReportContentradioOptions = [
     },
     validation: {
       required: "Please select a report option.",
+    },
+  },
+];
+
+export const contactFormInputFileds = [
+  {
+    id: 1,
+    name: "name",
+    placeholder: "enter your name !",
+    type: "text",
+    lable: "Name",
+    inputSize: "medium",
+    inputType: "text",
+    validation: {
+      required: "Name is required.",
+    },
+  },
+
+  {
+    id: 2,
+    name: "email",
+    placeholder: "enter your Valid Email address !",
+    type: "text",
+    lable: "Email",
+    inputType: "text",
+    inputSize: "medium",
+    validation: {
+      required: "Email is required.",
+      pattern: {
+        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+        message: "Invalid email address.",
+      },
+    },
+  },
+
+  {
+    id: 3,
+    name: "number",
+    placeholder: "enter your Valid number !",
+    type: "number",
+    lable: "Contact Number",
+    inputType: "text",
+    inputSize: "medium",
+    validation: {
+      required: "Contact Number is required.",
+    },
+  },
+  {
+    id: 4,
+    name: "subject",
+    placeholder: "enter your enquire Subject !",
+    type: "text",
+    lable: "Subject",
+    inputType: "text",
+    inputSize: "medium",
+    validation: {
+      required: " enquire Subject is required.",
+    },
+  },
+
+  {
+    id: 5,
+    name: "message",
+    placeholder: " Write Your message !",
+    type: "textarea",
+    inputType: "textarea",
+    inputSize: "medium",
+    validation: {
+      required: "message is required.",
     },
   },
 ];

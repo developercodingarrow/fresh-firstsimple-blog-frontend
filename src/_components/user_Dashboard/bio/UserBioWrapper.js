@@ -16,7 +16,6 @@ export default function UserBioWrapper() {
   const { isBtnLoadin, setisBtnLoadin } = useContext(AppContext);
   const [bioContent, setbioContent] = useState(authUser.bio);
   const handleQuillChange = (content) => {
-    console.log(content);
     setbioContent(content);
   };
 

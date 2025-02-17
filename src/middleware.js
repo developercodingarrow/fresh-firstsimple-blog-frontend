@@ -26,13 +26,11 @@ export async function middleware(request) {
 
   // 🚨 If logged in and suspended, redirect to `/suspend`
   if (jwtToken && userData?.suspend && !url.startsWith("/suspend")) {
-    console.log("User is suspended. Redirecting...");
     return NextResponse.redirect(new URL("/suspend", request.url));
   }
 
   // 🚨 If the user’s role is not "user", remove cookies and redirect
   if (jwtToken && userRole !== "user") {
-    console.log("Invalid role. Removing cookies and redirecting...");
     response.cookies.delete("jwt");
     response.cookies.delete("user");
     return NextResponse.redirect(new URL("/auth/login", request.url));

@@ -15,7 +15,6 @@ import GoogleOneTap from "@/src/_components/googleAuth/GoogleOneTap";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GOOGLE_AUTH_CLIENT_ID } from "@/config";
 
-
 const ClientCustomePageLoading = dynamic(
   () => import("../../_components/loading/CustomePageLoading"),
   {
@@ -79,12 +78,12 @@ export default async function TagBlogsPageLayout({ children }) {
   const userDetails = await getSession();
   const featuredTags = await featuredTagsListAction();
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${notoSerif.variable} ${poppins.variable}`}
-    >
+    <html lang="en">
       <head />
-      <body>
+      <body
+        className={`${inter.variable} ${notoSerif.variable} ${poppins.variable}`}
+        suppressHydrationWarning={true}
+      >
         <AuthContextProvider authData={userDetails}>
           <GoogleOAuthProvider clientId={GOOGLE_AUTH_CLIENT_ID}>
             <AppContextProvider>

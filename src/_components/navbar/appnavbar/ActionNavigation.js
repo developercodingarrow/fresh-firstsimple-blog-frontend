@@ -20,7 +20,7 @@ export default function ActionNavigation() {
     try {
       setpageLoading(true);
       const res = await createBlogFirstAction();
-      console.log(res);
+
       if (res.error) {
         toast.error(res.error);
         setpageLoading(false);
@@ -28,8 +28,11 @@ export default function ActionNavigation() {
       }
 
       if (res.data.status === "success") {
-        console.log(res.data.result._id);
-        router.push(`/content/${res.data.result._id}`);
+        router.push(`/content/${res.data.result._id}`, undefined, {
+          shallow: true,
+        });
+
+        setpageLoading(false);
       }
     } catch (error) {
       console.log(error);

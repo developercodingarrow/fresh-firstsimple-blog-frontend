@@ -172,7 +172,7 @@ export default function CreateUi(props) {
         <div>
           <ClickTextBtn
             btnText="Publish"
-            size="medium"
+            size="small"
             disabledBtn={formIsValid}
             btnLoading={isBtnLoadin}
             clickHandel={handelUpdateContent}

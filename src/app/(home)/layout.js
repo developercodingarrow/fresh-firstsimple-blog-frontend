@@ -80,6 +80,7 @@ export default async function homeLayout({ children }) {
     <html lang="en">
       <body
         className={`${inter.variable} ${notoSerif.variable} ${poppins.variable}`}
+        suppressHydrationWarning={true}
       >
         <AuthContextProvider authData={userDetails}>
           <GoogleOAuthProvider clientId={GOOGLE_AUTH_CLIENT_ID}>

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./navlogo.module.css";
 import Image from "next/image";
-import weblogo from "../../../public/web-static-img/logo.png";
+import weblogo from "../../../public/web-static-img/LitVerseHub logo icon.png";
 import Link from "next/link";
 export default function NavLogo() {
   return (

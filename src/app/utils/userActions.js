@@ -24,7 +24,6 @@ export async function updateUser(formData) {
     });
 
     if (res.data.status === "success") {
-      console.log(res.data);
       return { data: res.data };
     }
   } catch (error) {
@@ -62,7 +61,6 @@ export async function updateUserProfilePic(formData) {
     });
 
     if (res.data.status === "success") {
-      console.log(res.data);
       return { data: res.data };
     }
   } catch (error) {
@@ -95,7 +93,6 @@ export async function userImgRemove() {
     });
 
     if (res.data.status === "success") {
-      console.log(res.data);
       return { data: res.data };
     }
   } catch (error) {

@@ -6,6 +6,11 @@ import Image from "next/image";
 import BlogComment from "../blogcomment/BlogComment";
 import Blogbreadcrumb from "../../breadcrumbs/Blog/Blogbreadcrumb";
 import SingleBlogActionBar from "../../actionbar/SingleBlogActionBar";
+
+const ClientBlogComment = dynamic(() => import("../blogcomment/BlogComment"), {
+  ssr: false,
+});
+
 const ClientMobileCommentModel = dynamic(
   () => import("../../models/MobileCommentModel"),
   {
@@ -62,7 +67,7 @@ export default function SingleBlogUi(props) {
           </div>
         </div>
         <div className={styles.comment_container}>
-          <BlogComment
+          <ClientBlogComment
             blogComments={data?.comments}
             blogId={data?._id}
             blogBy={data?.user}

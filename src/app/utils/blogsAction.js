@@ -121,7 +121,6 @@ export async function createBlogFirstAction() {
     });
 
     if (res.data.status === "success") {
-      console.log(res.data);
       return { data: res.data };
     }
   } catch (error) {
@@ -156,7 +155,6 @@ export async function updateBlogContent(formData, slug) {
     });
 
     if (res.data.status === "success") {
-      console.log(res.data);
       return { data: res.data };
     }
   } catch (error) {
@@ -254,7 +252,6 @@ export async function updateToDraft(formData) {
     });
 
     if (res.data.status === "success") {
-      console.log(res.data);
       return { data: res.data };
     }
   } catch (error) {
@@ -289,7 +286,6 @@ export async function deleteBlogAction(formData) {
     });
 
     if (res.data.status === "success") {
-      console.log(res.data);
       return { data: res.data };
     }
   } catch (error) {
@@ -360,7 +356,6 @@ export async function UpdateBlogThumblin(formData, projectId) {
     });
 
     if (res.data.status === "success") {
-      console.log(res.data);
       return { data: res.data };
     }
   } catch (error) {
@@ -394,7 +389,6 @@ export async function deleteBlogThumblinImages(projectId) {
     });
 
     if (res.data.status === "success") {
-      console.log(res.data);
       return { data: res.data };
     }
   } catch (error) {
@@ -429,7 +423,6 @@ export async function upadteBlogTags(formData, slug) {
     });
 
     if (res.data.status === "success") {
-      console.log(res.data);
       return { data: res.data };
     }
   } catch (error) {
@@ -464,7 +457,6 @@ export async function reportBlogAction(formData) {
     });
 
     if (res.data.status === "success") {
-      console.log(res.data);
       return { data: res.data };
     }
   } catch (error) {
